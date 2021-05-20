@@ -6,10 +6,10 @@ var getPosition = require('../getPosition');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Express' });
 });
 
-router.get('/getPositions.php', function(req, res, next) {
+router.get('/getPositions', function(req, res, next) {
   //res.render('index', { title: 'Express' });
     //console.log(req.query)
     if(req.query)

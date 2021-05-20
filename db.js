@@ -3,18 +3,55 @@ dbInfo = require('./db_info.json')
 
 
 var mysql      = require('mysql');
-var connection = mysql.createConnection({
+
+
+var db_config = {
   host     : dbInfo.host,
   user     : dbInfo.user,
   password : dbInfo.password,
   database: dbInfo.database
-});
+};
+
+//var connection = mysql.createConnection(db_config);
+
+
+
+var connection;
+
+handleDisconnect();
+
+ 
+function handleDisconnect() {
+  connection = mysql.createConnection(db_config); // Recreate the connection, since
+                                                  // the old one cannot be reused.
+ 
+  connection.connect(function(err) {              // The server is either down
+    if(err) {                                     // or restarting (takes a while sometimes).
+      console.log('error when connecting to db:', err);
+      setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
+    }                                     // to avoid a hot loop, and to allow our node script to
+  });                                     // process asynchronous requests in the meantime.
+                                          // If you're also serving http, display a 503 error.
+  connection.on('error', function(err) {
+    console.log('db error', err);
+    if(err.code === 'ECONNRESET') { // Connection to the MySQL server is usually
+      handleDisconnect();                         // lost due to either server restart, or a
+    } else {                                      // connnection idle timeout (the wait_timeout
+      throw err;                                  // server variable configures this)
+    }
+  });
+}
+ 
 
 
 
 function getChilds(id) {
     //connection.connect();
-    console.log(connection.state)
+    //console.log(connection.state)
+
+    
+
+
     queryString = "SELECT `id`, `desc`,EXTRACT(YEAR FROM birth) as `birth` FROM `position` WHERE `parent_id`=?";
 
     return new Promise( resolve => {connection.query(queryString, [id], function(err, rows) {

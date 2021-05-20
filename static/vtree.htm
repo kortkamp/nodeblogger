@@ -427,13 +427,13 @@ var orgChart = (function() {
 var u_data = {};
    
 function loadChilds(actualElement, successFunction) {
-   $.getJSON("getPositions.php?id=" + actualElement.id, 
+   $.getJSON("getPositions?id=" + actualElement.id, 
           function(data) {
              successFunction(data);
           });
 }
 
-$.getJSON("getPositions.php?id=0", 
+$.getJSON("getPositions?id=0", 
           function(data) {
              u_data = data;
              orgChart.initTree({id: "#body", data: data, modus: "diagonal", loadFunc: loadChilds});
