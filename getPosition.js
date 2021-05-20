@@ -1,15 +1,55 @@
+db = require ('./db')
 
-async function getFamilyPosition(){
+async function getFamilyPosition(id){
+
+    let result;
+    //db.connect();
+
+    if(id == 0){
+
+        let [first] = await db.getChilds(0)
+
+        first["children"] = await db.getFormatedChilds(first.id)
+
+        result = first;
+
+    }else if (id > 0){
+        let children = await db.getFormatedChilds(id)
+
+        result = {"result":children};
+        
+        
+    }
+
+    /*
+    {"result":[
+            {"id":"3","desc":"Carl Wilhelm Kortkamp","birth":"1845","hasChild":true},
+            {"id":"4","desc":"Henrique Kortkamp","birth":"1848","hasChild":true},
+            {"id":"5","desc":"Guilherme Kortkamp","birth":"1851","hasChild":false},
+            {"id":"6","desc":"Maria Germana Kortkamp","birth":"1853","hasChild":false},
+            {"id":"7","desc":"Sofia Kortkamp","birth":"1857","hasChild":false},
+            {"id":"8","desc":"Alberta Kortkamp","birth":"1860","hasChild":false},
+            {"id":"9","desc":"Maria Luiza Kortkamp","birth":null,"hasChild":false}
+    ]}
+
+    */
+    
+
+    console.log(await db.hasChild(id))
+
+    return result
+    //db.disconnect();
 
 
-
+  
+    
 }
 
 
 module.exports = {getFamilyPosition}
 
-/*
 
+/*
 <?php
 function db() {
    // TODO: Replace these variables
