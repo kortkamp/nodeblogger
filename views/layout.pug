@@ -1,3 +1,4 @@
+
 doctype html
 html
     head
@@ -5,13 +6,25 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
         div(class='master-head')
-            div(class='head-wraper')
-                h1= "Família Kortkamp"
+            
+            div(class='header-wrapper')
+                img(src="../images/hannouver.png")
+                div(class='site-branding-text')
+                    p.site-title
+                        a #{site.title}
+                    p.site-description
+                        a #{site.description}
+                img(src="../images/brasil.png")
             div(class='menu-wraper')
-                ul
-                    each val in menu
+                div.main-navigation
+                    ul
                         li
-                            a(class='menu-item' href=val.link) #{val.title}
+                            a(class='menu-item' href='/') home
+                        each val in menu
+                            li
+                                a(class='menu-item' href=val.link) #{val.title}
+                        li
+                            a(class='menu-item' href='/tree') genealogia
     div(class='master-body')
         block content
 

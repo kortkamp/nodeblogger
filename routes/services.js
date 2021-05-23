@@ -4,10 +4,7 @@ var router = express.Router();
 
 var getPosition = require('../getPosition');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
-});
+
 
 router.get('/getPositions', function(req, res, next) {
   //res.render('index', { title: 'Express' });

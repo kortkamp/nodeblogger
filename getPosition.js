@@ -35,7 +35,7 @@ async function getFamilyPosition(id){
     */
     
 
-    console.log(await db.hasChild(id))
+    //console.log(await db.hasChild(id))
 
     return result
     //db.disconnect();

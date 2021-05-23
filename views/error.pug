@@ -1,6 +1,10 @@
-extends layout
+html
+    head
+        title= "ERRO"
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
 
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+
+      h1= message
+      h2= error.status
+      pre #{error.stack}

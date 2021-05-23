@@ -49,14 +49,13 @@ function getChilds(id) {
     //connection.connect();
     //console.log(connection.state)
 
-    
-
-
     queryString = "SELECT `id`, `desc`,EXTRACT(YEAR FROM birth) as `birth` FROM `position` WHERE `parent_id`=?";
 
     return new Promise( resolve => {connection.query(queryString, [id], function(err, rows) {
         if (err) {
-            console.log(err)    
+            //console.log(err)    
+            console.log("error in db.getChilds")
+            handleDisconnect();
             //throw err
         };
         //console.log('The result is: ', rows);

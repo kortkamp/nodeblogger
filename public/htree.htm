@@ -24,11 +24,12 @@
 
 #body {
   cursor: move;
-  height:800px;
-  width:100%;
+  
+  flex-grow: 1;
+  
   /*background-color:#fff;*/
-  border:1px solid black;
-  margin: 0px 0px 10px 0px;
+  border:0px solid black;
+  margin: 0px 0px 0px 0px;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -37,10 +38,10 @@
 
 var orgChart = (function() {
    var _margin = {
-       top:    20,
-       right:  20,
-       bottom: 20,
-       left:   20
+       top:    00,
+       right:  00,
+       bottom: 00,
+       left:   00
    },
    _root           = {},
    _nodes          = [],
@@ -376,7 +377,7 @@ var orgChart = (function() {
       $(id).html("");   // Reset
       var width  = $(id).innerWidth()  - _margin.left - _margin.right,
           height = $(id).innerHeight() - _margin.top  - _margin.bottom;
-
+      console.log($(id))
       _tree = d3.layout.tree().nodeSize([_rectH + _rectSpacing, 210 + _rectSpacing]);
 
       /* Basic Setup for the diagonal function. _mode = "diagonal" */
@@ -424,15 +425,10 @@ var orgChart = (function() {
 </script>
 </head>
 
- <body style="background-image: url('https://static.vecteezy.com/ti/fotos-gratis/p2/1854982-fundo-de-textura-de-pedra-neutra-gr%C3%A1tis-foto.jpg')">
-   <p style="font-size:30px;text-align:center;font-family:century-gothic">ÁRVORE GENEALÓGICA DA FAMÍLIA KORTKAMP</p> 
-<div id="body"></div>
+ 
+<div id="body" height='100%'></div>
 
-<input type=button onClick="location.href='cadastro.php'" value='Clique aqui para cadastrar um membro da família kortkamp'>
 
-<input type=button onClick="location.href='mensagem.php'" value='Clique aqui para deixar uma mensagem'>
-<br>
-<br>
 <!--
 <button onclick='orgChart.initTree({id: "#body", data: u_data, modus: "line", loadFunc: loadChilds});'>Classic OrgChart</button>
 <button onclick='orgChart.initTree({id: "#body", data: u_data, modus: "diagonal", loadFunc: loadChilds});'>Modern OrgChart</button>

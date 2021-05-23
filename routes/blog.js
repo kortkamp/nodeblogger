@@ -5,8 +5,13 @@ var fs = require('fs')
 // gray-matter to read the .md files better
 const matter = require('gray-matter');
 
+site = {
+  title:"Família Kortkamp",
+  description:"Da Alemanha ao Brasil, 200 anos de História"
+}
 
 
+// must be updated time to time when posting is implented
 var posts = fs.readdirSync(process.cwd() + '\\blog\\' ).filter(file => file.endsWith('.md'));
 var postsData =[];
 for(post of posts){
@@ -19,16 +24,31 @@ for(post of posts){
   )
 }
 
-console.log(postsData)
+//console.log(postsData)
 
 
 router.get("/", (req, res) => {
   //const posts = fs.readdirSync(process.cwd() + '\\blog\\' ).filter(file => file.endsWith('.md'));
-  console.log(posts);
+  //console.log(posts);
   res.render("blogindex", {
-    posts: posts
+    menu: postsData,
+    title: 'Família Kortkamp',
+    site:site,
   });
 });
+
+router.get("/tree", (req,res) => {
+
+  const file = matter.read(process.cwd() + '\\public\\htree.htm');
+
+  res.render("tree", {
+    menu: postsData,
+    title: site.title,
+    site:site,
+    treeBody:file.content
+  });
+});
+  
 
 
 router.get("/:article", (req, res) => {
@@ -44,11 +64,13 @@ router.get("/:article", (req, res) => {
   //res.render('index', { title: 'Express' });
   //console.log(result)
   res.render("blog", {
+    site:site,
     postBody: result,
     menu: postsData,
     title: file.data.title,
     description: file.data.description,
-    image: file.data.image
+    image: file.data.image,
+    
   });
 });
 

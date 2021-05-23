@@ -1,22 +1,60 @@
 body {
-  padding: 5px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0px;
   
 }
+
+/*
+*
+*       ============  HEAD  ==============
+*
+*/
 .master-head {
   
-  text-align: center;
-}
-
-.master-body {
-  
-}
-
-.master-footer {
   
   text-align: center;
+  background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../images/flag-black.jpg");
 }
-.master-head::after {
+
+.header-wrapper {
+    padding: 20px;
+    justify-content:space-between;
+
+    display: flex;
+    align-items: center;
+}
+    .header-wrapper img {
+        height: 100px;
+        width: auto;
+        -webkit-filter: drop-shadow(5px 5px 5px #222);
+        filter: drop-shadow(5px 5px 5px #222);
+    }
+.site-branding-text {
+    height: 100%;
+}
+    .site-title {
+    font-family: Palatino,"Palatino Linotype","Palatino LT STD","Book Antiqua",Times,"Times New Roman",serif;
+    
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0;
+    margin-top: 0;
+    word-wrap: break-word;
+    }
+
+    .site-description {
+    font-style: italic;
+    line-height: 2;
+    margin: 0;
+    }
+
+.___master-head::after {
   background: url("../images/flag.jpg");
   content: "";
   
@@ -29,30 +67,111 @@ body {
   z-index: -1; 
   
 }
+
+
+/*      ---------------menu-----------------
+*/
+
+.menu-wraper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height:max-content
+}
+.main-navigation{
+
+}
+.main-navigation a {
+    border-radius: 5px;
+    color: #222;
+    display: block;
+    font-size: 13px;
+    
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    padding: 9px 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    word-wrap: break-word;
+
+    -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out;
+}
 ul {
-  margin: 0 auto;
-  text-align: center;
+    
+    text-align: center;
+    padding-inline-start: 0;
 }
+  
+    li {
+    display: inline-block;
+    
+    
 
-li {
-  display: inline-block;
-  vertical-align: top;
-}
-
-
+    }
 .menu-item {
-  padding: 10px;
-  text-decoration: none;
-  margin: 10px;
-  border-radius: 10px;
-  
-  
-  color: #090e0f;
+
   
 }
 .menu-item:hover {
-  background-color: #20a6e8;
+  background-color: #bd3434;
+  color: rgb(241, 241, 234);
  
 }
 
 
+/*
+*
+*       ============  BODY  ==============
+*
+*/
+
+
+.master-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("../images/flag-red.jpg");
+}
+
+
+.post-body {
+    max-width: 1000px;
+    font-size: 16px;
+    
+}
+    .post-body p {
+        margin-bottom: 10px;
+        
+    }
+    .post-body h1 {
+        text-align: center;
+    }
+    .post-body h2 {
+        margin-left: 20px;
+    }
+    .post-body h3 {
+        margin-left: 20px;
+    }
+
+.tree-content {
+    
+    flex-grow: 1;
+    display: flex;
+}
+
+
+
+
+/*
+*
+*       ============  FOOTER  ==============
+*
+*/
+.master-footer {
+    background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../images/flag-yellow.jpg");
+    text-align: center;
+  }
