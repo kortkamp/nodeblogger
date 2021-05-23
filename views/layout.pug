@@ -1,7 +1,19 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        div(class='master-head')
+            div(class='head-wraper')
+                h1= "Família Kortkamp"
+            div(class='menu-wraper')
+                ul
+                    each val in menu
+                        li
+                            a(class='menu-item' href=val.link) #{val.title}
+    div(class='master-body')
+        block content
+
+    div(class='master-footer')
+        h3= 'Marcelo Kortkamp 2021'

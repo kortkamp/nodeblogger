@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    div(class='post-body')
+        h1= title
+        h3= description
+        div(class='post-content')
+            | !{postBody}
+  

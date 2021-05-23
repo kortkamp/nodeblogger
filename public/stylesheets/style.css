@@ -1,8 +1,58 @@
 body {
-  padding: 50px;
+  padding: 5px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  
+}
+.master-head {
+  
+  text-align: center;
 }
 
-a {
-  color: #00B7FF;
+.master-body {
+  
 }
+
+.master-footer {
+  
+  text-align: center;
+}
+.master-head::after {
+  background: url("../images/flag.jpg");
+  content: "";
+  
+  opacity: 0.7;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1; 
+  
+}
+ul {
+  margin: 0 auto;
+  text-align: center;
+}
+
+li {
+  display: inline-block;
+  vertical-align: top;
+}
+
+
+.menu-item {
+  padding: 10px;
+  text-decoration: none;
+  margin: 10px;
+  border-radius: 10px;
+  
+  
+  color: #090e0f;
+  
+}
+.menu-item:hover {
+  background-color: #20a6e8;
+ 
+}
+
+
