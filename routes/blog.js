@@ -48,6 +48,19 @@ router.get("/tree", (req,res) => {
     treeBody:file.content
   });
 });
+
+router.get("/contact", (req,res) => {
+
+  const file = matter.read(process.cwd() + '\\public\\contact.htm');
+
+  res.render("contact", {
+    menu: postsData,
+    title: 'Contato',
+    site:site,
+    contactBody:file.content,
+    customStyle:'dddd'
+  });
+});
   
 
 

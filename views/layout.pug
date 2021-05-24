@@ -4,6 +4,10 @@ html
     head
         title= title
         link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/contact.css')
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+        script(src='/javascripts/ui.js')
+        
     body
         div(class='master-head')
             
@@ -25,6 +29,8 @@ html
                                 a(class='menu-item' href=val.link) #{val.title}
                         li
                             a(class='menu-item' href='/tree') genealogia
+                        li
+                            a(class='menu-item' href='/contact') contato
     div(class='master-body')
         block content
 

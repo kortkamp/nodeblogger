@@ -1,11 +1,18 @@
 body {
-  padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0px;
+    padding: 0px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0px;
+
+
+    height: 100%;
+
+    padding: 0;
+
+    margin: 0;
   
 }
 
@@ -103,6 +110,7 @@ ul {
     
     text-align: center;
     padding-inline-start: 0;
+    margin: 5px;
 }
   
     li {
@@ -133,7 +141,7 @@ ul {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    
     background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("../images/flag-red.jpg");
 }
 
@@ -159,8 +167,10 @@ ul {
 
 .tree-content {
     
+    height: 100%;
     flex-grow: 1;
-    display: flex;
+    position: relative;
+    
 }
 
 
@@ -175,3 +185,7 @@ ul {
     background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../images/flag-yellow.jpg");
     text-align: center;
   }
+
+.master-footer h3{
+    margin: 10px;
+}

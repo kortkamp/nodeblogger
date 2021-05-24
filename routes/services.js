@@ -19,6 +19,10 @@ router.get('/getPositions', function(req, res, next) {
 
 });
 
+router.get('/make_contact', function(req,res,next){
+
+  res.send('contact made')
+});
 
    
 
