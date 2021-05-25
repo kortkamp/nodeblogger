@@ -13,7 +13,7 @@ site = {
 
 // must be updated time to time when posting is implented
 var posts = fs.readdirSync(process.cwd() + '\\blog\\' ).filter(file => file.endsWith('.md'));
-var postsData =[];
+global.postsData =[];
 for(post of posts){
   let file = matter.read(process.cwd() + '\\blog\\' + post);
   postsData.push(

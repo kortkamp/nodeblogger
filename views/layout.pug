@@ -12,19 +12,26 @@ html
         div(class='master-head')
             
             div(class='header-wrapper')
-                img(src="../images/hannouver.png")
+                img(class="left-header-img" src="../images/hannouver.png")
                 div(class='site-branding-text')
                     p.site-title
                         a #{site.title}
                     p.site-description
                         a #{site.description}
-                img(src="../images/brasil.png")
-            div(class='menu-wraper')
+                img(class="right-header-img" src="../images/brasil.png")
+            div(class='menu-wrapper')
+                button( class='menu-button' onclick="$('.main-navigation , .menu-button').toggleClass( 'menu-open' );" ) MENU
+                        img(width='45px' src="../images/menu.svg")
+                        
+                        
+                    
+                        
+                     
                 div.main-navigation
-                    ul
+                    ul  
                         li
                             a(class='menu-item' href='/') home
-                        each val in menu
+                        each val in postsData
                             li
                                 a(class='menu-item' href=val.link) #{val.title}
                         li
@@ -35,4 +42,4 @@ html
         block content
 
     div(class='master-footer')
-        h3= 'Marcelo Kortkamp 2021'
+        h4= 'Marcelo Kortkamp 2021'

@@ -1,4 +1,4 @@
-window.addEventListener('resize', resizeUi);
+//window.addEventListener('resize', resizeUi);
 
 function resizeUi(){
 
