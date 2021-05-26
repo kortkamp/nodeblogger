@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs')
+var path = require('path');
+
 
 // gray-matter to read the .md files better
 const matter = require('gray-matter');
@@ -12,10 +14,10 @@ site = {
 
 
 // must be updated time to time when posting is implented
-var posts = fs.readdirSync(process.cwd() + '\\blog\\' ).filter(file => file.endsWith('.md'));
+var posts = fs.readdirSync(path.join(process.cwd() , "blog" )).filter(file => file.endsWith('.md'));
 global.postsData =[];
 for(post of posts){
-  let file = matter.read(process.cwd() + '\\blog\\' + post);
+  let file = matter.read(path.join(process.cwd() , 'blog' , post));
   postsData.push(
     {
       link:post.split('.')[0],
@@ -39,7 +41,7 @@ router.get("/", (req, res) => {
 
 router.get("/tree", (req,res) => {
 
-  const file = matter.read(process.cwd() + '\\public\\htree.htm');
+  const file = matter.read(path.join(process.cwd() , 'public','htree.htm'));
 
   res.render("tree", {
     menu: postsData,
@@ -51,7 +53,7 @@ router.get("/tree", (req,res) => {
 
 router.get("/contact", (req,res) => {
 
-  const file = matter.read(process.cwd() + '\\public\\contact.htm');
+  const file = matter.read(path.join(process.cwd() , 'public' , 'contact.htm'));
 
   res.render("contact", {
     menu: postsData,
@@ -67,7 +69,7 @@ router.get("/contact", (req,res) => {
 router.get("/:article", (req, res) => {
 
   // read the markdown file
-  const file = matter.read(process.cwd() + '\\blog\\' + req.params.article + '.md');
+  const file = matter.read(path.join(process.cwd() , 'blog' , req.params.article + '.md'));
 
   // use markdown-it to convert content to HTML
   var md = require("markdown-it")();
