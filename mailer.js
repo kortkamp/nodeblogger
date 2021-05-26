@@ -14,6 +14,10 @@ var mailOptions = {
 };
 
 
+async function refreshCredentials(){
+    
+}
+
 function sendMail(mailOptions){
 
     var transporter = nodemailer.createTransport({
@@ -24,8 +28,8 @@ function sendMail(mailOptions){
             //type: 'login',
             user: mailInfo.user,
             pass: mailInfo.pass,
-            clientId: mailInfo.oauth.clientId,//'788979503564-oqdc4cib9vc35p34hqlv8nb5nducfgkm.apps.googleusercontent.com',
-            clientSecret: mailInfo.oauth.clientSecret,//'ZSuYvAjPnPmhlxlqUoPus23R',
+            clientId: mailInfo.oauth.clientId,
+            clientSecret: mailInfo.oauth.clientSecret,
             refreshToken: mailInfo.oauth.refresh_token,
             accessToken: mailInfo.oauth.access_token
         }

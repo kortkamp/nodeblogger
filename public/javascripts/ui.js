@@ -14,3 +14,20 @@ function resizeUi(){
     }
 
 }
+
+var comment;
+
+function loadComments(post,parentDiv){
+    console.log('load comments for ' + post + ' in ' + parentDiv);
+    
+    comment = parentDiv;
+    console.log(parentDiv);
+
+    $.get("getComments?post=" + post, 
+          function(data) {
+             u_data = data;
+             console.log(data)
+             comment.innerHTML = data
+          });
+
+}

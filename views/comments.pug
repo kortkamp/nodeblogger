@@ -1,0 +1,43 @@
+script(src='/javascripts/comments.js')
+link(rel='stylesheet', href='/stylesheets/comments.css')
+div.comments-wrapper
+    h2.comments-title Comentários
+    ol.comment-list
+        // =========== MAKE THE LIST ===============
+        each val,index in comments  
+            li(class="comment" id='li-comment-' + index)
+                div.comment
+                    div.comment-wrapper
+                        div.comment-header
+                            cite #{val.author}
+                            span
+                                a #{val.mail}
+                        div.comment-content
+                            p #{val.text}
+                        div.comment-action
+                            //a RESPONDER
+        
+div.respond
+    div.respond-wrapper
+        h3.comment-reply-title Deixe um comentário
+        form(name='new-comment' class="comment-form" action="/postComment" method="post" onsubmit="return validateSubmit()")
+            input(id="parent_post" name="parent_post" type="hidden" value=comments[0].parent_post)
+            div.comment-form-field 
+                div.comment-textarea
+                    textarea(name="comment", cols="30", rows="10" placeholder="Digite seu comentário aqui..." oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"')
+                    
+            div.complement-form
+                div.comment-form-identity
+                    div.comment-form-label
+                        p= 'Preencha seus dados abaixo:'
+                    div.comment-form-fields
+                        div(class='comment-form-name comment-form-field')
+                            input(id='author' name='author' type='text' placeholder='Nome (Obrigatório)')
+                        div(class='comment-form-email comment-form-field')
+                            input(id='email' name='email' type='text' placeholder='Email (Obrigatório)')
+                div.submit-form
+                    input(name="submit" type="submit" id="comment-submit" class="submit comment-form-field" value="Publicar comentário")
+                
+                    
+
+

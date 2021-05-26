@@ -43,7 +43,26 @@ function handleDisconnect() {
 }
  
 
+function getComments(parentPost,parentComment) {
+  //connection.connect();
+  //console.log(connection.state)
 
+  queryString = "SELECT * FROM comments WHERE parent_post = ? AND parent_comment = 0;";
+
+  return new Promise( resolve => {connection.query(queryString, [parentPost], function(err, rows) {
+      if (err) {
+          //console.log(err)    
+          console.log("error in db.getComments")
+          handleDisconnect();
+          //throw err
+      };
+      //console.log('The result is: ', rows);
+      
+      resolve(rows)
+    })}
+  );
+     
+}
 
 function getChilds(id) {
     //connection.connect();
@@ -63,9 +82,7 @@ function getChilds(id) {
         resolve(rows)
       })}
     );
-      
-    
-    
+       
  }
 
 async function getFormatedChilds(id){
@@ -91,5 +108,5 @@ async function hasChild(id){
         return(false)
 } 
 
-module.exports = {getFormatedChilds,getChilds,hasChild}
+module.exports = {getFormatedChilds,getChilds,hasChild,getComments}
 

@@ -30,7 +30,8 @@ body {
 }
 
 .header-wrapper {
-    padding: 20px;
+    padding: 40px 40px;
+    -padding-top: 40px;
     justify-content:space-between;
 
     display: flex;
@@ -155,7 +156,7 @@ body {
     flex-direction: column;
     -align-items: center;
 
-    background-color: #fcf6f6;
+    background-color: #f7f7f7;
     
     -background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("../images/flag-red.jpg");
 }
@@ -165,12 +166,18 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 
 .post-body {
-    max-width: 1000px;
+    max-width: 750px;
     font-size: 16px;
+    padding-bottom: 50px;
+    font: 400 1.1rem Roboto,Arial,Helvetica,Sans-serif;
+    color: #2c2c2c;
+    letter-spacing: -0.47px;
+    line-height: 1.7;
     
 }
     .post-body p {
@@ -199,6 +206,13 @@ body {
     text-align: center;
 }
 
+
+.comments-area {
+    background: #f1f1f1;
+    background: #e5e5e5;
+    border-top: 1px solid #ddd;
+    overflow: hidden;
+}
 
 
 /*
@@ -230,10 +244,8 @@ body {
 }
 
  /* Responsive layout detect a tipical min resolution for mobiles */
- @media (min-resolution: 3dpi) {/*must be 300*/
-    body {
-        
-    }
+ @media (min-resolution: 300dpi) {/*must be 300*/
+    
     
     /* TITLE */
     .site-title{
@@ -282,7 +294,7 @@ body {
         top: 0;
         left:0;
         
-        background-color: rgb(239, 239, 239);
+        background-color: #e0e0e0;
         z-index: 2;
         
         border-radius: 10px;
@@ -299,7 +311,7 @@ body {
         
     }
         
-    }
+    
     .main-navigation ul{
         margin-top: 100px;
         margin-left: 0;
@@ -358,6 +370,8 @@ body {
     /* BODY */
     .post-body {
         font-size: 35px;
+        max-width: 1000px;
+        padding:20px;
     }
     .post-body img{
         max-width: 100%;
@@ -369,4 +383,4 @@ body {
         font-size: 30px;
     }
 
- 
+}

@@ -83,6 +83,7 @@ router.get("/:article", (req, res) => {
     title: file.data.title,
     description: file.data.description,
     image: file.data.image,
+    article: req.params.article
     
   });
 });

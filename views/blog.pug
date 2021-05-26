@@ -7,4 +7,16 @@ block content
             h3= description
             div(class='post-content')
                 | !{postBody}
+    div(class='comments-area')
+        
+        
+            
+        div(class='comment-area')
+            script.
+                // Here we passa current div for the comments loader function.
+                var postName = !{JSON.stringify(article)};
+                loadComments(postName,document.scripts[document.scripts.length - 1].parentNode);
+            h3 Comentários
+
   
+    

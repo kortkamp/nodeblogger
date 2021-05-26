@@ -1,0 +1,124 @@
+.comments-wrapper , .respond-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    max-width: 92%;
+    width: 740px;
+    font-size: 14px;
+    -left: 0;
+}
+
+.comment-wrapper {
+    width: 558px;
+    
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 36px;
+    margin-left: 55px;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, arial, sans-serif;
+}
+}
+
+.comment-list, ol.children {
+    list-style-type: none;
+}
+
+.comment{
+    margin-bottom: 17px;
+}
+
+.comment-header {
+
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, arial, sans-serif;
+}
+
+.comment-header cite {
+    color: #939393;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+}
+.comment-header span {
+    color: #707070;
+    font-size: 14px;
+    -font-size: 1.3rem;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+.comment-content {
+    margin:18px 0;
+}
+
+.comment-content p {
+    margin: 0 0 1.8em;
+}
+
+.page-title, .comment-header, .entry-title {
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, arial, sans-serif;
+    font-size: 28px;
+}
+
+.comments-title, .comment-reply-title {
+    font-weight: 400;
+}
+
+.comment-action a {
+    -font-size: 14px;
+    color:#015985;
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 10px;
+    text-transform: uppercase;
+}
+
+.comments-title, .comment-reply-title {
+    font-size: 28px;
+    
+    line-height: 1.286;
+    margin: 0 0 36px;
+}
+
+.respond {
+    background-color: rgb(209, 209, 209);
+}
+
+.comment-textarea{
+    padding:10px;
+    border: 1px solid rgba( 0, 0, 0, 0.2 );
+    background-color: white;
+}   
+
+    .comment-textarea textarea{
+        height: 45px;
+        overflow: auto;
+        overflow-wrap: break-word;
+        resize: none;
+        border: 0;
+        outline: none;
+        width: 100%;
+        padding:0;
+        color: rgba( 0, 0, 0, 0.7 );
+        resize: none;
+    }
+.complement-form {
+    padding: 0 10px 0 10px;
+}
+.comment-form-field{
+    margin-bottom: 10px;
+    background-color: white;
+    border: 1px solid rgba( 0, 0, 0, 0.2 );
+    border-radius: 5px;
+    
+}
+    .comment-form-field input {
+        border:0;
+        margin:5px 5px 5px;
+        width: 90%;
+        
+    }
+.submit-form input{
+    padding: 10px;
+    
+}

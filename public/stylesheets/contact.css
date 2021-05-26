@@ -3,16 +3,17 @@
   }
   
   /* Style inputs */
-  input[type=text], select, textarea {
+  .contact-form input[type=text], select, textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     margin-top: 6px;
     margin-bottom: 10px;
     resize: vertical;
+    border-radius: 10px;
   }
   
-  input[type=submit] {
+  .contact-form input[type=submit] {
     background-color: #04AA6D;
     color: white;
     padding: 12px 20px;
@@ -20,7 +21,7 @@
     cursor: pointer;
   }
   
-  input[type=submit]:hover {
+  .contact-form input[type=submit]:hover {
     background-color: #45a049;
   }
   
@@ -53,7 +54,7 @@
   
   
   /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-  @media (min-resolution: 3dpi) {/*must be 300*/
+  @media (min-resolution: 300dpi) {/*must be 300*/
     .column, input[type=submit] {
       width: 100%;
       margin-top: 0;
