@@ -30,7 +30,7 @@ body {
 }
 
 .header-wrapper {
-    padding: 40px 40px;
+    padding: 20px 40px 10px;
     -padding-top: 40px;
     justify-content:space-between;
 
@@ -384,3 +384,41 @@ body {
     }
 
 }
+
+
+#goTopButton {
+    display: inline-block;
+    background-color: #FF9800;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, 
+      opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+  }
+  #goTopButton::after {
+    content: "^";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 4em;
+    line-height: 64px;
+    color: #fff;
+  }
+  #goTopButton:hover {
+    cursor: pointer;
+    background-color: #333;
+  }
+  #goTopButton:active {
+    background-color: #555;
+  }
+  #goTopButton.show {
+    opacity: 1;
+    visibility: visible;
+  }

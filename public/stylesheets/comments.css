@@ -2,10 +2,11 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     max-width: 92%;
     width: 740px;
     font-size: 14px;
+    padding-bottom: 50px;
     -left: 0;
 }
 
@@ -14,7 +15,7 @@
     
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
-    padding: 36px;
+    padding: 20px;
     margin-left: 55px;
     font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, arial, sans-serif;
 }
@@ -104,6 +105,7 @@
     }
 .complement-form {
     padding: 0 10px 0 10px;
+    display: none;
 }
 .comment-form-field{
     margin-bottom: 10px;
@@ -116,6 +118,7 @@
         border:0;
         margin:5px 5px 5px;
         width: 90%;
+        outline: none;
         
     }
 .submit-form input{

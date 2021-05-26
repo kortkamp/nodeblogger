@@ -18,16 +18,43 @@ function resizeUi(){
 var comment;
 
 function loadComments(post,parentDiv){
-    console.log('load comments for ' + post + ' in ' + parentDiv);
+    //console.log('load comments for ' + post + ' in ' + parentDiv);
     
     comment = parentDiv;
-    console.log(parentDiv);
+    //console.log(parentDiv);
 
     $.get("getComments?post=" + post, 
           function(data) {
              u_data = data;
-             console.log(data)
+             //console.log(data)
              comment.innerHTML = data
           });
 
 }
+
+
+
+// ======== GO TOP BUTTON ===========
+var btn;// = $('#goTopButton');
+
+$( document ).ready(function(){
+    
+    btn = $('#goTopButton');console.log('loaded')
+
+    btn.on('click', function(e) {
+      e.preventDefault();
+      $('html, body').animate({scrollTop:0}, '300');
+    });
+
+});
+
+
+$(window).scroll(function() {
+    //console.log('.')
+  if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+

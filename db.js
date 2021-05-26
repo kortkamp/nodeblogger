@@ -43,6 +43,27 @@ function handleDisconnect() {
 }
  
 
+function storeComment(parent_post,parent_comment,author,mail,text){
+  queryString = "INSERT INTO comments (parent_post,parent_comment,author,mail,text,create_date) VALUES ( ?, ?, ?, ?, ?,NOW());"
+
+  //queryString = "SELECT * FROM comments WHERE parent_post = ? AND parent_comment = 0;";
+
+  return new Promise( resolve => {connection.query(queryString, [parent_post,parent_comment,author,mail,text], function(err, rows) {
+      if (err) {
+          //console.log(err)    
+          console.log("error in db.getComments")
+          handleDisconnect();
+          //throw err
+      };
+      //console.log('The result is: ', rows);
+      console.log('saida do db')
+      console.log(rows)
+      resolve(rows)
+    })}
+  );
+
+}
+
 function getComments(parentPost,parentComment) {
   //connection.connect();
   //console.log(connection.state)
@@ -108,5 +129,5 @@ async function hasChild(id){
         return(false)
 } 
 
-module.exports = {getFormatedChilds,getChilds,hasChild,getComments}
+module.exports = {getFormatedChilds,getChilds,hasChild,getComments,storeComment}
 

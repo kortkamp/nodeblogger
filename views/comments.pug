@@ -1,19 +1,23 @@
 script(src='/javascripts/comments.js')
 link(rel='stylesheet', href='/stylesheets/comments.css')
+
+
 div.comments-wrapper
     h2.comments-title Comentários
     ol.comment-list
         // =========== MAKE THE LIST ===============
-        each val,index in comments  
+        each comment,index in comments  
             li(class="comment" id='li-comment-' + index)
                 div.comment
                     div.comment-wrapper
                         div.comment-header
-                            cite #{val.author}
+                            cite #{comment.author}
                             span
-                                a #{val.mail}
+                               // a #{comment.mail}
+                            span
+                                a #{comment.create_date}
                         div.comment-content
-                            p #{val.text}
+                            p #{comment.text}
                         div.comment-action
                             //a RESPONDER
         
@@ -24,7 +28,7 @@ div.respond
             input(id="parent_post" name="parent_post" type="hidden" value=comments[0].parent_post)
             div.comment-form-field 
                 div.comment-textarea
-                    textarea(name="comment", cols="30", rows="10" placeholder="Digite seu comentário aqui..." oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"')
+                    textarea(name="comment", cols="30", rows="10" placeholder="Digite seu comentário aqui..." onclick='$(".complement-form").show();$(window).scrollTop($("body").height() ) ' oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"')
                     
             div.complement-form
                 div.comment-form-identity
