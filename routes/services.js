@@ -71,19 +71,7 @@ router.get('/getComments', function(req, res, next) {
 });
 
 router.post('/postComment', function(req, res, next) {
-    console.log(req.body)
-
-    //storeComment(parent_post,parent_comment,author,mail,text)
-    /*
-    storeComment(body.parent_post,0,body.author,body.email,body.comment)
-    { body
-        parent_post: 'post1',
-        comment: 'asd',
-        author: 'Marcelo T Campos',
-        email: 'marcelusmedius@gmail.com',
-        submit: 'Publicar comentário'
-    }
-    */
+    //console.log(req.body)   
     if(req.body)
         if(true)
             db.storeComment(req.body.parent_post,0,req.body.author,req.body.email,req.body.comment).then(response => {
@@ -95,8 +83,7 @@ router.post('/postComment', function(req, res, next) {
                 //res.send("será q postou o coment ??");
                 res.redirect('/' + req.body.parent_post)
             })
-        else
-            res.send()  
+    res.send()  
 });
 
 router.post('/make_contact', function(req,res,next){
