@@ -32,16 +32,28 @@ function loadComments(post,parentDiv){
 
 }
 
+var masterHeader;
+var masterHeaderHeight;
+var masterBody;
+var headerWrapperHeight;
 
+// ==============  GO TOP BUTTON ===================
+var goTopButton;// = $('#goTopButton');
 
-// ======== GO TOP BUTTON ===========
-var btn;// = $('#goTopButton');
-
-$( document ).ready(function(){
+$( document ).ready(function(){ // on page load
     
-    btn = $('#goTopButton');console.log('loaded')
+    masterHeader = $('.master-head');
+    masterBody = $('.master-body')
+    
+    masterHeaderHeight = $('.master-head').height();
+    headerWrapperHeight = $('.header-wrapper-container').height();
+    masterHeader.css('top',-headerWrapperHeight + 'px');
 
-    btn.on('click', function(e) {
+
+
+    goTopButton = $('#goTopButton');
+
+    goTopButton.on('click', function(e) {
       e.preventDefault();
       $('html, body').animate({scrollTop:0}, '300');
     });
@@ -49,12 +61,25 @@ $( document ).ready(function(){
 });
 
 
+
+// ============== ON SCROLL ACTIONS ==================
 $(window).scroll(function() {
     //console.log('.')
-  if ($(window).scrollTop() > 300) {
-    btn.addClass('show');
-  } else {
-    btn.removeClass('show');
-  }
+
+    if ($(window).scrollTop() > headerWrapperHeight) {
+        masterHeader.addClass("sticky-master-head");
+        masterBody.css('margin-top',masterHeaderHeight + 'px');
+        
+    } else {
+        masterHeader.removeClass("sticky-master-head");
+        masterBody.css('margin-top','0');
+    }
+
+
+    if ($(window).scrollTop() > 300) {
+        goTopButton.addClass('show');
+    } else {
+        goTopButton.removeClass('show');
+    }
 });
 

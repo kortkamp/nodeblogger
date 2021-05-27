@@ -125,3 +125,77 @@
     padding: 10px;
     
 }
+
+/*
+*
+*   =============== RESPONSIVE BEHAVIOR =============
+*
+*/
+
+ /* Responsive layout detect a tipical min resolution for mobiles */
+ @media (min-resolution: 300dpi) {/*must be 300*/
+
+    .comments-title, .comment-reply-title {
+        font-size: 50px;
+        line-height: 1.286;
+        margin: 0 0 36px;
+    }
+
+    .comments-wrapper, .respond-wrapper {
+        
+        margin-top: 40px;
+        margin-bottom: 0px;
+        width: 90%;
+        
+        font-size: 30px;
+        padding-bottom: 50px;
+        -left: 0;
+    }
+
+
+    .comment-wrapper {
+        width: 80vw;
+        background-color: rgb(255, 255, 255);
+        border-radius: 15px;
+        padding: 20px;
+        margin-left: 0;
+        font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, arial, sans-serif;
+    }
+
+    .comment-header span, .comment-header cite{
+       
+        font-size: 22px;
+       
+    }
+   
+    .comment-textarea textarea {
+        height: 90px;
+        font-size: 25px;
+        
+        
+      }
+
+    .comment-textarea {
+        border-radius: 20px;
+    }
+
+    .comment-form-field {
+        margin-bottom: 15px;
+        
+        border: 1px solid rgba( 0, 0, 0, 0.2 );
+        
+        border-radius: 20px;
+    }
+    .comment-form-field input {
+        font-size: 30px;
+        margin: 15px 5px 15px 10px;
+        width: 90%;
+        outline: none;
+    }
+    .submit-form input {
+        padding: 10px 20px;
+        font-weight: bolder;
+        font-size: 40px;
+    }
+
+ }
