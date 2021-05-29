@@ -41,3 +41,6 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+//$ENV:DEBUG = "kortkamp.org:*"; npm run devstart

@@ -20,8 +20,10 @@
     "markdown-it": "^12.0.6",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
     "nodemailer": "^6.6.1",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "sequelize": "^6.6.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

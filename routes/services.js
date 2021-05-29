@@ -2,13 +2,14 @@ var express = require('express');
 const { compileClientWithDependenciesTracked } = require('pug');
 var router = express.Router();
 
-var getPosition = require('../getPosition');
-
 var mailer = require('../mailer');
 
 var mailInfo = require('../mail_info.json')
 
-var db = require ('../db')
+const familyMemberController = require('../database/controllers/FamilyMemberController');
+const commentController = require('../database/controllers/CommentController');
+
+
 
 
 
@@ -17,9 +18,7 @@ router.get('/getPositions', function(req, res, next) {
     
     if(req.query)
         if(req.query.id)
-        //res.json(getPosition.getFamilyPosition(req.query.id));
-        //console.log(getPosition.getFamilyPosition(req.query.id))
-        getPosition.getFamilyPosition(req.query.id).then(response => {
+        familyMemberController.getFamilyPosition(req.query.id).then(response => {
             //console.log(response)
             res.send(response)
         })
@@ -56,11 +55,11 @@ function formatDateTime(dateTime){
 router.get('/getComments', function(req, res, next) {
         if(req.query)
             if(req.query.post)
-            db.getComments(req.query.post).then(response => {
+            commentController.getComments(req.query.post).then(response => {
                 //console.log(response[0].create_date)
                 
                 for(index in response){
-                    response[index].create_date = formatDateTime(response[index].create_date);
+                    response[index].create_date = formatDateTime(response[index].createdAt);
                 }
                 res.render("comments", {
                     comments: response
@@ -71,19 +70,18 @@ router.get('/getComments', function(req, res, next) {
 });
 
 router.post('/postComment', function(req, res, next) {
-    //console.log(req.body)   
+    console.log(req.body)   
     if(req.body)
-        if(true)
-            db.storeComment(req.body.parent_post,0,req.body.author,req.body.email,req.body.comment).then(response => {
-                //console.log(response[0].create_date)
-                
-                for(index in response){
-                    response[index].create_date = formatDateTime(response[index].create_date);
-                }
-                //res.send("será q postou o coment ??");
-                res.redirect('/' + req.body.parent_post)
-            })
-    res.send()  
+        commentController.postComment(Object.assign(req.body)).then(response => {
+                        
+            for(index in response){
+                response[index].create_date = formatDateTime(response[index].create_date);
+            }
+            
+            res.redirect('/' + req.body.parent_post)
+        })
+    else
+        res.send('Erro ao postar o comentário')  
 });
 
 router.post('/make_contact', function(req,res,next){
