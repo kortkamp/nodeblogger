@@ -75,5 +75,15 @@ async function sendContactMail(dataString){
     //console.log('send a contact mail')
     return( sendMail(mailOptions));
 }
+async function sendCommentMail(dataString){
+    var mailOptions = {
+        from: mailInfo.user,
+        to: mailInfo.adminEmail,
+        subject: 'kortkamp.org new Commentary',
+        text: dataString
+    };
+    //console.log('send a contact mail')
+    return( sendMail(mailOptions));
+}
 
 module.exports = {sendContactMail,sendMail}

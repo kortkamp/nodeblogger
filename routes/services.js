@@ -52,7 +52,7 @@ function formatDateTime(dateTime){
     return formatedDate;
 }
 
-router.get('/getComments', function(req, res, next) {
+router.get('/getComments-', function(req, res, next) {
         if(req.query)
             if(req.query.post)
             commentController.getComments(req.query.post).then(response => {
@@ -62,11 +62,12 @@ router.get('/getComments', function(req, res, next) {
                     response[index].create_date = formatDateTime(response[index].createdAt);
                 }
                 res.render("comments", {
+                    page_name: req.query.post,
                     comments: response
                 });
             })
         else
-            res.send() 
+            res.send()
 });
 
 router.post('/postComment', function(req, res, next) {

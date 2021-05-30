@@ -18,5 +18,51 @@ block content
                 loadComments(postName,document.scripts[document.scripts.length - 1].parentNode);
             
 
-  
-    
+            //script(src='/javascripts/comments.js')
+            link(rel='stylesheet', href='/stylesheets/comments.css')
+
+
+            div.comments-wrapper
+                h2.comments-title Comentários
+                ol.comment-list
+                    // =========== MAKE THE LIST ===============
+                    each comment,index in comments  
+                        li(class="comment" id='li-comment-' + index)
+                            div.comment
+                                div.comment-wrapper
+                                    div.comment-header
+                                        cite #{comment.author}
+                                        span
+                                        // a #{comment.email}
+                                        span
+                                            a #{comment.create_date}
+                                    div.comment-content
+                                        p #{comment.content}
+                                    div.comment-action
+                                        //a RESPONDER
+                    
+            div.respond
+                div.respond-wrapper
+                    h3.comment-reply-title Deixe um comentário
+                    form(name='new-comment' class="comment-form" action="/postComment" method="post" onsubmit="return validateSubmit()")
+                        input(id="parent_post" name="parent_post" type="hidden" value=page_name)
+                        input(id="parent_comment" name="parent_comment" type="hidden" value=0)
+                        div.comment-form-field 
+                            div.comment-textarea
+                                textarea(name="content", cols="30", rows="10" placeholder="Digite seu comentário aqui..." onclick='$(".complement-form").show();$(window).scrollTop($("body").height() ) ' oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"')
+                                
+                        div.complement-form
+                            div.comment-form-identity
+                                div.comment-form-label
+                                    p= 'Preencha seus dados abaixo:'
+                                div.comment-form-fields
+                                    div(class='comment-form-name comment-form-field')
+                                        input(id='author' name='author' type='text' placeholder='Nome (Obrigatório)')
+                                    div(class='comment-form-email comment-form-field')
+                                        input(id='email' name='email' type='text' placeholder='Email (Obrigatório)')
+                            div.submit-form
+                                input( type="submit" id="comment-submit" class="submit comment-form-field" value="Publicar comentário")
+                            
+                                
+
+

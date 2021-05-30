@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs')
 var path = require('path');
+const PostController = require('../database/controllers/PostController');
+const commentController = require('../database/controllers/CommentController');
 
 
 // gray-matter to read the .md files better
@@ -13,20 +15,16 @@ site = {
 }
 
 
-// must be updated time to time when posting is implented
-var posts = fs.readdirSync(path.join(process.cwd() , "blog" )).filter(file => file.endsWith('.md'));
-global.postsData =[];
-for(post of posts){
-  let file = matter.read(path.join(process.cwd() , 'blog' , post));
-  postsData.push(
-    {
-      link:post.split('.')[0],
-      title:file.data.title
-    }
-  )
-}
 
-//console.log(postsData)
+global.postsData =[];
+
+// Load All Blog Posts in Memory
+var postList;
+(async() => {
+    postsData = await PostController.listAllPosts();
+})();
+
+
 
 
 router.get("/", (req, res) => {
@@ -40,9 +38,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/tree", (req,res) => {
-
   const file = matter.read(path.join(process.cwd() , 'public','htree.htm'));
-
   res.render("tree", {
     menu: postsData,
     title: site.title,
@@ -52,9 +48,7 @@ router.get("/tree", (req,res) => {
 });
 
 router.get("/contact", (req,res) => {
-
   const file = matter.read(path.join(process.cwd() , 'public' , 'contact.htm'));
-
   res.render("contact", {
     menu: postsData,
     title: 'Contato',
@@ -68,26 +62,36 @@ router.get("/contact", (req,res) => {
 
 router.get("/:article", (req, res) => {
 
-  // read the markdown file
-  const file = matter.read(path.join(process.cwd() , 'blog' , req.params.article + '.md'));
+ 
+    var post;
 
-  // use markdown-it to convert content to HTML
-  var md = require("markdown-it")();
-  let content = file.content;
-  var result = md.render(content);
+   
 
-  //res.render('index', { title: 'Express' });
-  //console.log(result)
-  res.render("blog", {
-    site:site,
-    postBody: result,
-    menu: postsData,
-    title: file.data.title,
-    description: file.data.description,
-    image: file.data.image,
-    article: req.params.article
-    
-  });
+    if(post = postsData.find(item => item.page_name === req.params.article)){
+
+        
+
+        // use markdown-it to convert content to HTML
+        var md = require("markdown-it")();
+       
+        var result = md.render(post.content);
+
+
+        commentController.getComments(req.params.article).then(commentsArray => {
+            
+            res.render("blog", {
+                site:site,
+                postBody: result,
+                menu: postsData,
+                title: post.title,
+                description: post.description,
+                article: req.params.article,
+                page_name: req.params.article,
+                comments: commentsArray
+            });
+        })   
+
+    }
 });
 
 module.exports = router;

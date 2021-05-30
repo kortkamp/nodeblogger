@@ -25,7 +25,7 @@ div.respond
     div.respond-wrapper
         h3.comment-reply-title Deixe um comentário
         form(name='new-comment' class="comment-form" action="/postComment" method="post" onsubmit="return validateSubmit()")
-            input(id="parent_post" name="parent_post" type="hidden" value=comments[0].parent_post)
+            input(id="parent_post" name="parent_post" type="hidden" value=page_name)
             input(id="parent_comment" name="parent_comment" type="hidden" value=0)
             div.comment-form-field 
                 div.comment-textarea
