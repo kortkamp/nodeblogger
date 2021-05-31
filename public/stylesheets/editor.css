@@ -2,10 +2,40 @@ body {
     background: #e5e5e5;
 }
 
+.editor-title-container {
+    text-align: center;
+}
+
+.data-container {
+    display: flex;
+    background-color: rgb(218, 216, 218);
+    margin-top: 20px;
+}
+
+ol.post-list {
+    list-style-type: none;
+    padding: 0px 30px 0 5px;
+}
 
 li.post-item:hover {
     background-color: rgb(168, 168, 168);
     
+}
+
+
+.post-list-container {
+    padding: 10px;
+}
+
+.write-data-container{
+    width: 100%;
+    border: 1px solid rgb(199, 199, 199);
+    padding: 10px;
+}
+
+textarea.input-field {
+    height: 400px;
+    width: 100%;
 }
 
 li.selected {

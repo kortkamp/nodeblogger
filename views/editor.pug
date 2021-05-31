@@ -45,7 +45,7 @@ html
         
         div.editor-master-conteiner
             div.editor-title-container
-                h1.editor-title Editor
+                h1.editor-title Post Editor
             div.editor-tools-container
                 h3.tools-title Tools
                 div.tool-buttons
@@ -54,17 +54,18 @@ html
                     button(class='tool-button', onclick='editPost()') EDIT
                     BUTTON(class='tool-button', onclick='deletePost()') DELETE
 
-            div
-                h3.tools-title Post List
-                div.file-list-container
-                    div.post-container
-                        ol.post-list
-                            each post in postList
-                                li(id='post'+post.id, class='post-item' )
-                                    div( class= 'post-header-container' , onclick="selectArticle("+post.id+")")
-                                        
-                                        cite #{post.id} 
-                                            spam #{post.title}
+            div.data-container
+                div.post-list-container
+                    h3.tools-title Post List
+                    div.file-list-container
+                        div.post-container
+                            ol.post-list
+                                each post in postList
+                                    li(id='post'+post.id, class='post-item' )
+                                        div( class= 'post-header-container' , onclick="selectArticle("+post.id+")")
+                                            
+                                            cite #{post.id} 
+                                                spam #{post.title}
                 div(class='write-data-container hide')
                     h3.data-title Data
                     div.data-properties
@@ -75,9 +76,9 @@ html
                                 +input_field(field.name,field.type)
                             div.data-field
                                 
-        div.status-container
-            h4 status: 
-                label.status
+            div.status-container
+                h4 status: 
+                    label.status
 
 
 

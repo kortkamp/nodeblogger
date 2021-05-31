@@ -73,7 +73,13 @@ async function getPostContent(id){
 async function postArticle(data){
     //must test to prevent articles with same title
     try {  
-        const createResult = await Post.create(data)
+        if(data.id){
+            //update
+            const createResult = await Post.update(data, {where:{id:data.id}})
+        }else{
+            //create
+            const createResult = await Post.create(data)
+        }
         
         return 'OK'
     }catch (error){

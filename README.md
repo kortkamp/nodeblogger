@@ -5,6 +5,9 @@ Blog feito em Node.js
 - Múltiplas páginas renderizáveis armazenadas em tabela do BD
 - Área de comentários
 - Formulário de contato
+- Editor de postagens
+- Renderizador de Markdown para o conteúdo das postagens.
+- Carregamento ultra rápido com artigos armazenados em Memória.
 
 
 # Desenvolvimento
@@ -18,6 +21,9 @@ Após essa mudança foi muito simples mudar a localização dos artigos da pági
 
 ## Integração com Gmail
 A Página precisaria de uma área de contatos, então decidi usar o **nodemailer** para integrar ao email da família. Devido às exigências de segurança do gmail , tive dificuldades para fazer altenticação simples e foi necessário usar OAuth2 , oque foi bem útil no aprendizado dessa tecnologia. Implementei um serviço *mailer.js* para receber o access_token via API do Google e fazer o envio dos emails de contato e notificações ao administrador da página.
+
+## Editor de Postagens
+A fim de simplicar o processo de postagens no blog, decidi adicionar uma página de edição **CRUD**.
 
 
 ### Pré-requisitos
