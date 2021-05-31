@@ -1,0 +1,85 @@
+mixin input_integer(name)
+    if name == 'id'
+        input(class ="input-field", name=name , type='number', disabled="disabled", readonly )
+    else
+        input(class ="input-field", name=name , type='number')
+
+mixin input_string(name)
+    input(class ="input-field", name=name , type='text')
+
+mixin input_boolean(name)
+    input(class ="input-field", id=name+'true', name=name , value='true', type='radio')
+    <label for=name+'true' >true</label>
+    input(class ="input-field", id=name+'false', name=name , value='false', type='radio')
+    <label for=name+'false' >false</label>
+
+mixin input_text(name)
+    textarea(class ="input-field", name=name )
+
+mixin input_date(name)
+    input(class ="input-field", name=name , type='text', disabled="disabled")
+
+mixin input_field(name,type)
+    div.data-field
+        label #{name}(#{type})
+        case type
+            when 'INTEGER'
+                +input_integer(name)
+            when 'BOOLEAN'
+                +input_boolean(name)
+            when 'TEXT'
+                +input_text(name)
+            when 'DATE'
+                +input_date(name)
+            default
+                +input_string(name)
+
+
+html
+    head
+        title= "Editor"
+        link(rel='stylesheet', href='/stylesheets/editor.css')
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+        script(src='/javascripts/editor.js')
+    body    
+        
+        div.editor-master-conteiner
+            div.editor-title-container
+                h1.editor-title Editor
+            div.editor-tools-container
+                h3.tools-title Tools
+                div.tool-buttons
+                    button(class='tool-button', onclick='newPost()') NEW
+                    button(class='tool-button', onclick='savePost()') SAVE
+                    button(class='tool-button', onclick='editPost()') EDIT
+                    BUTTON(class='tool-button', onclick='deletePost()') DELETE
+
+            div
+                h3.tools-title Post List
+                div.file-list-container
+                    div.post-container
+                        ol.post-list
+                            each post in postList
+                                li(id='post'+post.id, class='post-item' )
+                                    div( class= 'post-header-container' , onclick="selectArticle("+post.id+")")
+                                        
+                                        cite #{post.id} 
+                                            spam #{post.title}
+                div(class='write-data-container hide')
+                    h3.data-title Data
+                    div.data-properties
+
+                    form(id='article-form' ,name='new-article' class="new-article-form" action="/article" method="post" onsubmit="return validateSubmit()")
+                        div.data-content
+                            each field in dataFields 
+                                +input_field(field.name,field.type)
+                            div.data-field
+                                
+        div.status-container
+            h4 status: 
+                label.status
+
+
+
+
+      

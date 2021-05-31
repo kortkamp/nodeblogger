@@ -8,7 +8,7 @@ const Post = database.define('post',{
         allowNull: false,
         primaryKey: true
     },
-    page_name:Sequelize.STRING,
+    
     title:Sequelize.STRING,
     description:Sequelize.STRING,
     author:Sequelize.STRING,
@@ -19,5 +19,8 @@ const Post = database.define('post',{
     content:Sequelize.TEXT,
     
 })
+
+
+
 
 module.exports = Post;

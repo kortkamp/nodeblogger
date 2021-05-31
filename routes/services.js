@@ -8,6 +8,8 @@ var mailInfo = require('../mail_info.json')
 
 const familyMemberController = require('../database/controllers/FamilyMemberController');
 const commentController = require('../database/controllers/CommentController');
+const PostController = require('../database/controllers/PostController');
+
 
 
 
@@ -85,9 +87,35 @@ router.post('/postComment', function(req, res, next) {
         res.send('Erro ao postar o comentário')  
 });
 
+
+router.get('/article',function(req,res,next){
+    PostController.getPostById(req.query.id).then(response => {
+        res.send(response);
+    }).catch(error => {
+        return res.status(400).json({ error: err.message });
+    })
+});
+
+router.post('/article',function(req,res,next){
+    
+    if(req.body)
+        PostController.postArticle(Object.assign(req.body)).then(response => {  
+            res.send(response);
+        });
+});
+
+router.delete('/article',function(req,res,next){
+    
+    if(req.body)
+        PostController.deleteArticle(req.body.id).then(response => {  
+            res.send(response);
+        });
+});
+
+
 router.post('/make_contact', function(req,res,next){
     
-    console.log(req.body)
+    
     
     mailer.sendContactMail(JSON.stringify(req.body)).then(response => {
         res.render("contactReturn", {

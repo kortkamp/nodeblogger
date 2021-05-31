@@ -1,7 +1,10 @@
 # kortkamp.org
 Blog feito em Node.js
 
-
+# Funcionalidades
+- Múltiplas páginas renderizáveis armazenadas em tabela do BD
+- Área de comentários
+- Formulário de contato
 
 
 # Desenvolvimento
@@ -10,7 +13,8 @@ A ideia inicial do projeto foi a migração de um blog Wordpress para a Node/Exp
 ## Banco de Dados
 O Banco de Dados escolhido foi o Mysql devido aos dados da árvore genealógica já estarem nesse formato. 
 À medida que implementei o formato blog com diferentes páginas de conteúdos, decidi aproveitar o Banco de Dados que já estaria rodando no servidor e adicionei uma área de comentários para cada página de artigo com uma API simples para receber ou postar os comentários. 
-À medida que o projeto passou a fazer mais uso do Banco de Dados decidi passar a usar o ORM **Sequelize** para gerenciar o mysql o que proporcional um aprendizado valioso sobre essa tecnologia, já que antes esse trabalho era feito via lib mysql escrevendo as queries em SQL.
+À medida que o projeto passou a fazer mais uso do Banco de Dados decidi passar a usar o ORM **Sequelize** para gerenciar o mysql o que proporcional um aprendizado valioso sobre essa tecnologia, já que antes esse trabalho era feito via lib mysql escrevendo diretamente as queries em SQL.
+Após essa mudança foi muito simples mudar a localização dos artigos da página para do diretório /blog para uma tabela no banco de dabos.
 
 ## Integração com Gmail
 A Página precisaria de uma área de contatos, então decidi usar o **nodemailer** para integrar ao email da família. Devido às exigências de segurança do gmail , tive dificuldades para fazer altenticação simples e foi necessário usar OAuth2 , oque foi bem útil no aprendizado dessa tecnologia. Implementei um serviço *mailer.js* para receber o access_token via API do Google e fazer o envio dos emails de contato e notificações ao administrador da página.
@@ -25,7 +29,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/kortkamp/kortkamp.org>
+$ git clone https://github.com/kortkamp/kortkamp.org
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd kortkamp.org

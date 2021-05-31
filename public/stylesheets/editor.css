@@ -1,0 +1,13 @@
+body {
+    background: #e5e5e5;
+}
+
+
+li.post-item:hover {
+    background-color: rgb(168, 168, 168);
+    
+}
+
+li.selected {
+    background-color: rgb(143, 142, 142);
+}

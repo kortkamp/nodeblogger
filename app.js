@@ -7,7 +7,25 @@ var logger = require('morgan');
 var servicesRouter = require('./routes/services');
 var blogRouter = require('./routes/blog');
 
+const PostController = require('./database/controllers/PostController');
+
 var app = express();
+
+
+
+global.postsData =[];
+
+// Load All Blog Posts in Memory
+(async() => {
+    postsData = await PostController.listAllPosts();
+    
+    // build all page names replacing 
+    postsData.forEach(element => {
+        element.path = String(element.title).toLowerCase().replace(/ /g, '-');
+    });
+})();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

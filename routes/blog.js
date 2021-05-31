@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs')
 var path = require('path');
-const PostController = require('../database/controllers/PostController');
+
 const commentController = require('../database/controllers/CommentController');
+const PostController = require('../database/controllers/PostController');
 
 
 // gray-matter to read the .md files better
@@ -16,13 +17,7 @@ site = {
 
 
 
-global.postsData =[];
 
-// Load All Blog Posts in Memory
-var postList;
-(async() => {
-    postsData = await PostController.listAllPosts();
-})();
 
 
 
@@ -47,6 +42,21 @@ router.get("/tree", (req,res) => {
   });
 });
 
+router.get("/editor", (req,res) => {  
+
+    PostController.listAllHeaders().then(postHeaderList => {
+        //console.log(postList)
+    
+        res.render("editor", {
+            // dataFields must receive all fields of data we want to edit
+            postList:postHeaderList,
+            dataFields:PostController.getModelFields(),
+        });
+    
+    });
+    
+  });
+
 router.get("/contact", (req,res) => {
   const file = matter.read(path.join(process.cwd() , 'public' , 'contact.htm'));
   res.render("contact", {
@@ -65,20 +75,13 @@ router.get("/:article", (req, res) => {
  
     var post;
 
-   
-
-    if(post = postsData.find(item => item.page_name === req.params.article)){
-
-        
+    if(post = postsData.find(item => item.path === req.params.article)){
 
         // use markdown-it to convert content to HTML
         var md = require("markdown-it")();
-       
         var result = md.render(post.content);
-
-
-        commentController.getComments(req.params.article).then(commentsArray => {
-            
+        
+        commentController.getComments(req.params.article).then(commentsArray => {       
             res.render("blog", {
                 site:site,
                 postBody: result,
@@ -90,7 +93,6 @@ router.get("/:article", (req, res) => {
                 comments: commentsArray
             });
         })   
-
     }
 });
 
