@@ -31,7 +31,7 @@ const controller = require('./controllers/PostController');
     //console.log(children)
     //var children = await controller.getPostById(1)
     
-    result = await controller.listAllPosts()
+    result = await controller.listWhere({id:2})
     //result = await controller.postArticle(post3)
     //result = await controller.getPostContent(10)
     

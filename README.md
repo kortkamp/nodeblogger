@@ -7,7 +7,7 @@ Blog feito em Node.js
 - Formulário de contato
 - Editor de postagens
 - Renderizador de Markdown para o conteúdo das postagens.
-- Carregamento ultra rápido com artigos armazenados em Memória.
+- Carregamento rápido com artigos cacheados em Memória.
 
 
 # Desenvolvimento

@@ -27,6 +27,8 @@ async function listAllPosts(){
     }
 }
 
+
+
 async function listAllHeaders(){
     try {
         const headers = await Post.findAll({

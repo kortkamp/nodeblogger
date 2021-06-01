@@ -1,13 +1,15 @@
 mixin input_integer(name)
+    label #{name}
     if name == 'id'
         input(class ="input-field", name=name , type='number', disabled="disabled", readonly )
     else
         input(class ="input-field", name=name , type='number')
 
 mixin input_string(name)
-    input(class ="input-field", name=name , type='text')
+    input(class ="input-field", name=name , type='text' placeholder=name.toUpperCase())
 
 mixin input_boolean(name)
+    label #{name}
     input(class ="input-field", id=name+'true', name=name , value='true', type='radio')
     <label for=name+'true' >true</label>
     input(class ="input-field", id=name+'false', name=name , value='false', type='radio')
@@ -15,13 +17,14 @@ mixin input_boolean(name)
 
 mixin input_text(name)
     textarea(class ="input-field", name=name )
+    div(class = "input-field textarea-preview")
 
 mixin input_date(name)
-    input(class ="input-field", name=name , type='text', disabled="disabled")
+    input(class ="input-field", name=name , type='hidden', disabled="disabled")
 
 mixin input_field(name,type)
-    div.data-field
-        label #{name}(#{type})
+    div(class = "data-field " + type )
+        //label #{name}
         case type
             when 'INTEGER'
                 +input_integer(name)
@@ -40,19 +43,24 @@ html
         title= "Editor"
         link(rel='stylesheet', href='/stylesheets/editor.css')
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+        script(src="https://cdn.jsdelivr.net/npm/marked/marked.min.js")
         script(src='/javascripts/editor.js')
     body    
         
         div.editor-master-conteiner
-            div.editor-title-container
-                h1.editor-title Post Editor
-            div.editor-tools-container
-                h3.tools-title Tools
-                div.tool-buttons
-                    button(class='tool-button', onclick='newPost()') NEW
-                    button(class='tool-button', onclick='savePost()') SAVE
-                    button(class='tool-button', onclick='editPost()') EDIT
-                    BUTTON(class='tool-button', onclick='deletePost()') DELETE
+            div.header-container
+                div.editor-title-container
+                    h1.editor-title Post Editor
+                div.editor-tools-container
+                    //h3.tools-title Tools
+                    div.tool-buttons
+                        button(class='tool-button', onclick='newPost()') NEW
+                        button(class='tool-button', onclick='savePost()') SAVE
+                        button(class='tool-button', onclick='editPost()') EDIT
+                        BUTTON(class='tool-button', onclick='previewArticle()') PREVIEW
+                        BUTTON(class='tool-button', onclick='deletePost()') DELETE
+                        BUTTON(class='tool-button', onclick='loadPostList()') LOAD ALL
+                        
 
             div.data-container
                 div.post-list-container
@@ -61,9 +69,7 @@ html
                         div.post-container
                             ol.post-list
                                 each post in postList
-                                    li(id='post'+post.id, class='post-item' )
-                                        div( class= 'post-header-container' , onclick="selectArticle("+post.id+")")
-                                            
+                                    li(id='post'+post.id, class='post-item' , onclick="selectArticle("+post.id+")" )
                                             cite #{post.id} 
                                                 spam #{post.title}
                 div(class='write-data-container hide')
@@ -77,8 +83,17 @@ html
                             div.data-field
                                 
             div.status-container
-                h4 status: 
+                label.title status: 
                     label.status
+
+        div.confirm-container
+            div.confirm-container-background
+                div.confirm-content
+                    div.title-container
+                        h4.confirm-title Confirm
+                    div.buttons-container
+                        button(class='confirm-yes', onclick='confirmOperation(true)') YES
+                        button(class='Confirm-no', onclick='confirmOperation(false)') NO
 
 
 

@@ -96,4 +96,14 @@ router.get("/:article", (req, res) => {
     }
 });
 
+
+async function updatePostCache(){
+  postsData = await PostController.listAllPosts();
+      
+      // build all page names replacing 
+      postsData.forEach(element => {
+          element.path = String(element.title).toLowerCase().replace(/ /g, '-');
+      });
+}
+
 module.exports = router;
