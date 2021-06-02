@@ -70,7 +70,7 @@ router.get("/contact", (req,res) => {
   
 
 
-router.get("/:article", (req, res) => {
+router.get("/:article", (req, res, next) => {
 
  
     var post;
@@ -94,16 +94,10 @@ router.get("/:article", (req, res) => {
             });
         })   
     }
+    next();
 });
 
 
-async function updatePostCache(){
-  postsData = await PostController.listAllPosts();
-      
-      // build all page names replacing 
-      postsData.forEach(element => {
-          element.path = String(element.title).toLowerCase().replace(/ /g, '-');
-      });
-}
+
 
 module.exports = router;

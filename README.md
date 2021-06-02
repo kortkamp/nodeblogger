@@ -7,7 +7,7 @@ Blog feito em Node.js
 - Formulário de contato
 - Editor de postagens
 - Renderizador de Markdown para o conteúdo das postagens.
-- Carregamento rápido com artigos cacheados em Memória.
+- Carregamento rápido com conteúdo dos artigos cacheados em Memória.
 
 
 # Desenvolvimento
@@ -23,8 +23,9 @@ Após essa mudança foi muito simples mudar a localização dos artigos da pági
 A Página precisaria de uma área de contatos, então decidi usar o **nodemailer** para integrar ao email da família. Devido às exigências de segurança do gmail , tive dificuldades para fazer altenticação simples e foi necessário usar OAuth2 , oque foi bem útil no aprendizado dessa tecnologia. Implementei um serviço *mailer.js* para receber o access_token via API do Google e fazer o envio dos emails de contato e notificações ao administrador da página.
 
 ## Editor de Postagens
-A fim de simplicar o processo de postagens no blog, decidi adicionar uma página de edição **CRUD**.
+A fim de simplicar o processo de postagens no blog, decidi adicionar uma página de edição **CRUD** onde se pode usar markdown para escrever ou editar os posts, além de listar os cabeçalhos dos mesmos para filtragem e exibição.
 
+# Aspectos Técnicos
 
 ### Pré-requisitos
 
@@ -42,6 +43,12 @@ $ cd kortkamp.org
 
 # Instale as dependências
 $ npm install
+
+# Prepare o Banco de Dados
+$ ............
+
+# Configure os dados principais do Blog 
+$ ..............
 
 # Execute a aplicação em modo de desenvolvimento
 $ npm run dev:server

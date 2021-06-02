@@ -8,19 +8,34 @@ const User = database.define('user',{
         allowNull: false,
         primaryKey: true
     },
-    username:Sequelize.STRING,
-    name:Sequelize.STRING,
+    username:{
+        type:Sequelize.STRING,
+        allowNull: false,
+        unique: true
+    },
+    password:{
+        type:Sequelize.STRING,
+        allowNull: false,
+    },
+    admin:Sequelize.BOOLEAN,
+    name:{
+        type:Sequelize.STRING,
+        allowNull: false,
+    },
     email: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         validate: {
             isEmail: true,
         },
+        allowNull: false,
+        unique: true
     },
     phone: {
-        type: DataTypes.DOUBLE,
+        type: Sequelize.DOUBLE,
         validate: {
             len: [8, 14],
         },
     },
-    
 })
+
+module.exports = User;

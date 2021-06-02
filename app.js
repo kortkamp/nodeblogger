@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var servicesRouter = require('./routes/services');
 var blogRouter = require('./routes/blog');
+var adminRouter = require('./routes/admin');
 
 const PostController = require('./database/controllers/PostController');
 
@@ -41,9 +42,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.static(path.join(__dirname, 'public/main')));
 
+
 app.use('/', servicesRouter);
 app.use('/', blogRouter);
-app.use('/blog', blogRouter);
+//app.use('/blog', blogRouter);
+app.use('/admin',adminRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

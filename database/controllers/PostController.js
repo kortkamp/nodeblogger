@@ -72,6 +72,7 @@ async function getPostContent(id){
     }
 }
 
+
 async function postArticle(data){
     //must test to prevent articles with same title
     try {  
