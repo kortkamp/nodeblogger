@@ -8,6 +8,7 @@ Blog feito em Node.js
 - Editor de postagens
 - Renderizador de Markdown para o conteúdo das postagens.
 - Carregamento rápido com conteúdo dos artigos cacheados em Memória.
+- Multiusuários, com sistema de autorização via JWT.
 
 
 # Desenvolvimento

@@ -3,7 +3,7 @@ extends adminLayout
 block content
     div.login-container
         h4.login-error #{error}
-        form(action="/admin", method="post") 
+        form( class="login-form", action="/admin", method="post") 
             label(for="user")   user 
             input(id="user", name="user", type="text")
             label(for="password") password

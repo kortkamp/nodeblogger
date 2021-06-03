@@ -1,9 +1,11 @@
-
-
 var currentArticleId;
 
-
 var postHeaderList;
+
+
+$.ajaxSetup({
+    "error":function(err) { console.log(err)  }
+});
 
 function selectArticle(id){
     currentArticleId = id;
@@ -12,14 +14,14 @@ function selectArticle(id){
     $('#post'+id).siblings().removeClass('selected');
 }
 
-
 function loadArticle(id){
     $.getJSON("article?id="+id, 
           function(data) {
              u_data = data;
             // console.log(u_data)
              putOnScreen(u_data);
-          });
+          },
+          );
 }
 
 var defaultNewPost = {  allow_commentary:true,
@@ -34,7 +36,6 @@ function putOnScreen(data){
     for(key of keys)
         document.forms["new-article"][key].value = data[key];
 }
-
 
 
 function newPost(){
@@ -53,11 +54,13 @@ function savePost(){
             type: "POST",
             url: 'article',
             data: $("#article-form").serialize(), // serializes the form's elements.
-            success: function(data)
+            success: function(data, textStatus, request)
             {
-                setStatus(data); // show response from the php script.
+                alert(request.getResponseHeader('new-token'));
+                setStatus(data); // 
                 loadPostList();
             }
+            
         });
     }
 }
@@ -113,6 +116,7 @@ function setStatus(text){
 function loadPostList(){
     $.getJSON("list?test=test", 
     function(data) {
+        console.log(data)
         postHeaderList = data;
         var postContainer = $('ol.post-list');
         postContainer.html(''); 

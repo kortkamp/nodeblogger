@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
+
+var toolsRouter = require('./tools');
 const jwt = require('jsonwebtoken');
 const UserController = require('../database/controllers/UserController');
+
 
 
 
@@ -28,13 +31,8 @@ function validateToken(req,res,next){
 }
 
 
-
-router.get("/", validateToken,(req, res) => {
-    return res.send("logado as user " + req.userId) 
-});
-
 router.get("/login", (req,res) => {
-    console.log('-----------')
+    
     return res.render("adminLogin", {
         error: req.query.error
     });
@@ -49,7 +47,7 @@ router.post("/", (req,res,next) => {
         if(validUser){
             const id = validUser.id;
             const token = jwt.sign({ id }, secret, {
-                expiresIn: 900
+                expiresIn: 20
             });
             //req.token = token;
             //res.redirect('/admin');
@@ -60,6 +58,8 @@ router.post("/", (req,res,next) => {
     })  
 });
 
+
+router.use('/', validateToken,toolsRouter);
 
 
 module.exports = router;
