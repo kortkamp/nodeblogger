@@ -1,0 +1,20 @@
+html
+    head
+        title= "Administration"
+        link(rel='stylesheet', href='/stylesheets/admin.css')
+        script(src="/javascripts/admin.js") 
+        script.
+            //document.cookie = 'x-access-token=; Max-Age=-99999999;'
+            //document.cookie = 'x-access-token=; Max-Age=-99999999;'
+            
+        
+    body
+        div.admin-container
+            div.login-container
+                h4.login-error #{error}
+                form( class="login-form", action="/admin", method="post") 
+                    label(for="user")   user 
+                    input(id="user", name="user", type="text")
+                    label(for="password") password
+                    input(id="password",type="password", name="password")
+                    input(type="submit", value="login")

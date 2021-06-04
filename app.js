@@ -6,7 +6,11 @@ var logger = require('morgan');
 
 var servicesRouter = require('./routes/services');
 var blogRouter = require('./routes/blog');
-var adminRouter = require('./routes/admin');
+var adminRouter = require('./routes/authentication');
+
+
+
+var apiRouter = require('./routes/api/apiRoute')
 
 const PostController = require('./database/controllers/PostController');
 
@@ -39,14 +43,20 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(express.static(path.join(__dirname, 'public/main')));
+
 
 
 app.use('/', servicesRouter);
 app.use('/', blogRouter);
-//app.use('/blog', blogRouter);
+
 app.use('/admin',adminRouter);
+
+app.use('/api', apiRouter );
+
+//app.use('/api', articleRouter );
+
 
 
 // catch 404 and forward to error handler

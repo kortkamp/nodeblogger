@@ -1,19 +1,7 @@
 db = require('../db')
 const Post = require('../models/Post');
 
-const STATUS = {
-    ready:0,
-    incomplete:1,
-    deleted:2
-    
 
-}
-const TYPE = {
-    public:0,
-    header_page:1,
-
-
-}
 
 async function listAllPosts(){
     try {

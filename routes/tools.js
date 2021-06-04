@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const UserController = require('../database/controllers/UserController');
+const UserController = require('../database/controllers/UserController2');
 
 const PostController = require('../database/controllers/PostController');
 
@@ -17,14 +17,17 @@ async function updatePostCache(){
 }
 
 router.get("/",(req, res) => {
-    return res.send("logado as user " + req.userId) 
+    return res.render("dashboard",{
+
+    })
 });
+
+
 
 router.get("/editor", (req,res) => {  
 
     PostController.listAllHeaders().then(postHeaderList => {
         //console.log(postList)
-    
         res.render("editor", {
             // dataFields must receive all fields of data we want to edit
             postList:postHeaderList,
@@ -48,7 +51,7 @@ router.get('/list',function(req,res,next){
 
 router.get('/article',function(req,res,next){
     PostController.getPostById(req.query.id).then(response => {
-        res.header("new-token", "654654654654654-----");
+        
         res.send(response);
     }).catch(error => {
         return res.status(400).json({ error: err.message });
@@ -59,7 +62,7 @@ router.post('/article',function(req,res,next){
     
     if(req.body)
         PostController.postArticle(Object.assign(req.body)).then(response => { 
-            res.header("new-token", "654654654654654-----");
+            
             updatePostCache(); 
             res.send(response);
         });
