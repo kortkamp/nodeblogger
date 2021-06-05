@@ -1,5 +1,5 @@
 # kortkamp.org
-Blog feito em Node.js
+Sistema de blog feito em Node.js/Express
 
 # Funcionalidades
 - Múltiplas páginas renderizáveis armazenadas em tabela do BD
@@ -8,7 +8,8 @@ Blog feito em Node.js
 - Editor de postagens
 - Renderizador de Markdown para o conteúdo das postagens.
 - Carregamento rápido com conteúdo dos artigos cacheados em Memória.
-- Multiusuários, com sistema de autorização via JWT.
+- API RESTfull 
+- Multiusuários, com sistema de autenticação via login autorização via JWT.
 
 
 # Desenvolvimento
@@ -23,8 +24,12 @@ Após essa mudança foi muito simples mudar a localização dos artigos da pági
 ## Integração com Gmail
 A Página precisaria de uma área de contatos, então decidi usar o **nodemailer** para integrar ao email da família. Devido às exigências de segurança do gmail , tive dificuldades para fazer altenticação simples e foi necessário usar OAuth2 , oque foi bem útil no aprendizado dessa tecnologia. Implementei um serviço *mailer.js* para receber o access_token via API do Google e fazer o envio dos emails de contato e notificações ao administrador da página.
 
-## Editor de Postagens
-A fim de simplicar o processo de postagens no blog, decidi adicionar uma página de edição **CRUD** onde se pode usar markdown para escrever ou editar os posts, além de listar os cabeçalhos dos mesmos para filtragem e exibição.
+## Editor de Recursos
+A ideia inicial era que as atualizações dos conteúdos fessem feitas pela adição de arquivos no respostório do Github, porém essa ideia se mostrou ineficiente, pois caso o projeto fosse usado em uma realidade onde a postagem de novos artigos fosse constante, o processo de edição via Github, pushes e deploys do novo projeto seria desnecessariamente trabalhoso. A fim de contornar essa dificuldade adicionei um editor simples para se criar novas postagens, porém devido à estrutura final da Tabela de Artigos não estar totalmente fechada, decidi fazer um editor dinâmico que permitisse fazer o ***CRUD*** numa tabela do BD independente da estrutura dessa, bastando apenas que se forneça o tipo de dado de cada coluna para se gerar o data input correspondente no Editor. Mais tarde, percebi a necessidade de um gerenciador de usuários e como o editor de artigos era genérico o suficiente acabei adaptando o mesmo para o gerenciamento tanto de usuários como de comentários obedecendo a metodolodia ***DRY***.
+
+## Segurança
+Com o editor funcionando se fez necessário um sistema de autenticação para que o administrador pudesse acessar a ferramenta. Desse modo implementei um sistema de login e senha com troca dessas credenciais por um token JWT com validade de 15 minutos e armazenado em cookie que permite o acesso às ferramentas administrativas. Para o editor, implementei uma função temporizada que renova o token antes que o mesmo expire permitindo assim o uso ininterrupto do ambiente de edição sem a necessidade novo login enquanto o editor estiver aberto.
+
 
 # Aspectos Técnicos
 
@@ -62,10 +67,16 @@ $ npm run dev:server
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-- [Node.js](https://nodejs.org/en/)
-- [Express.js](https://expressjs.com/)
-- [MySQL](https://www.mysql.com/)
-- [Sequelize](https://sequelize.org/)
-- [Pug](https://pugjs.org/)
+- Backend
+    - [Node.js](https://nodejs.org/en/)
+    - [Express.js](https://expressjs.com/)
+- Database
+    - [MySQL](https://www.mysql.com/)
+    - [Sequelize](https://sequelize.org/)
+- Render
+    - [Pug](https://pugjs.org/)
+- Fontend
+    - [jQuery/Ajax](https://jquery.com/)
+    - Plain CSS / JS
 
 

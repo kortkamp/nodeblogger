@@ -49,21 +49,7 @@ function sendMail(mailOptions){
         });
     });
 };
-/*exemplo
- return new Promise( resolve => {
-        connection.query(queryString, [id], function(err, rows) {
-            if (err) {
-                //console.log(err)    
-                console.log("error in db.getChilds")
-                handleDisconnect();
-                //throw err
-            };
-            //console.log('The result is: ', rows);
-            
-            resolve(rows)
-      })
-});
-*/
+
 
 async function sendContactMail(dataString){
     var mailOptions = {

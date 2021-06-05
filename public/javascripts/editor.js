@@ -2,41 +2,108 @@ var currentArticleId;
 
 var postHeaderList;
 
+var tokenExpireTime;
 
-$.ajaxSetup({
-    "error":function(err) { console.log(err)  }
-});
 
-function selectArticle(id){
-    currentArticleId = id;
-    // class selected must highlight post
-    $('#post'+id).addClass('selected');
-    $('#post'+id).siblings().removeClass('selected');
-}
 
-function loadArticle(id){
-    $.getJSON("article?id="+id, 
-          function(data) {
-             u_data = data;
-            // console.log(u_data)
-             putOnScreen(u_data);
-          },
-          );
-}
+var apiServicePath = 'articles/'
+
+const apiURL = document.location.origin + '/api/'
+
+
+
+
+
 
 var defaultNewPost = {  allow_commentary:true,
                         status:0,
                         type:0
                     };
 
-// fill form fields with 'data'
-function putOnScreen(data){
-    var keys = Object.keys(data);
-    document.forms["new-article"].reset();
-    for(key of keys)
-        document.forms["new-article"][key].value = data[key];
+
+
+
+
+// ####################### AJAX REQUESTS #############################
+
+$.ajaxSetup({
+    "error":function(err) { console.log(err)  }
+});
+
+
+function getAllItems(){
+    $.getJSON(apiURL + apiServicePath, 
+    function(data) {
+        //console.log(data)
+        itemsList = data;
+        var postContainer = $('ol.post-list');
+        postContainer.html(''); 
+        for(let item of itemsList){
+            //console.log(post.title)
+
+            // identifier to be shown in items list
+            let identifier = item.title?item.title:(item.username?item.username: item.parent_post + ' ' + item.author)
+            postContainer.append('<li class="post-item" id="post'+ item.id +'" onclick="selectArticle(' + item.id + ')"><cite>' + item.id + ' <spam>'+ identifier +'</spam></cite></li>')
+        }
+    });
 }
 
+function getItem(id){
+    $.getJSON(apiURL+apiServicePath+id, 
+          function(data) {
+             u_data = data;
+            // console.log(u_data)
+             putOnScreen(u_data);
+          },
+    );
+}
+
+function deleteItem(id){
+    $.ajax({
+        type: "DELETE",
+        url: apiURL + apiServicePath + id,
+        data: '',
+        success: function(data)
+        {
+            console.log(data)
+            setStatus(data); // show response from the php script.
+            document.forms["new-article"].reset();
+            getAllItems();  
+        }
+    });
+}
+
+function createItem(){
+    $.ajax({
+        type: "POST",
+        url: apiURL + apiServicePath,
+        data: $("#article-form").serialize(), // serializes the form's elements.
+        success: function(data, textStatus, request)
+        {
+            alert(request.getResponseHeader('new-token'));
+            setStatus(data); // 
+            getAllItems();
+            getItem(data.id)
+        }        
+    });
+}
+
+function updateItem(id){
+    console.log('updating item')
+    $.ajax({
+        type: "PUT",
+        url: apiURL + apiServicePath + id,
+        data: $("#article-form").serialize(), // serializes the form's elements.
+        success: function(data, textStatus, request)
+        {
+            alert(request.getResponseHeader('new-token'));
+            setStatus(data); // 
+            getAllItems();
+        }        
+    });
+}
+
+//######################## MAIN MENU #################################
 
 function newPost(){
     $('#post'+currentArticleId).removeClass('selected');
@@ -48,20 +115,13 @@ function newPost(){
 }
 
 function savePost(){
-    // must validate all mandatory fields
-    if(true){
-        $.ajax({
-            type: "POST",
-            url: 'article',
-            data: $("#article-form").serialize(), // serializes the form's elements.
-            success: function(data, textStatus, request)
-            {
-                alert(request.getResponseHeader('new-token'));
-                setStatus(data); // 
-                loadPostList();
-            }
-            
-        });
+    id = $('input[name="id"]').val()
+    console.log('got id to save :'+id)
+    if(id){
+        updateItem(id);
+    }else{
+        // must validate all mandatory fields
+        createItem();
     }
 }
 
@@ -70,7 +130,7 @@ function editPost(){
     $('.textarea-preview').hide();
     if(currentArticleId){
         $('input[name="id"]').prop("disabled", false);
-        loadArticle(currentArticleId)
+        getItem(currentArticleId)
     }
 }
 
@@ -78,18 +138,7 @@ function deletePost(){
     // ask for confirmation
     if(currentArticleId){
         askForConfirmation(() => {
-            $.ajax({
-                type: "DELETE",
-                url: 'article',
-                data: 'id='+currentArticleId ,
-                success: function(data)
-                {
-                    setStatus(data); // show response from the php script.
-                    document.forms["new-article"].reset();
-                    loadPostList();
-                    
-                }
-            });
+            deleteItem(currentArticleId)
         },"Confirm Delete Post:" + currentArticleId)
     }else
         setStatus('Select a article to Delete')
@@ -97,37 +146,39 @@ function deletePost(){
 
 
 
-function previewArticle(){
 
+//######################## UI #################################
 
-    $('.textarea-preview').html(marked($('textarea.input-field').val()))
-
-    $('textarea.input-field').hide();
-    $('.textarea-preview').show();
+// fill form fields with 'data'
+function putOnScreen(data){
+    var keys = Object.keys(data);
+    document.forms["new-article"].reset();
+    for(key of keys)
+        document.forms["new-article"][key].value = data[key];
 }
 
 
+function selectArticle(id){
+    currentArticleId = id;
+    // class selected must highlight post
+    $('#post'+id).addClass('selected');
+    $('#post'+id).siblings().removeClass('selected');
+}
+
+
+function previewArticle(){
+    $('.textarea-preview').html(marked($('textarea.input-field').val()))
+    $('textarea.input-field').hide();
+    $('.textarea-preview').show();
+}
 
 
 function setStatus(text){
     $('label.status').text(text);
 }
 
-function loadPostList(){
-    $.getJSON("list?test=test", 
-    function(data) {
-        console.log(data)
-        postHeaderList = data;
-        var postContainer = $('ol.post-list');
-        postContainer.html(''); 
-        for(let post of postHeaderList){
-            console.log(post.title)
-            postContainer.append('<li class="post-item" id="post'+ post.id +'" onclick="selectArticle(' + post.id + ')"><cite>' + post.id + ' <spam>'+ post.title+'</spam></cite></li>')
-        }
-    });
-}
 
-
+//######################## CONFIRMATION #################################
 
 var confirmationCallback
 // we must pass a function to be called when confirm true.
@@ -151,6 +202,7 @@ function confirmOperation(option){
 
 
 
+// ############################# REVEW AUTH TOKEN ##############################
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -167,8 +219,16 @@ function getCookie(cname) {
     return "";
   }
 
-updateToken();
-updateTokenIntervalId = setInterval(updateToken,15000)
+function setupTokenRenew(){
+    var renewInterval = (tokenExpireTime - 5) * 1000;
+    updateToken();
+    var updateTokenIntervalId = setInterval(updateToken,renewInterval)
+}  
+
+
+
+
+
 
 function updateToken(){
    // console.log('updating token')

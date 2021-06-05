@@ -45,12 +45,16 @@ html
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
         script(src="https://cdn.jsdelivr.net/npm/marked/marked.min.js")
         script(src='/javascripts/editor.js')
-    body    
+        script. 
+            apiServicePath = '#{endPointName}' + '/';
+            tokenExpireTime = #{tokenExpireTime};
+            setupTokenRenew();
+    body
         
         div.editor-master-conteiner
             div.header-container
                 div.editor-title-container
-                    h1.editor-title Post Editor
+                    h1.editor-title #{endPointName} Editor
                 div.editor-tools-container
                     //h3.tools-title Tools
                     div.tool-buttons
@@ -59,7 +63,7 @@ html
                         button(class='tool-button', onclick='editPost()') EDIT
                         BUTTON(class='tool-button', onclick='previewArticle()') PREVIEW
                         BUTTON(class='tool-button', onclick='deletePost()') DELETE
-                        BUTTON(class='tool-button', onclick='loadPostList()') LOAD ALL
+                        BUTTON(class='tool-button', onclick='getAllItems()') LOAD ALL
                         
 
             div.data-container
@@ -68,10 +72,10 @@ html
                     div.file-list-container
                         div.post-container
                             ol.post-list
-                                each post in postList
-                                    li(id='post'+post.id, class='post-item' , onclick="selectArticle("+post.id+")" )
-                                            cite #{post.id} 
-                                                spam #{post.title}
+                                //each post in postList
+                                //    li(id='post'+post.id, class='post-item' , onclick="selectArticle("+post.id+")" )
+                                //            cite #{post.id} 
+                                //                spam #{post.title}
                 div(class='write-data-container hide')
                     h3.data-title Data
                     div.data-properties

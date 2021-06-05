@@ -71,17 +71,16 @@ router.get("/contact", (req,res) => {
 
 
 router.get("/:article", (req, res, next) => {
-
- 
     var post;
 
+    //search  article in cached articles list
     if(post = postsData.find(item => item.path === req.params.article)){
 
-        // use markdown-it to convert content to HTML
+        
         var md = require("markdown-it")();
         var result = md.render(post.content);
         
-        commentController.getComments(req.params.article).then(commentsArray => {       
+        commentController.getComments(req.params.article).then(commentsArray => {    
             res.render("blog", {
                 site:site,
                 postBody: result,
@@ -93,8 +92,8 @@ router.get("/:article", (req, res, next) => {
                 comments: commentsArray
             });
         })   
-    }
-    next();
+    }else
+      next();
 });
 
 

@@ -3,24 +3,34 @@ const routes = Router();
 
 const {UserController,ArticleController,CommentController} = require('../../database/controllers/BlogController');
 
-
-//console.log(UserController.modelPAth)
-//console.log(ArticleController.modelPAth)
-//console.log(CommentController.modelPAth)
-
-const usersEndPointRouter = require('./apiEndPoint')(UserController);
-const articlesEndPointRouter = require('./apiEndPoint')(ArticleController);
-const commentsEndPointRouter = require('./apiEndPoint')(CommentController);
+controllers = {
+    users:UserController,
+    articles:ArticleController,
+    comments:CommentController
+}
 
 
-routes.use('/users',usersEndPointRouter)
-routes.use('/articles',articlesEndPointRouter)
-routes.use('/comments',commentsEndPointRouter)
+
+routes.get('/:service', 
+    (req, res, next) => {controllers[req.params.service].index(req, res, next)}
+);
+
+routes.get('/:service/:id',
+    (req, res, next) => {controllers[req.params.service].show(req, res, next)}
+);
+
+routes.post('/:service',
+    (req, res, next) => {controllers[req.params.service].store(req, res, next)}
+);
+
+routes.put('/:service/:id',
+    (req, res, next) => {controllers[req.params.service].update(req, res, next)}
+);
+
+routes.delete('/:service/:id',
+    (req, res, next) => {controllers[req.params.service].destroy(req, res, next)}
+);
+
 
 
 module.exports = routes;
-
-
-// erro
-
-//os 3 router estão roteando sempre para o primeiro , pqp

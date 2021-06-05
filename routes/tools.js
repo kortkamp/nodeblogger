@@ -1,10 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-const UserController = require('../database/controllers/UserController2');
-
 const PostController = require('../database/controllers/PostController');
 
+const {UserController,ArticleController,CommentController} = require('../database/controllers/BlogController');
+
+const auth = require('../auth_info');
+
+controllers = {
+    users:UserController,
+    articles:ArticleController,
+    comments:CommentController
+}
 
 
 async function updatePostCache(){
@@ -18,26 +25,27 @@ async function updatePostCache(){
 
 router.get("/",(req, res) => {
     return res.render("dashboard",{
-
+        tokenExpireTime:auth.tokenExpireTime,
     })
 });
 
 
 
-router.get("/editor", (req,res) => {  
-
-    PostController.listAllHeaders().then(postHeaderList => {
-        //console.log(postList)
+router.get("/editor/:dataToEdit", (req,res) => {  
+     
         res.render("editor", {
+            
+            endPointName:req.params.dataToEdit,
+
+            tokenExpireTime:auth.tokenExpireTime,
+            
             // dataFields must receive all fields of data we want to edit
-            postList:postHeaderList,
-            dataFields:PostController.getModelFields(),
+            dataFields:controllers[req.params.dataToEdit].getModelFields()  
         });
-    
-    });
-    
+     
 });
 
+/*
 router.get('/list',function(req,res,next){
     //console.log(req.query.where)
     if(true){
@@ -77,5 +85,5 @@ router.delete('/article',function(req,res,next){
         });
 });
 
-
+*/
 module.exports = router;

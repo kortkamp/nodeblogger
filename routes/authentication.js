@@ -3,21 +3,18 @@ var router = express.Router();
 
 var toolsRouter = require('./tools');
 const jwt = require('jsonwebtoken');
-const UserController = require('../database/controllers/UserController2');
+const UserController = require('../database/controllers/InternalUserController');
 
 
-const tokenExpireTime = 20;
-
-const secret = "roses are red violets are blue, weak secrets are for noob"
+const auth = require('../auth_info');
 
 
 function validateToken(req,res,next){
     const token = req.cookies['x-access-token'];
-    console.log(token)
-    //if (!token) return res.status(401).json({ auth: false, message: 'No token provided.' });
+    
     if (token){
-        jwt.verify(token, secret, function(err, decoded) {
-            //console.log(decoded)
+        jwt.verify(token, auth.secret, function(err, decoded) {
+            
             if(err){ 
                 // on error call login page
                 console.log(token)
@@ -28,8 +25,7 @@ function validateToken(req,res,next){
             }                
             else{
                 req.userId = decoded.id
-                //console.log(decoded)
-                //console.log("login by:" + decoded.id)
+               
                 next();
             }
         });
@@ -51,15 +47,15 @@ router.get("/login", (req,res) => {
 
 // do login
 router.post("/", (req,res,next) => {
-    //console.log(req.body)
-    if(req.body.user && req.body.password){
+    
+    if(req.body.user ){
         UserController.validateUser({username:req.body.user,password:req.body.password})
         .then( validUser => {
             //console.log(validUser)
             if(validUser){
                 const id = validUser.id;
-                const token = jwt.sign({ id }, secret, {
-                    expiresIn: tokenExpireTime
+                const token = jwt.sign({ id }, auth.secret, {
+                    expiresIn: auth.tokenExpireTime
                 });
                 //console.log('login generating token')
                 //console.log(token)
@@ -71,18 +67,16 @@ router.post("/", (req,res,next) => {
                 res.redirect('/admin?error=Incorrect username or password');   
         })  
     }else{
-        res.send('form error')
+        res.redirect('/admin?error=Incorrect username or password'); 
     }
 });
 
 
 // return a new fresh token
 router.post("/refreshToken", (req,res,next) => {
-
     const token = req.body.token;
-    
     if (token){
-        jwt.verify(token, secret, function(err, decoded) {
+        jwt.verify(token, auth.secret, function(err, decoded) {
             //console.log(decoded)
             if(err){ 
                 // on error call login page
@@ -91,12 +85,10 @@ router.post("/refreshToken", (req,res,next) => {
             else{
                 var id = decoded.id
                 //console.log('new token id:' + id)
-                const newToken = jwt.sign({ id }, secret, {
-                    expiresIn: tokenExpireTime
+                const newToken = jwt.sign({ id }, auth.secret, {
+                    expiresIn: auth.tokenExpireTime
                 });
-
                 return res.json({'token':newToken});
-               
             }
         });
     }else{
@@ -104,8 +96,6 @@ router.post("/refreshToken", (req,res,next) => {
     } 
 });
 
-
 router.use('/', validateToken,toolsRouter);
-
 
 module.exports = router;

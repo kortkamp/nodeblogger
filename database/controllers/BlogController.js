@@ -14,9 +14,12 @@ class Controller {
 
     async index(req, res) {
         try {
-            const items = await this.Model.findAll();
 
-            
+            const items = await this.Model.findAll({
+                where: req.query,
+                //attributes: { exclude: ['content'] }
+            });
+
             return res.json(items);
         } catch (err) {
             return res.status(400).json({ error: err.message });
@@ -37,9 +40,9 @@ class Controller {
         try {
             const item = await this.Model.create(req.body);
 
-        return res.json(item);
+        return res.status(201).json(item);
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(400).json({ error: err.original.sqlMessage });
         }
     }
 
@@ -61,11 +64,25 @@ class Controller {
 
             await item.destroy();
 
-            return res.json();
+            return res.status(204).json();
         } catch (err) {
             return res.status(400).json({ error: err.message });
         }
     }
+
+    // Return a object with same keys as Model desired , but content is the Datatype of respective field.
+    getModelFields(){
+        var postDataFields = [];
+        
+        var postFieldsArray = Object.keys(this.Model.rawAttributes);
+        for(let field of postFieldsArray)
+            postDataFields.push({
+                name:field,
+                type:this.Model.rawAttributes[field].type.key
+            })
+        return postDataFields;
+    }
+    
 }
 
 const UserController = new Controller('../models/User')
