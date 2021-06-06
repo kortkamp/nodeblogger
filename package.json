@@ -1,12 +1,12 @@
 {
-  "name": "kortkamp.org",
+  "name": "nodeblogger",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "serverstart": "DEBUG=kortkamp.org:* npm run devstart",
-    "winserverstart": "$ENV:DEBUG =  'kortkamp.org:*'; npm run devstart"
+    "serverstart": "DEBUG=nodeblogger:* npm run devstart",
+    "winserverstart": "$ENV:DEBUG =  'nodeblogger:*'; npm run devstart"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

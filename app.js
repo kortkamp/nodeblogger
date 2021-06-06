@@ -8,14 +8,10 @@ var servicesRouter = require('./routes/services');
 var blogRouter = require('./routes/blog');
 var adminRouter = require('./routes/authentication');
 
-
-
 var apiRouter = require('./routes/api/apiRoute')
-
 const PostController = require('./database/controllers/PostController');
-
 const {ConfigController} = require('./database/controllers/BlogController');
-const { config } = require('process');
+
 
 var app = express();
 

@@ -238,13 +238,16 @@ body {
 *
 */
 .master-footer {
-    -background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../images/flag-yellow.jpg");
-    background-color: #797f7a;
+    background-color: #7e7e7e;
     text-align: center;
     
 }
-.master-footer h4{
+.master-footer a{
+    color: #222;
     margin: 4px;
+    font-weight: 600;
+    
+    text-decoration: none;
 }
 
 

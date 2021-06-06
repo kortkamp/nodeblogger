@@ -1,5 +1,5 @@
-# kortkamp.org
-Sistema de blog feito em Node.js/Express
+# NodeBlogger
+Plataforma para  em Node.js/Express
 
 # Funcionalidades
 - Múltiplas páginas renderizáveis armazenadas em tabela do BD
@@ -80,3 +80,5 @@ As seguintes ferramentas foram usadas na construção do projeto:
     - Plain CSS / JS
 
 
+# Autor
+[Marcelo Kortkamp](https://github.com/kortkamp)
