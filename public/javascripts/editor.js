@@ -42,7 +42,8 @@ function getAllItems(){
             //console.log(post.title)
 
             // identifier to be shown in items list
-            let identifier = item.title?item.title:(item.username?item.username: item.parent_post + ' ' + item.author)
+            let identifier = item.title || item.username || item.name || (item.parent_post + ' ' + item.author);
+           // let identifier = item.title?item.title:(item.username?item.username: item.parent_post + ' ' + item.author)
             postContainer.append('<li class="post-item" id="post'+ item.id +'" onclick="selectArticle(' + item.id + ')"><cite>' + item.id + ' <spam>'+ identifier +'</spam></cite></li>')
         }
     });

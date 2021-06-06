@@ -10,6 +10,8 @@ const familyMemberController = require('../database/controllers/FamilyMemberCont
 const commentController = require('../database/controllers/CommentController');
 const PostController = require('../database/controllers/PostController');
 
+const {ContactController} = require('../database/controllers/BlogController');
+
 
 
 async function updatePostCache(){
@@ -36,50 +38,8 @@ router.get('/getPositions', function(req, res, next) {
 });
 
 
-function formatDateTime(dateTime){
-    let date = new Date(dateTime)
-    let day =  date.getDate(dateTime)
-    let monthIndex = date.getMonth(dateTime)
-        let month = ['Janeiro',
-                    'Fevereiro',
-                    'Março',
-                    'Abril',
-                    'Maio',
-                    'Junho',
-                    'Julho',
-                    'Agosto',
-                    'Setembro',
-                    'Outubro',
-                    'Novembro',
-                    'Dezembro'][monthIndex]
-    let year = date.getFullYear(dateTime)
 
-    let hours = date.getHours(dateTime)
-    let minutes =  date.getMinutes(dateTime)
 
-    formatedDate = day + " de " + month + " de " + year + " " + hours + ":" + String(minutes).padStart(2, '0') ;
-
-    return formatedDate;
-}
-/*
-router.get('/getComments-', function(req, res, next) {
-        if(req.query)
-            if(req.query.post)
-            commentController.getComments(req.query.post).then(response => {
-                //console.log(response[0].create_date)
-                
-                for(index in response){
-                    response[index].create_date = formatDateTime(response[index].createdAt);
-                }
-                res.render("comments", {
-                    page_name: req.query.post,
-                    comments: response
-                });
-            })
-        else
-            res.send()
-});
-*/
 
 router.post('/postComment', function(req, res, next) {
     console.log(req.body)   
@@ -93,9 +53,12 @@ router.post('/postComment', function(req, res, next) {
             res.redirect('/' + req.body.parent_post)
         })
     else
-        res.send('Erro ao postar o comentário')  
+        res.send('Erro ao postar o comentário') 
 });
 
+
+
+/*
 router.get('/list',function(req,res,next){
     //console.log(req.query.where)
     if(true){
@@ -106,6 +69,8 @@ router.get('/list',function(req,res,next){
         })
     }
 });
+
+
 
 router.get('/article',function(req,res,next){
     PostController.getPostById(req.query.id).then(response => {
@@ -133,24 +98,25 @@ router.delete('/article',function(req,res,next){
         });
 });
 
+*/
 
+
+// 
 router.post('/make_contact', function(req,res,next){
-    
-    
-    
-    mailer.sendContactMail(JSON.stringify(req.body)).then(response => {
-        res.render("contactReturn", {
-            
-            title: 'Obrigado',
-            message: 'Sua mensagem foi enviada com sucesso'
-        });
-    }).catch(error => {
-        res.render("contactReturn", {
-            
-            title: 'Ocorreu um Erro!',
-            message: 'Ocorreu um erro no servidor, favor enviar seu contato para o e-mail ' + mailInfo.adminEmail
-        });
-    })
+
+    if(req.body){
+        if(req.body.name && req.body.email && req.body.message){
+            // send mail to admin
+            mailer.sendContactMail(JSON.stringify(req.body)).then(response => {
+ 
+            }).catch(error => {
+
+            })
+            // Store contact on Database.
+            // As our controller is an API controller, it handles the res.send() per se. 
+            ContactController.store(req, res, next)
+        }
+    }
 });
 
    

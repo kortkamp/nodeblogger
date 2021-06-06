@@ -1,5 +1,5 @@
 {
-    "tokenExpireTime": 20,
+    "tokenExpireTime": 600,
 
     "secret": "roses are red violets are blue, weak secrets are for noob"
 }

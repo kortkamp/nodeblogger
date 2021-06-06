@@ -1,6 +1,11 @@
 * {
     box-sizing: border-box;
   }
+
+
+  .contact-header {
+    text-align: center;
+  }
   
   /* Style inputs */
   .contact-form input[type=text], select, textarea {
@@ -13,16 +18,21 @@
     border-radius: 10px;
   }
   
-  .contact-form input[type=submit] {
+  .send-contact-button {
     background-color: #04AA6D;
     color: white;
     padding: 12px 20px;
-    border: none;
+    
     cursor: pointer;
+    border: 1px solid #ccc;
   }
   
-  .contact-form input[type=submit]:hover {
+  .send-contact-button:hover {
     background-color: #45a049;
+  }
+
+  .send-contact-button:active {
+    border: none;
   }
   
   /* Style the container/contact section */
@@ -31,11 +41,12 @@
     background-color: #f2f2f2;
     padding: 10px;
     display: flex;
-    justify-content: center;
+    justify-content:center;
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
     height: 100%;
+    padding-top: 50px;
   }
 
   .contactcontainer h2{
@@ -43,7 +54,7 @@
   }
   
   /* Create two columns that float next to eachother */
-  .column {
+  .contact-body {
     float: left;
     width: 50%;
     margin-top: 6px;
@@ -55,7 +66,7 @@
   
   /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
   @media (min-resolution: 300dpi) {/*must be 300*/
-    .column, input[type=submit] {
+    .contact-body, input[type=submit] {
       width: 100%;
       margin-top: 0;
     }
@@ -90,4 +101,10 @@
       border-radius: 20px;
     }
 
+  }
+
+
+
+  .contact-response div{
+    display: none;
   }

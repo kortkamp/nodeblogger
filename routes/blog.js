@@ -6,6 +6,8 @@ var path = require('path');
 const commentController = require('../database/controllers/CommentController');
 const PostController = require('../database/controllers/PostController');
 
+const utils = require('../utils');
+
 
 // gray-matter to read the .md files better
 const matter = require('gray-matter');
@@ -17,18 +19,12 @@ site = {
 
 
 
-
-
-
-
-
 router.get("/", (req, res) => {
-  //const posts = fs.readdirSync(process.cwd() + '\\blog\\' ).filter(file => file.endsWith('.md'));
-  //console.log(posts);
+  
   res.render("blogindex", {
     menu: postsData,
-    title: 'Família Kortkamp',
-    site:site,
+    title: siteConfig.site_title,
+    site:siteConfig,
   });
 });
 
@@ -37,38 +33,24 @@ router.get("/tree", (req,res) => {
   res.render("tree", {
     menu: postsData,
     title: site.title,
-    site:site,
+    site:siteConfig,
     treeBody:file.content
   });
 });
 
-router.get("/editor", (req,res) => {  
-
-    PostController.listAllHeaders().then(postHeaderList => {
-        //console.log(postList)
-    
-        res.render("editor", {
-            // dataFields must receive all fields of data we want to edit
-            postList:postHeaderList,
-            dataFields:PostController.getModelFields(),
-        });
-    
-    });
-    
-  });
 
 router.get("/contact", (req,res) => {
-  const file = matter.read(path.join(process.cwd() , 'public' , 'contact.htm'));
+  //const file = matter.read(path.join(process.cwd() , 'public' , 'contact.htm'));
   res.render("contact", {
     menu: postsData,
     title: 'Contato',
-    site:site,
-    contactBody:file.content,
-    customStyle:'dddd'
+    site:siteConfig,
+
+    adminEmail:"familiakortkamp@gmail.com"
+    
   });
 });
   
-
 
 router.get("/:article", (req, res, next) => {
     var post;
@@ -76,13 +58,17 @@ router.get("/:article", (req, res, next) => {
     //search  article in cached articles list
     if(post = postsData.find(item => item.path === req.params.article)){
 
-        
         var md = require("markdown-it")();
         var result = md.render(post.content);
         
         commentController.getComments(req.params.article).then(commentsArray => {    
+
+            for(index in commentsArray){
+                commentsArray[index].create_date = utils.formatDateTime(commentsArray[index].createdAt)
+            }
+               
             res.render("blog", {
-                site:site,
+                site:siteConfig,
                 postBody: result,
                 menu: postsData,
                 title: post.title,
@@ -95,8 +81,6 @@ router.get("/:article", (req, res, next) => {
     }else
       next();
 });
-
-
 
 
 module.exports = router;

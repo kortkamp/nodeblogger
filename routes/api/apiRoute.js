@@ -1,12 +1,14 @@
 const { Router } = require('express');
 const routes = Router();
 
-const {UserController,ArticleController,CommentController} = require('../../database/controllers/BlogController');
+const {UserController,ArticleController,CommentController,ConfigController,ContactController} = require('../../database/controllers/BlogController');
 
 controllers = {
     users:UserController,
     articles:ArticleController,
-    comments:CommentController
+    comments:CommentController,
+    configs:ConfigController,
+    contacts:ContactController
 }
 
 

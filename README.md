@@ -8,7 +8,7 @@ Sistema de blog feito em Node.js/Express
 - Editor de postagens
 - Renderizador de Markdown para o conteúdo das postagens.
 - Carregamento rápido com conteúdo dos artigos cacheados em Memória.
-- API RESTfull 
+- API RESTful para acesso aos dados.
 - Multiusuários, com sistema de autenticação via login autorização via JWT.
 
 

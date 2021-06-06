@@ -1,3 +1,6 @@
+html {
+    overflow-y: scroll;
+  }
 
 body {
     padding: 0px;
@@ -14,6 +17,8 @@ body {
     padding: 0;
 
     margin: 0;
+
+    background-color: #f7f7f7;
   
 }
 
@@ -32,12 +37,15 @@ body {
 
 .master-head {
     text-align: center;
-    background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../images/flag-black.jpg");
+    background-color: #7e7e7e;
+    -background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../images/flag-black.jpg");
+    -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 
 .header-wrapper {
     padding: 20px 40px 10px;
-    -padding-top: 40px;
     justify-content:space-between;
 
     display: flex;
@@ -52,22 +60,24 @@ body {
 .site-branding-text {
     height: 100%;
 }
-    .site-title {
-        font-family: Palatino,"Palatino Linotype","Palatino LT STD","Book Antiqua",Times,"Times New Roman",serif;
-        
-        font-size: 4rem;
-        font-weight: 600;
-        line-height: 1;
-        margin-bottom: 0;
-        margin-top: 0;
-        word-wrap: break-word;
-    }
+.site-title a{
+    font-family: Palatino,"Palatino Linotype","Palatino LT STD","Book Antiqua",Times,"Times New Roman",serif;
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0;
+    margin-top: 0;
+    word-wrap: break-word;
+    text-decoration:solid;
+    color: rgb(43,43,43);
+}
 
-    .site-description {
-        font-style: italic;
-        line-height: 2;
-        margin: 0;
-    }
+.site-description {
+    font-style: italic;
+    line-height: 2;
+    margin: 0;
+}
 
 .___master-head::after {
   background: url("../images/flag.jpg");
@@ -163,7 +173,7 @@ body {
     flex-direction: column;
     -align-items: center;
 
-    background-color: #f7f7f7;
+    
     
     -background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("../images/flag-red.jpg");
 }
@@ -228,7 +238,8 @@ body {
 *
 */
 .master-footer {
-    background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../images/flag-yellow.jpg");
+    -background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../images/flag-yellow.jpg");
+    background-color: #797f7a;
     text-align: center;
     
 }

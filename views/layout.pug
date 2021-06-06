@@ -2,7 +2,7 @@
 doctype html
 html
     head
-        title= title
+        title= site.site_title
         link(rel='stylesheet', href='/stylesheets/style.css')
         //link(rel='stylesheet', href='/stylesheets/contact.css')
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
@@ -13,13 +13,13 @@ html
         div(class='master-head')
             div(class='header-wrapper-container')
                 div(class='header-wrapper')
-                    img(class="left-header-img" src="../images/hannouver.png")
+                    img(class="left-header-img" src="../images/node_logo.png")
                     div(class='site-branding-text')
                         p.site-title
-                            a #{site.title}
+                            a(href="/") #{site.site_title}
                         p.site-description
-                            a #{site.description}
-                    img(class="right-header-img" src="../images/brasil.png")
+                            a #{site.site_description}
+                    img(class="right-header-img" src="../images/node_logo.png")
             div(class='menu-wrapper')
                 button( class='menu-button' onclick="$('.main-navigation , .menu-button').toggleClass( 'menu-open' );" ) MENU
                         img(width='45px' src="../images/menu.svg")

@@ -14,16 +14,24 @@ var apiRouter = require('./routes/api/apiRoute')
 
 const PostController = require('./database/controllers/PostController');
 
+const {ConfigController} = require('./database/controllers/BlogController');
+const { config } = require('process');
+
 var app = express();
 
 
 
 global.postsData =[];
+global.siteConfig = {};
 
-// Load All Blog Posts in Memory
+// Load All Blog Posts and configs in Memory
 (async() => {
-    postsData = await PostController.listAllPosts();
+
+    siteConfig = await ConfigController.getFirstEntry();
     
+
+    postsData = await PostController.listAllPosts();
+       
     // build all page names replacing 
     postsData.forEach(element => {
         element.path = String(element.title).toLowerCase().replace(/ /g, '-');
@@ -55,7 +63,7 @@ app.use('/admin',adminRouter);
 
 app.use('/api', apiRouter );
 
-//app.use('/api', articleRouter );
+
 
 
 

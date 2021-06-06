@@ -2,4 +2,27 @@ extends layout
 
 block content
     div(class='tree-content')
-            | !{contactBody}
+        link(rel='stylesheet', href='/stylesheets/contact.css')   
+        script(src="/javascripts/contactform.js")  
+        div.contactcontainer
+            div.contact-header
+                h2 Contato
+                p Envie uma mensagem
+            div.contact-body
+                form(class="contact-form",action="/make_contact", method="post") 
+                    label( for="name") Nome:
+                    input( type="text", id="name", name="name", placeholder="Seu nome..")
+                    label( for="email") E-mail:
+                    input( type="text", id="email", name="email", placeholder="Seu E-mail..")
+                    label( for="phone") Telefone:
+                    input( type="text", id="phone", name="phone", placeholder="Seu Telefone")
+                    label( for="subject") Mensagem:
+                    textarea( id="message", name="message", placeholder="Deixe aqui sua mensagem.." )
+                    //input( type="submit", value="Enviar")
+                div.send-contact
+                    button( class="send-contact-button", onclick="sendContact()") Enviar
+            div.contact-response
+                div.response-error
+                    h2 Ocorreu um erro. Por favor entre em contato com: #{adminEmail}
+                div.response-sucess
+                    h2 Obrigado pelo Contato

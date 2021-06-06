@@ -10,6 +10,7 @@ class Controller {
         this.store = this.store.bind(this);
         this.update = this.update.bind(this);
         this.destroy = this.destroy.bind(this);
+        this.countEntries = this.countEntries.bind(this);
     }
 
     async index(req, res) {
@@ -70,6 +71,7 @@ class Controller {
         }
     }
 
+    // for internal use
     // Return a object with same keys as Model desired , but content is the Datatype of respective field.
     getModelFields(){
         var postDataFields = [];
@@ -82,12 +84,35 @@ class Controller {
             })
         return postDataFields;
     }
+
+    // for internal use
+    // return the number os rows
+    async countEntries(){
+        try {
+            const count = await this.Model.count();
+            return {"count":count};
+        } catch (err) {
+            return { error: err.message ,"count":0};
+        }
+
+    }
+
+    // for internal use
+    getFirstEntry(){
+        
+        try {
+            return this.Model.findOne({raw:true});
+        } catch (err) {
+            return { error: err.message };
+        }
+    }
     
 }
 
 const UserController = new Controller('../models/User')
 const ArticleController = new Controller('../models/Post')
 const CommentController = new Controller('../models/Comment')
+const ConfigController = new Controller('../models/Config')
+const ContactController = new Controller('../models/Contact')
 
-
-module.exports = {UserController,ArticleController,CommentController};
+module.exports = {UserController,ArticleController,CommentController,ConfigController,ContactController};

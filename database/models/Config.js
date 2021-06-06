@@ -15,7 +15,11 @@ const Config = database.define('config',{
     },
     site_description:{
         type:Sequelize.STRING,
-        allowNull:false,
+        
+    },
+    admin_email:{
+        type:Sequelize.STRING,
+        allowNull:false
     },
     notify_comments:{
         type:Sequelize.BOOLEAN,
@@ -31,6 +35,8 @@ const Config = database.define('config',{
         type:Sequelize.STRING,
         defaultValue: "style"
     }
+
+    
 
 })
 
