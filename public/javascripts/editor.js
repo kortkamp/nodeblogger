@@ -23,6 +23,10 @@ var defaultNewPost = {  allow_commentary:true,
 
 
 
+$( document ).ready(function() {
+    getAllItems();
+});
+
 
 // ####################### AJAX REQUESTS #############################
 
@@ -81,7 +85,7 @@ function createItem(){
         data: $("#article-form").serialize(), // serializes the form's elements.
         success: function(data, textStatus, request)
         {
-            alert(request.getResponseHeader('new-token'));
+            //alert(request.getResponseHeader('new-token'));
             setStatus(data); // 
             getAllItems();
             getItem(data.id)
@@ -97,7 +101,7 @@ function updateItem(id){
         data: $("#article-form").serialize(), // serializes the form's elements.
         success: function(data, textStatus, request)
         {
-            alert(request.getResponseHeader('new-token'));
+            //alert(request.getResponseHeader('new-token'));
             setStatus(data); // 
             getAllItems();
         }        
