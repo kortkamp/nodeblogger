@@ -34,8 +34,10 @@ const Config = database.define('config',{
     styles_file:{
         type:Sequelize.STRING,
         defaultValue: "style"
+    },
+    homepage:{
+        type:Sequelize.STRING,
     }
-
     
 
 })

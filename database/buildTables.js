@@ -4,9 +4,20 @@ const Comment = require('./models/Comment');
 const Config = require('./models/Config');
 const Contact = require('./models/Contact');
 
+const mysql = require('mysql2/promise');
+
+const  { host, port, user, password, database } = require('../db_info');
+
 
 (async() => {
     // Create necessary tables
+
+    
+    const connection = await mysql.createConnection({ host, port, user, password });
+    //const sequelize = new Sequelize('family', 'user', 'password', {dialect: 'mysql', host: 'localhost'});
+    await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);;
+
+
     await User.sync({force:true});
     await User.create({
         username:"admin",
@@ -30,6 +41,7 @@ const Contact = require('./models/Contact');
     })
 
     await Contact.sync();
- 
+    
+    return;
 })();
 

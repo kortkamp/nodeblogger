@@ -2,6 +2,7 @@
     "host":"localhost",
     "user":"user",
     "password":"password",
-    "database": "FAMILY"
+    "database": "nodeblogger",
+    "port": 3306
     
 }

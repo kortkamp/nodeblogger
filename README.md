@@ -1,9 +1,8 @@
 # NodeBlogger
-Plataforma para criação de Blog feita em Node.js/Express
+Plataforma para criação de Blogs feita em Node.js/Express
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/kortkamp/nodeblogger/fork)
-![GitHub repo file count](https://img.shields.io/github/directory-file-count/kortkamp/nodeblogger)
 ![Lines of code](https://img.shields.io/tokei/lines/github/kortkamp/nodeblogger)
 
 # Funcionalidades
@@ -42,7 +41,7 @@ Com o editor funcionando se fez necessário um sistema de autenticação para qu
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [MySQL Server](https://www.mysql.com/)
 
 ### 🎲 Rodando o Back End (servidor)
 
@@ -65,7 +64,7 @@ $ ..............
 # Execute a aplicação em modo de desenvolvimento
 $ npm run dev:server
 
-# O servidor inciará na porta:3000 - acesse <http://localhost:3000>
+# O servidor inciará na porta:3000 - acesse http://localhost:3000 
 ```
 
 
