@@ -2,7 +2,7 @@ var express = require('express');
 const { compileClientWithDependenciesTracked } = require('pug');
 var router = express.Router();
 
-var mailer = require('../mailer');
+//var mailer = require('../mailer');
 
 var mailInfo = require('../mail_info.json')
 
@@ -107,11 +107,12 @@ router.post('/make_contact', function(req,res,next){
     if(req.body){
         if(req.body.name && req.body.email && req.body.message){
             // send mail to admin
-            mailer.sendContactMail(JSON.stringify(req.body)).then(response => {
- 
-            }).catch(error => {
+            if(mailer)
+                mailer.sendContactMail(JSON.stringify(req.body)).then(response => {
+    
+                }).catch(error => {
 
-            })
+                })
             // Store contact on Database.
             // As our controller is an API controller, it handles the res.send() per se. 
             ContactController.store(req, res, next)
