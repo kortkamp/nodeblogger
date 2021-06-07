@@ -1,15 +1,21 @@
 # NodeBlogger
-Plataforma para  em Node.js/Express
+Plataforma para criação de Blog feita em Node.js/Express
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/kortkamp/nodeblogger/fork)
+![GitHub repo file count](https://img.shields.io/github/directory-file-count/kortkamp/nodeblogger)
+![Lines of code](https://img.shields.io/tokei/lines/github/kortkamp/nodeblogger)
 
 # Funcionalidades
-- Múltiplas páginas renderizáveis armazenadas em tabela do BD
+- Múltiplas páginas armazenadas em tabela do BD
 - Área de comentários
 - Formulário de contato
 - Editor de postagens
 - Renderizador de Markdown para o conteúdo das postagens.
 - Carregamento rápido com conteúdo dos artigos cacheados em Memória.
+- Renderizador PUG backend.
 - API RESTful para acesso aos dados.
-- Multiusuários, com sistema de autenticação via login autorização via JWT.
+- Multiusuários, com sistema de autenticação via login e autorização via JWT.
 
 
 # Desenvolvimento
