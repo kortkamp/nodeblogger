@@ -1,0 +1,4 @@
+{   
+    "domain":"mynodeblogger.com",
+    "sendgridKey":"my_free_or_paid_or_wherever_sendgrid_api_key"
+}

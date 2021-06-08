@@ -1,4 +1,5 @@
 .admin-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,16 +12,58 @@
 /*
 ####################  LOGIN ####################
 */
+.login-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: rgb(228, 228, 228);
+}
 .login-container {
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: center;
+    height: 400px;
+    width: 300px;
+    padding: 0 40px;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    border: 1px solid rgba(0, 0, 0, 0.37);
+    border-radius: 30px;
+    background-color: rgb(241, 241, 241);
+    box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 63%);
 }
-.login-container form {
+
+.login-header {
+    text-align: center;
+}
+.login-body {
+    height: 50%;
+}
+.login-form {
     display: flex;
     flex-direction: column;
+}
+.login-form input {
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 3px;
+}
+.login-form label {
     
+    margin-bottom: 5px;
+}
+.login-message {
+    height: 40px;
+    text-align: center;
+    color: rgb(230, 32, 32);
 }
 
 .login-form {
@@ -33,9 +76,10 @@
 */
 
 
-/*
-####################  TOOLS  ####################
-*/
+
+    /*
+    ####################  TOOLS  ###################
+    */
 
 .dash-tools {
     display: flex;
@@ -45,14 +89,30 @@
 }
 
 .dash-tools a {
-    border: 1px solid;
+    border: 1px solid rgba(0, 0, 0, 0.486);
     background-color: whitesmoke;
+    color: rgb(36, 36, 35);
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px 0 ;
     margin: 10px ;
     text-decoration: none;
     width: 130px;
-    height: 20px;
+    -height: 20px;
     text-align: center;
+    box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 63%);
+    
+}
+.dash-tools a:active{
+    border: 1px solid rgba(0, 0, 0, 0.486);
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 20px 0 ;
+    margin: 10px ;
+    text-decoration: none;
+    width: 130px;
+    -height: 20px;
+    text-align: center;
+    box-shadow: 0
+    
 }
 

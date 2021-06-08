@@ -6,14 +6,23 @@ block content
     div.main-dash
         div.dash-actions
             div.dash-tools
-                a(href="/admin/editor/articles") Post Editor 
+                a(href="/admin/editor/articles") Articles Editor 
                 a(href="/admin/editor/users") User Editor 
                 a(href="/admin/editor/comments") Comments Editor 
                 a(href="/admin/editor/contacts") Contacts
                 a(href="/admin/editor/configs") Configuration
         div.dash-body
             div.dash-data
-                p Number of Articles: #{stats.articlesNumber.count}
-                p Number of Comments: #{stats.commentsNumber.count}
-                p Number of Contacts: #{stats.contactsNumber.count}
+                table 
+                    tr
+                        td Number of Articles:
+                        td #{stats.articlesNumber.count}
+                    tr
+                        td Number of Comments:
+                        td #{stats.commentsNumber.count}
+                    tr
+                        td Number of Contacts:
+                        td #{stats.contactsNumber.count}
+
+                
         div.dash-footer

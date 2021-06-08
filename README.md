@@ -22,7 +22,7 @@ Plataforma para criação de Blogs feita em Node.js/Express
 - [ ] Add tools for markdown editing in Articles Editor.
 - [ ] Add image uploader in Articles Editor. 
 - [ ] Add Share (on social media) buttons.
-- [ ] Add like Buttons.
+- [ ] Add like Buttons on articles.
 - [ ] Count views on articles.
 - [ ] Add subcribing functionality and notify then about new articles posted
 - [ ] Overtake Wordpress as default Blog platform :joy:

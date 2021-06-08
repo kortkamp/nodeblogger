@@ -15,12 +15,15 @@ const {ContactController} = require('../database/controllers/BlogController');
 
 
 async function updatePostCache(){
+
+    siteConfig = await ConfigController.getFirstEntry();
+
     postsData = await PostController.listAllPosts();
         
-        // build all page names replacing 
-        postsData.forEach(element => {
-            element.path = String(element.title).toLowerCase().replace(/ /g, '-');
-        });
+    // build all page names replacing 
+    postsData.forEach(element => {
+        element.path = String(element.title).toLowerCase().replace(/ /g, '-');
+    });
 }
 
 
@@ -55,6 +58,7 @@ router.post('/postComment', function(req, res, next) {
     else
         res.send('Erro ao postar o comentário') 
 });
+
 
 
 router.post('/make_contact', function(req,res,next){
