@@ -2,7 +2,7 @@ var express = require('express');
 const { compileClientWithDependenciesTracked } = require('pug');
 var router = express.Router();
 
-//var mailer = require('../mailer');
+var mailer = require('../mailer');
 
 var mailInfo = require('../mail_info.json')
 
@@ -58,66 +58,27 @@ router.post('/postComment', function(req, res, next) {
 
 
 
-/*
-router.get('/list',function(req,res,next){
-    //console.log(req.query.where)
-    if(true){
-        PostController.listAllHeaders().then(response => {
-            res.send(response);
-        }).catch(error => {
-            return res.status(400).json({ error: err.message });
-        })
-    }
-});
-
-
-
-router.get('/article',function(req,res,next){
-    PostController.getPostById(req.query.id).then(response => {
-        res.send(response);
-    }).catch(error => {
-        return res.status(400).json({ error: err.message });
-    })
-});
-
-router.post('/article',function(req,res,next){
-    
-    if(req.body)
-        PostController.postArticle(Object.assign(req.body)).then(response => { 
-            updatePostCache(); 
-            res.send(response);
-        });
-});
-
-router.delete('/article',function(req,res,next){
-    
-    if(req.body)
-        PostController.deleteArticle(req.body.id).then(response => {  
-            updatePostCache();
-            res.send(response);
-        });
-});
-
-*/
-
-
 // 
 router.post('/make_contact', function(req,res,next){
-
+    //return ContactController.store(req, res, next)
+    console.log(req.body)
     if(req.body){
+        console.log(req.body.email)
         if(req.body.name && req.body.email && req.body.message){
             // send mail to admin
-            if(mailer)
+            if(true){
                 mailer.sendContactMail(JSON.stringify(req.body)).then(response => {
     
                 }).catch(error => {
 
                 })
+            }
             // Store contact on Database.
             // As our controller is an API controller, it handles the res.send() per se. 
-            ContactController.store(req, res, next)
+            return ContactController.store(req, res, next)
         }
     }
+    return res.status(400).send();
 });
 
    

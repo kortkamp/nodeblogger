@@ -29,6 +29,7 @@ class Controller {
 
     async show(req, res) {
         try {
+            
             const item = await this.Model.findByPk(req.params.id);
 
             return res.json(item);
@@ -39,11 +40,13 @@ class Controller {
 
     async store(req, res) {
         try {
+            //console.log(req)
             const item = await this.Model.create(req.body);
+            //console.log(item)
+            return res.status(201).json(item);
 
-        return res.status(201).json(item);
         } catch (err) {
-            return res.status(400).json({ error: err.original.sqlMessage });
+            return res.status(400).json({ error: err });
         }
     }
 

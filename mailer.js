@@ -9,8 +9,8 @@ const { OAuth2 } = google.auth;
 const OAUTH_PLAYGROUND = 'https://developers.google.com/oauthplayground';
 
 const oauth2Client = new OAuth2(
-    mailInfo.oauth.clientId,
-    mailInfo.oauth.clientSecret,
+    mailInfo.clientId,
+    mailInfo.clientSecret,
     OAUTH_PLAYGROUND
   );
 
@@ -30,8 +30,8 @@ function sendMail(mailOptions){
             type: 'OAuth2',
             user: mailInfo.user,
             clientId: mailInfo.oauth.clientId,
-            clientSecret: mailInfo.oauth.clientSecret,
-            refreshToken: mailInfo.oauth.refresh_token,
+            clientSecret: mailInfo.clientSecret,
+            refreshToken: mailInfo.refresh_token,
             accessToken: accessToken
         }
     });

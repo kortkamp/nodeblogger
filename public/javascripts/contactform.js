@@ -7,7 +7,8 @@ function sendContact(){
             data: $(".contact-form").serialize(), // serializes the form's elements.
             success: function(data, textStatus, xhr,request)
             {
-               // console.log(xhr.status)
+                //console.log(data)
+                //console.log(xhr)
 
                 $('.contact-body').hide();
                 $('.contact-header').hide();
