@@ -1,75 +1,39 @@
-const { test } = require('gray-matter');
-var nodemailer = require('nodemailer');
 var mailInfo = require('./mail_info.json')
 
-const { google } = require('googleapis');
-const { OAuth2 } = google.auth;
+const sgMail = require('@sendgrid/mail')
 
-
-const OAUTH_PLAYGROUND = 'https://developers.google.com/oauthplayground';
-
-const oauth2Client = new OAuth2(
-    mailInfo.clientId,
-    mailInfo.clientSecret,
-    OAUTH_PLAYGROUND
-  );
+sgMail.setApiKey(mailInfo.sendgridKey)
 
 
 function sendMail(mailOptions){
-
-    oauth2Client.setCredentials({
-        refresh_token: mailInfo.oauth.refresh_token,
-      });
-    const accessToken = oauth2Client.getAccessToken();
-
-
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-               
-        auth: {
-            type: 'OAuth2',
-            user: mailInfo.user,
-            clientId: mailInfo.oauth.clientId,
-            clientSecret: mailInfo.clientSecret,
-            refreshToken: mailInfo.refresh_token,
-            accessToken: accessToken
-        }
-    });
-
-    //console.log(mailInfo.user + '----')
-    return new Promise((resolve,pError) =>{
-        transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-                console.log(error);
-                pError('sendMail error');
-            } else {
-                console.log('Email sent: ' + info.response);
-                resolve('email enviado com sucesso');
-            }
-        });
-    });
+    console.log('sending mail to ' + mailOptions.to)
+    sgMail
+        .send(mailOptions)
+        .then(() => {
+            console.log('Email sent')
+        })
+        .catch((error) => {
+            console.error(error)
+    })
 };
 
 
 async function sendContactMail(dataString){
-    var mailOptions = {
-        from: mailInfo.user,
-        to: mailInfo.adminEmail,
-        subject: 'kortkamp.org contact',
-        text: dataString
-    };
-    //console.log('send a contact mail')
-    return( sendMail(mailOptions));
+    const mailOptions = {
+        // siteConfig must be loaded globally in app.js
+        to: siteConfig.admin_email,
+        from: 'contact@' + mailInfo.domain, 
+        subject: 'Contact on ' + mailInfo.domain,
+        text: dataString,   // data from contact form
+
+        //html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    }
+    
+    return sendMail(mailOptions);
 }
-async function sendCommentMail(dataString){
-    var mailOptions = {
-        from: mailInfo.user,
-        to: mailInfo.adminEmail,
-        subject: 'kortkamp.org new Commentary',
-        text: dataString
-    };
-    //console.log('send a contact mail')
-    return( sendMail(mailOptions));
+
+async function notifySubscribers(){
+
 }
 
 module.exports = {sendContactMail,sendMail}

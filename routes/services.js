@@ -57,8 +57,6 @@ router.post('/postComment', function(req, res, next) {
 });
 
 
-
-// 
 router.post('/make_contact', function(req,res,next){
     //return ContactController.store(req, res, next)
     console.log(req.body)

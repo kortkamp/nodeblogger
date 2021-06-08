@@ -26,8 +26,8 @@ O Banco de Dados escolhido foi o Mysql devido aos dados da árvore genealógica 
 À medida que o projeto passou a fazer mais uso do Banco de Dados decidi passar a usar o ORM **Sequelize** para gerenciar o mysql o que proporcional um aprendizado valioso sobre essa tecnologia, já que antes esse trabalho era feito via lib mysql escrevendo diretamente as queries em SQL.
 Após essa mudança foi muito simples mudar a localização dos artigos da página para do diretório /blog para uma tabela no banco de dabos.
 
-## Integração com Gmail
-A Página precisaria de uma área de contatos, então decidi usar o **nodemailer** para integrar ao email da família. Devido às exigências de segurança do gmail , tive dificuldades para fazer altenticação simples e foi necessário usar OAuth2 , oque foi bem útil no aprendizado dessa tecnologia. Implementei um serviço *mailer.js* para receber o access_token via API do Google e fazer o envio dos emails de contato e notificações ao administrador da página.
+## Notificação por e-mail
+O método mais simples para implementar notificações por e-mail é configurar uma conta grátis no [Sendgrid](https://sendgrid.com/) e integrar os a API key ao arquivo de configuração do serviço e-mail do projeto.
 
 ## Editor de Recursos
 A ideia inicial era que as atualizações dos conteúdos fessem feitas pela adição de arquivos no respostório do Github, porém essa ideia se mostrou ineficiente, pois caso o projeto fosse usado em uma realidade onde a postagem de novos artigos fosse constante, o processo de edição via Github, pushes e deploys do novo projeto seria desnecessariamente trabalhoso. A fim de contornar essa dificuldade adicionei um editor simples para se criar novas postagens, porém devido à estrutura final da Tabela de Artigos não estar totalmente fechada, decidi fazer um editor dinâmico que permitisse fazer o ***CRUD*** numa tabela do BD independente da estrutura dessa, bastando apenas que se forneça o tipo de dado de cada coluna para se gerar o data input correspondente no Editor. Mais tarde, percebi a necessidade de um gerenciador de usuários e como o editor de artigos era genérico o suficiente acabei adaptando o mesmo para o gerenciamento tanto de usuários como de comentários obedecendo a metodolodia ***DRY***.
@@ -52,16 +52,19 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 $ git clone https://github.com/kortkamp/kortkamp.org
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd kortkamp.org
+$ cd nodeblogger
 
 # Instale as dependências
 $ npm install
 
-# Prepare o Banco de Dados
-$ ............
-
-# Configure os dados principais do Blog 
-$ ..............
+# Configure o db_info.json para o seu Banco de Dados
+{   
+    "host":"localhost",
+    "user":"user",
+    "password":"password",
+    "database": "nodeblogger",
+    "port": 3306
+}
 
 # Execute a aplicação em modo de desenvolvimento
 $ npm run dev:server
