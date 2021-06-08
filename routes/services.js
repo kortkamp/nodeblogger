@@ -79,10 +79,5 @@ router.post('/make_contact', function(req,res,next){
     return res.status(400).send();
 });
 
-   
-
-
-
-
 
 module.exports = router;

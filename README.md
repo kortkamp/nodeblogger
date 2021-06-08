@@ -17,6 +17,17 @@ Plataforma para criação de Blogs feita em Node.js/Express
 - Multiusuários, com sistema de autenticação via login e autorização via JWT.
 
 
+# TODO
+- [ ] Create a publish article function.
+- [ ] Add tools for markdown editing in Articles Editor.
+- [ ] Add image uploader in Articles Editor. 
+- [ ] Add Share (on social media) buttons.
+- [ ] Add like Buttons.
+- [ ] Count views on articles.
+- [ ] Add subcribing functionality and notify then about new articles posted
+- [ ] Overtake Wordpress as default Blog platform :joy:
+
+ 
 # Desenvolvimento
 A ideia inicial do projeto foi a migração de um blog Wordpress para a Node/Express. Inicialmente o objetivo era construir um site com apenas uma página estática com a apresentação e uma página com a árvore genealógica. À medida que fui implementando a idéia inicial percebi que o **Express.js** facilitava muito a construção de aplicações maiores e que com o uso de **routes** e de uma **View Engine** eu poderia construir a página no formato de Blog, armazenando apenas as informações essenciais de cada post e renderizando as páginas direto pelo Node.js. 
 
