@@ -6,6 +6,9 @@ const Post = require('../models/Post');
 async function listAllPosts(){
     try {
         const posts = await Post.findAll({
+            where:{
+                public:true,
+            }
            // attributes: { exclude: ['content','updatedAt'] }
         });          
         return posts.map(obj => obj.dataValues)

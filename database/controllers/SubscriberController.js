@@ -19,8 +19,9 @@ async function getSubscribers(){
 
 async function addSubscribers(data){
     try {  
+        console.log(data)
         const createResult = await Subscriber.create(data)
-        //return createResult
+        return createResult
     }catch (error){
         console.log(error);
         return([]);
@@ -40,4 +41,4 @@ async function removeSubscriber(data){
     } 
 }
 
-module.exports = {};
+module.exports = {getSubscribers,addSubscribers,removeSubscriber};

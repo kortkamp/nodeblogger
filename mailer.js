@@ -37,8 +37,8 @@ async function sendContactMail(contactData){
     return sendMail(mailOptions);
 }
 
-async function notifySubscribers(){
-
+async function notifySubscribers(articleId){
+    console.log('notifying all subscribers')
 }
 
-module.exports = {sendContactMail,sendMail}
+module.exports = {sendContactMail,sendMail,notifySubscribers}

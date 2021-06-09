@@ -7,7 +7,8 @@ const apiURL = document.location.origin + '/api/'
 
 var defaultNewPost = {  allow_commentary:true,
                         status:0,
-                        type:0
+                        type:0,
+                        public:false
                     };
 
 
@@ -21,6 +22,66 @@ $( document ).ready(function() {
 $.ajaxSetup({
     "error":function(err) { console.log(err)  }
 });
+
+
+function applyConfigs(){
+    
+  
+    $.ajax({
+        type: "POST",
+        url: document.location.origin + '/updateCache/',
+        data: '',
+        success: function(data)
+        {
+            console.log(data)
+            setStatus(data); 
+        }
+    });
+
+}
+
+function publishArticle(){
+    var id = $('input[name="id"]').val()
+    if(id){
+        $.ajax({
+            type: "POST",
+            url: document.location.origin + '/publishArticle/'+ id,
+            data: '',
+            success: function(data)
+            {
+                console.log(data)
+                setStatus(data); 
+            }
+        });
+    } else {
+        setStatus('You must save or select an article to publish')
+    }
+}
+function defineHomepage(){
+    var id = $('input[name="id"]').val()
+    if(id){
+
+        var articleTitle = $('input[name="title"]').val()
+        var homepage = String(articleTitle).toLowerCase().replace(/ /g, '-');
+
+        // must test if page exists
+
+        $.ajax({
+            type: "PUT",
+            url: apiURL + 'configs/1', // just one config file
+            data: {
+                homepage:homepage
+            },
+            success: function(data)
+            {
+                console.log(data)
+                setStatus(data); 
+            }
+        });
+    } else {
+        setStatus('You must save or select an article to set as Homepage')
+    }
+}
 
 
 function getAllItems(){
@@ -59,7 +120,7 @@ function deleteItem(id){
         success: function(data)
         {
             //console.log(data)
-            setStatus(data); // show response from the php script.
+            setStatus(data); 
             document.forms["new-article"].reset();
             getAllItems();  
         }

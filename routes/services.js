@@ -15,10 +15,10 @@ try{
 
 const familyMemberController = require('../database/controllers/FamilyMemberController');
 const commentController = require('../database/controllers/CommentController');
-const PostController = require('../database/controllers/PostController');
+const InternalPostController = require('../database/controllers/PostController');
+const SubscriberController = require('../database/controllers/SubscriberController');
 
-
-const {ContactController,ConfigController} = require('../database/controllers/BlogController');
+const {ContactController,ConfigController, ArticleController} = require('../database/controllers/BlogController');
 
 
 
@@ -49,6 +49,10 @@ router.post('/postComment', function(req, res, next) {
 
         if(req.body.subscribe === 'on'){
             // subscribe name and email
+            SubscriberController.addSubscribers({
+                    name:req.body.author,
+                    email:req.body.email,
+                })
         }
 
         commentController.postComment(Object.assign(req.body)).then(response => {
@@ -91,25 +95,52 @@ router.post('/make_contact', function(req,res,next){
 
 
 async function updatePostCache(){
-
+    console.log('inside updateCache')
     try{
         siteConfig = await ConfigController.getFirstEntry();
-        postsData = await PostController.listAllPosts();
+        postsData = await InternalPostController.listAllPosts();
         
-        // build all page names replacing 
+        // build all page names replacing spaces by '-'
         postsData.forEach(element => {
+            
             element.path = String(element.title).toLowerCase().replace(/ /g, '-');
+            console.log(element.path)
         });
 
     }catch(err){
         throw err;
-    } 
+        //console.log('error on updateCache')
+    }
 }
 
-router.get('/updateCache', function(req,res,next){
+router.post('/updateCache', function(req,res,next){
     updatePostCache()
-    .then( res.send('ok'))
-    .catch(res.status(500).send())
+    .then( res.status(204).send())
+    .catch(err => {console.log(err);res.status(500).send()})
+});
+
+router.post('/publishArticle/:id', function(req,res,next){
+    var articleId = req.params.id;
+
+    // notify subscribers
+    if(mailer){
+        mailer.notifySubscribers(articleId).then(response => {
+
+        }).catch(error => {
+
+        })
+    }
+    // make the article public
+    req.body.public = true;
+    
+    //console.log('after ArticleController.update(req,res)')
+    (async() => {
+        await ArticleController.update(req,res)
+        await updatePostCache().then().catch(err => console.log(err))
+    })();
+    
+    // must update cache
+    
 });
 
 

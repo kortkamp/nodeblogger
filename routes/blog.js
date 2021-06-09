@@ -34,6 +34,7 @@ router.get("/", (req, res, next) => {
   });
 });
 
+/*
 router.get("/tree", (req,res) => {
   const file = matter.read(path.join(process.cwd() , 'public','htree.htm'));
   res.render("tree", {
@@ -43,7 +44,7 @@ router.get("/tree", (req,res) => {
     treeBody:file.content
   });
 });
-
+*/
 
 router.get("/contact", (req,res) => {
   //const file = matter.read(path.join(process.cwd() , 'public' , 'contact.htm'));

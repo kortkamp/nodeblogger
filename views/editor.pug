@@ -78,9 +78,19 @@ html
                                 //            cite #{post.id} 
                                 //                spam #{post.title}
                 div(class='write-data-container hide')
+
+                    if endPointName == 'articles'
+                        div.articles-tools
+                            button(class="publish-button" , onclick="publishArticle()") Publish Article
+                            button(class="publish-button" , onclick="defineHomepage()") Define Homepage
+                    
+                    if endPointName == 'configs'
+                        div.articles-tools
+                            button(class="publish-button" , onclick="applyConfigs()") Apply Configs
+
                     h3.data-title Data
                     div.data-properties
-
+                    
                     form(id='article-form' ,name='new-article' class="new-article-form" action="/article" method="post" onsubmit="return validateSubmit()")
                         div.data-content
                             each field in dataFields 

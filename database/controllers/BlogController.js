@@ -51,7 +51,9 @@ class Controller {
     }
 
     async update(req, res) {
+        
         try {
+            
             const item = await this.Model.findByPk(req.params.id);
 
             await item.update(req.body);

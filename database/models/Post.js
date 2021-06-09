@@ -14,6 +14,10 @@ const Post = database.define('post',{
     author:Sequelize.STRING,
     keywords:Sequelize.STRING(1000),
     allow_commentary:Sequelize.BOOLEAN,
+    public:{
+        type:Sequelize.BOOLEAN,
+        allowNull:false
+    },
     // for future use
     type:Sequelize.INTEGER,
     // for future use

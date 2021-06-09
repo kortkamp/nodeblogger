@@ -20,7 +20,8 @@ Plataforma para criação de Blogs feita em Node.js/Express
 
 # TODO
 - [x] Logoff on Dashboard or Editor.
-- [ ] Create a publish article function.
+- [x] Option to define Homepage in Article Editor.
+- [x] Create a publish article function.
 - [ ] Add tools for markdown editing in Articles Editor.
 - [ ] Add image uploader in Articles Editor.
 - [ ] Save sketch when writing new article, so on logoff the content is preserved.
@@ -28,7 +29,7 @@ Plataforma para criação de Blogs feita em Node.js/Express
 - [ ] Add like Buttons on articles.
 - [ ] Option to comment on someone else's comment.
 - [ ] Count views on articles.
-- [ ] Add subcribing functionality and notify then about new articles posted
+- [ ] Add subcribing functionality and notify then about new articles posteds
 - [ ] List articles by keywords or authors and route those lists.
 - [ ] Overtake Wordpress as default Blog platform :joy:
 
