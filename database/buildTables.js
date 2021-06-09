@@ -3,6 +3,7 @@ const Post = require('./models/Post');
 const Comment = require('./models/Comment');
 const Config = require('./models/Config');
 const Contact = require('./models/Contact');
+const Subscriber = require('./models/Subscriber')
 
 const mysql = require('mysql2/promise');
 
@@ -41,6 +42,9 @@ const  { host, port, user, password, database } = require('../db_info');
     })
 
     await Contact.sync();
+
+
+    await Subscriber.sync();
     
     return;
 })();

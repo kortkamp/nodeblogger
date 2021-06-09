@@ -23,7 +23,7 @@ async function getComments(postName){
 async function postComment(data){
     try {  
         const createResult = await Comment.create(data)
-        //return createResult
+        return createResult
     }catch (error){
         console.log(error);
         return([]);

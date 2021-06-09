@@ -13,30 +13,16 @@ try{
 }
 
 
-
-
-
-
-
 const familyMemberController = require('../database/controllers/FamilyMemberController');
 const commentController = require('../database/controllers/CommentController');
 const PostController = require('../database/controllers/PostController');
+
 
 const {ContactController,ConfigController} = require('../database/controllers/BlogController');
 
 
 
-async function updatePostCache(){
 
-    siteConfig = await ConfigController.getFirstEntry();
-
-    postsData = await PostController.listAllPosts();
-        
-    // build all page names replacing 
-    postsData.forEach(element => {
-        element.path = String(element.title).toLowerCase().replace(/ /g, '-');
-    });
-}
 
 
 
@@ -59,15 +45,21 @@ router.get('/getPositions', function(req, res, next) {
 
 router.post('/postComment', function(req, res, next) {
     console.log(req.body)   
-    if(req.body)
+    if(req.body){
+
+        if(req.body.subscribe === 'on'){
+            // subscribe name and email
+        }
+
         commentController.postComment(Object.assign(req.body)).then(response => {
-                        
-            for(index in response){
-                response[index].create_date = formatDateTime(response[index].create_date);
-            }
+            //console.log(response)
+           // for(index in response){
+                //response[index].create_date = formatDateTime(response[index].create_date);
+           // }
             
             res.redirect('/' + req.body.parent_post)
         })
+    }
     else
         res.send('Erro ao postar o comentário') 
 });
@@ -94,6 +86,30 @@ router.post('/make_contact', function(req,res,next){
         }
     }
     return res.status(400).send();
+});
+
+
+
+async function updatePostCache(){
+
+    try{
+        siteConfig = await ConfigController.getFirstEntry();
+        postsData = await PostController.listAllPosts();
+        
+        // build all page names replacing 
+        postsData.forEach(element => {
+            element.path = String(element.title).toLowerCase().replace(/ /g, '-');
+        });
+
+    }catch(err){
+        throw err;
+    } 
+}
+
+router.get('/updateCache', function(req,res,next){
+    updatePostCache()
+    .then( res.send('ok'))
+    .catch(res.status(500).send())
 });
 
 
