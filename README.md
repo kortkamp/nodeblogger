@@ -9,6 +9,7 @@ Plataforma para criação de Blogs feita em Node.js/Express
 - Múltiplas páginas armazenadas em tabela do BD
 - Área de comentários
 - Formulário de contato
+- Notificações por email dos eventos principais
 - Editor de postagens
 - Renderizador de Markdown para o conteúdo das postagens.
 - Carregamento rápido com conteúdo dos artigos cacheados em Memória.
@@ -18,13 +19,17 @@ Plataforma para criação de Blogs feita em Node.js/Express
 
 
 # TODO
+- [x] Logoff on Dashboard or Editor.
 - [ ] Create a publish article function.
 - [ ] Add tools for markdown editing in Articles Editor.
-- [ ] Add image uploader in Articles Editor. 
+- [ ] Add image uploader in Articles Editor.
+- [ ] Save sketch when writing new article, so on logoff the content is preserved.
 - [ ] Add Share (on social media) buttons.
 - [ ] Add like Buttons on articles.
+- [ ] Option to comment on someone else's comment.
 - [ ] Count views on articles.
 - [ ] Add subcribing functionality and notify then about new articles posted
+- [ ] List articles by keywords or authors and route those lists.
 - [ ] Overtake Wordpress as default Blog platform :joy:
 
  

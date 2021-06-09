@@ -240,6 +240,9 @@ body {
 .master-footer {
     background-color: #7e7e7e;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
     
 }
 .master-footer a{

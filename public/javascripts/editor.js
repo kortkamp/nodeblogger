@@ -1,26 +1,14 @@
 var currentArticleId;
-
 var postHeaderList;
-
 var tokenExpireTime;
 
-
-
 var apiServicePath = 'articles/'
-
 const apiURL = document.location.origin + '/api/'
-
-
-
-
-
 
 var defaultNewPost = {  allow_commentary:true,
                         status:0,
                         type:0
                     };
-
-
 
 
 $( document ).ready(function() {
@@ -70,7 +58,7 @@ function deleteItem(id){
         data: '',
         success: function(data)
         {
-            console.log(data)
+            //console.log(data)
             setStatus(data); // show response from the php script.
             document.forms["new-article"].reset();
             getAllItems();  
@@ -144,9 +132,9 @@ function deletePost(){
     if(currentArticleId){
         askForConfirmation(() => {
             deleteItem(currentArticleId)
-        },"Confirm Delete Post:" + currentArticleId)
+        },"Confirm Delete Item: " + currentArticleId)
     }else
-        setStatus('Select a article to Delete')
+        setStatus('Select an item to Delete')
 }
 
 
@@ -231,10 +219,6 @@ function setupTokenRenew(){
 }  
 
 
-
-
-
-
 function updateToken(){
    // console.log('updating token')
     var currentToken = getCookie("x-access-token")
@@ -244,4 +228,10 @@ function updateToken(){
         document.cookie = "x-access-token=" + data.token + "; path=/"
       }, "json");
 
+}
+
+function logoff(){
+    document.cookie = 'x-access-token=; Max-Age=-99999999; path=/';
+    console.log(document.cookie);
+    document.location.href = "/admin";
 }

@@ -2,15 +2,27 @@ var express = require('express');
 const { compileClientWithDependenciesTracked } = require('pug');
 var router = express.Router();
 
-var mailer = require('../mailer');
 
-var mailInfo = require('../mail_info.json')
+var mailer; // undefined
+try{
+    var mailInfo = require('../mail_info.json')
+    if(mailInfo)
+        mailer = require('../mailer');
+}catch{
+    console.log('No mailer credentials provided');
+}
+
+
+
+
+
+
 
 const familyMemberController = require('../database/controllers/FamilyMemberController');
 const commentController = require('../database/controllers/CommentController');
 const PostController = require('../database/controllers/PostController');
 
-const {ContactController} = require('../database/controllers/BlogController');
+const {ContactController,ConfigController} = require('../database/controllers/BlogController');
 
 
 
@@ -25,6 +37,7 @@ async function updatePostCache(){
         element.path = String(element.title).toLowerCase().replace(/ /g, '-');
     });
 }
+
 
 
 
@@ -63,13 +76,13 @@ router.post('/postComment', function(req, res, next) {
 
 router.post('/make_contact', function(req,res,next){
     //return ContactController.store(req, res, next)
-    console.log(req.body)
+    
     if(req.body){
-        console.log(req.body.email)
         if(req.body.name && req.body.email && req.body.message){
             // send mail to admin
-            if(true){
-                mailer.sendContactMail(JSON.stringify(req.body)).then(response => {
+            
+            if(mailer && siteConfig.notify_contact){
+                mailer.sendContactMail(req.body).then(response => {
     
                 }).catch(error => {
 

@@ -11,6 +11,7 @@ const utils = require('../utils');
 
 // gray-matter to read the .md files better
 const matter = require('gray-matter');
+const mail = require('@sendgrid/mail');
 
 site = {
   title:"Família Kortkamp",
@@ -19,8 +20,13 @@ site = {
 
 
 
-router.get("/", (req, res) => {
-  
+router.get("/", (req, res, next) => {
+  // redirect to desired homepage
+  if(siteConfig.homepage){
+    req.url = "/" + siteConfig.homepage;
+    console.log('redirecting to ' +req.url)
+    next();
+  }else
   res.render("blogindex", {
     menu: postsData,
     title: siteConfig.site_title,
@@ -46,7 +52,7 @@ router.get("/contact", (req,res) => {
     title: 'Contato',
     site:siteConfig,
 
-    adminEmail:"familiakortkamp@gmail.com"
+    adminEmail:siteConfig.admin_email
     
   });
 });

@@ -18,17 +18,22 @@ function sendMail(mailOptions){
 };
 
 
-async function sendContactMail(dataString){
+async function sendContactMail(contactData){
     const mailOptions = {
         // siteConfig must be loaded globally in app.js
         to: siteConfig.admin_email,
         from: 'contact@' + mailInfo.domain, 
         subject: 'Contact on ' + mailInfo.domain,
-        text: dataString,   // data from contact form
+        //text: contactData,   // data from contact form
 
-        //html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+        html:   '<strong>Contact on ' + mailInfo.domain + '</strong><BR>'+
+                contactData.name + '<BR>'+
+                contactData.email + '<BR>'+
+                contactData.phone + '<BR><BR>'+
+                contactData.message + '<BR>'
+
     }
-    
+    console.log(contactData);
     return sendMail(mailOptions);
 }
 
