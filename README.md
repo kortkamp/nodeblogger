@@ -29,7 +29,7 @@ Plataforma para criação de Blogs feita em Node.js/Express
 - [ ] Add like Buttons on articles.
 - [ ] Option to comment on someone else's comment.
 - [ ] Count views on articles.
-- [ ] Add subcribing functionality and notify then about new articles posteds
+- [x] Add subcribing functionality and notify then about new articles posteds
 - [ ] Add unsubscribe service.
 - [ ] List articles by keywords or authors and route those lists.
 - [ ] Overtake Wordpress as default Blog platform :joy:
@@ -83,6 +83,9 @@ $ npm install
     "database": "nodeblogger",
     "port": 3306
 }
+
+# Configure o Banco de Dados
+$ node .\database\buildTables.js
 
 # Execute a aplicação em modo de desenvolvimento
 $ npm run dev:server

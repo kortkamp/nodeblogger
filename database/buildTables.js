@@ -46,6 +46,8 @@ const  { host, port, user, password, database } = require('../db_info');
 
     await Subscriber.sync();
     
-    return;
+    process.exit(0);
 })();
+
+
 

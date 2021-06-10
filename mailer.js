@@ -66,7 +66,7 @@ async function notifySubscribers(article){
     }
     
     for(subscriber of subscribers){
-        console.log(subscriber.email)
+        //console.log(subscriber.email)
         mailOptions.to = subscriber.email
         sendMail(mailOptions);
     }
