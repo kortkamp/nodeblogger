@@ -35,16 +35,15 @@ async function listAllHeaders(){
 
 async function getPostById(id){
     try {
-        const post = await Post.findByPk(id);
-        // not found
-        if(post == null)
-            return({});
-
-        return post.dataValues 
+        const post = await Post.findByPk(id,{
+            raw:true
+        });
+       
+        return post
         
     }catch (error){
         console.log(error);
-        return([]);
+        return;
     }
 }
 

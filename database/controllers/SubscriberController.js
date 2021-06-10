@@ -6,6 +6,7 @@ const Subscriber = require('../models/Subscriber');
 async function getSubscribers(){
     try {
         const subscribers = await Subscriber.findAll({    
+            
             raw:true
         });
      

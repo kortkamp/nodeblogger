@@ -82,7 +82,8 @@ router.get("/:article", (req, res, next) => {
                 description: post.description,
                 article: req.params.article,
                 page_name: req.params.article,
-                comments: commentsArray
+                comments: commentsArray,
+                allow_commentary: post.allow_commentary
             });
         })   
     }else

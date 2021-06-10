@@ -2,8 +2,8 @@ var express = require('express');
 const { compileClientWithDependenciesTracked } = require('pug');
 var router = express.Router();
 
-
-var mailer; // undefined
+// undefined in case of not configured Sendgrid account
+var mailer; 
 try{
     var mailInfo = require('../mail_info.json')
     if(mailInfo)
@@ -12,7 +12,7 @@ try{
     console.log('No mailer credentials provided');
 }
 
-
+const PostController = require('../database/controllers/PostController');
 const familyMemberController = require('../database/controllers/FamilyMemberController');
 const commentController = require('../database/controllers/CommentController');
 const InternalPostController = require('../database/controllers/PostController');
@@ -123,13 +123,17 @@ router.post('/publishArticle/:id', function(req,res,next){
     var articleId = req.params.id;
 
     // notify subscribers
-    if(mailer){
-        mailer.notifySubscribers(articleId).then(response => {
-
-        }).catch(error => {
-
-        })
-    }
+    (async() => {
+        article = await PostController.getPostById(articleId)
+        if(mailer){
+            mailer.notifySubscribers(article).then(response => {
+    
+            }).catch(error => {
+    
+            })
+        }
+    })();
+    
     // make the article public
     req.body.public = true;
     
@@ -139,7 +143,7 @@ router.post('/publishArticle/:id', function(req,res,next){
         await updatePostCache().then().catch(err => console.log(err))
     })();
     
-    // must update cache
+    
     
 });
 
