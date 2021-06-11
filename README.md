@@ -26,9 +26,9 @@ Plataforma para criação de Blogs feita em Node.js/Express
 - [ ] Add image uploader in Articles Editor.
 - [ ] Save sketch when writing new article, so on logoff the content is preserved.
 - [ ] Add Share (on social media) buttons.
-- [ ] Add like Buttons on articles.
 - [ ] Option to comment on someone else's comment.
-- [ ] Count views on articles.
+- [x] Count views on articles.
+- [ ] Add like Buttons on articles.
 - [x] Add subcribing functionality and notify then about new articles posteds
 - [x] Add unsubscribe service.
 - [ ] List articles by keywords or authors and route those lists.

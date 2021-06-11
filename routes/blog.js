@@ -32,10 +32,17 @@ function listKeywords(){
 
 }
 
+router.get("/author", (req, res, next) => {
 
-router.get("/author" )  ....
+});
 
-router.get("/keyword" ) . .. .. 
+router.get("/author/:author", (req, res, next) => {
+
+});
+
+router.get("/keyword/:keyword", (req, res, next) => {
+  
+});
 
 router.get("/", (req, res, next) => {
   // redirect to desired homepage
@@ -82,6 +89,8 @@ router.get("/:article", (req, res, next) => {
     //search  article in cached articles list
     if(post = postsData.find(item => item.path === req.params.article)){
 
+        PostController.addView(post.id);
+
         var md = require("markdown-it")();
         var result = md.render(post.content);
         
@@ -92,6 +101,7 @@ router.get("/:article", (req, res, next) => {
             }
                
             res.render("blog", {
+
                 site:siteConfig,
                 postBody: result,
                 menu: postsData,
@@ -100,7 +110,9 @@ router.get("/:article", (req, res, next) => {
                 article: req.params.article,
                 page_name: req.params.article,
                 comments: commentsArray,
-                allow_commentary: post.allow_commentary
+                allow_commentary: post.allow_commentary,
+                views:post.views,
+                likes:post.likes,
             });
         })   
     }else

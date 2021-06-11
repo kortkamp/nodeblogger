@@ -2,11 +2,20 @@ extends layout
 
 block content
     div(class='post-container')
+        div.post-stats
+            div.view-stats
+                img(src="/images/ico/eye-regular.svg")
+                span #{views}
+            div.like-stats
+                img(src="/images/ico/heart-regular.svg")
+                span #{likes}
         div(class='post-body')
             h1= title
             h3= description
             div(class='post-content')
                 | !{postBody}
+        
+
     if allow_commentary == true            
         div(class='comments-area')
             

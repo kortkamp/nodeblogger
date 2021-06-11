@@ -173,24 +173,40 @@ body {
     flex-direction: column;
     -align-items: center;
 
-    
-    
-    -background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("../images/flag-red.jpg");
 }
 
 .post-container {
-    
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+    align-items: stretch;
+    justify-content: center;
 }
 
+.post-stats {
+    padding-top: 10px;
+    padding-left: 5px;
+    width: 40px;
+}
+.like-stats img:hover{
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+}
+    .post-stats div {
+        display: flex;
+        align-items: center;
+    }
+    .post-stats img {
+        width: 18px;
+    }
+    .post-stats span {
+        padding: 5px;
+    }
 
 .post-body {
-    max-width: 750px;
+
+    margin: auto;
+    max-width: 900px;
     font-size: 16px;
-    padding-bottom: 50px;
+    padding: 0 50px;
     font: 400 1.1rem Roboto,Arial,Helvetica,Sans-serif;
     color: #2c2c2c;
     letter-spacing: -0.47px;
@@ -433,7 +449,9 @@ body {
     }
     /* BODY */
     .post-body {
+
         font-size: 35px;
+        
         max-width: 1000px;
         padding:20px;
     }

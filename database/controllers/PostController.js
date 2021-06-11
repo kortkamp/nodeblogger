@@ -105,5 +105,21 @@ function getModelFields(){
     return postDataFields;
 }
 
+async function addView(id){
+    try{
+        var post = await getPostById(id);
+        return await Post.update({views:post.views+1}, {where:{id:id}});
+    }catch(err){
+        console.log(err)
+    }  
+}
+async function addLike(id){
+    try{
+        var post = await getPostById(id);
+        return await Post.update({likes:post.likes+1}, {where:{id:id}});
+    }catch(err){
+        console.log(err)
+    }  
+}
 
-module.exports = {getPostById,listAllPosts,postArticle,getPostContent,listAllHeaders,getModelFields,deleteArticle}
+module.exports = {getPostById,listAllPosts,postArticle,getPostContent,listAllHeaders,getModelFields,deleteArticle,addView,addLike}
