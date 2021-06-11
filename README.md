@@ -30,7 +30,7 @@ Plataforma para criação de Blogs feita em Node.js/Express
 - [ ] Option to comment on someone else's comment.
 - [ ] Count views on articles.
 - [x] Add subcribing functionality and notify then about new articles posteds
-- [ ] Add unsubscribe service.
+- [x] Add unsubscribe service.
 - [ ] List articles by keywords or authors and route those lists.
 - [ ] Overtake Wordpress as default Blog platform :joy:
 

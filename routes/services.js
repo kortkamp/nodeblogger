@@ -41,6 +41,13 @@ router.get('/getPositions', function(req, res, next) {
 
 
 
+// here we should implement a response or confirmation page
+router.get('/unsubscribe', (req,res) => {
+    if(req.query && req.query.email){
+        SubscriberController.removeSubscriber({email:req.query.email})
+        .then(res.send('Sorry about inconvenience'))
+    }
+})
 
 
 router.post('/postComment', function(req, res, next) {

@@ -42,7 +42,7 @@ async function sendContactMail(contactData){
 
 async function notifySubscribers(article){
 
-    console.log(article)
+    //console.log(article)
 
     subscribers = await SubscriberController.getSubscribers()
 
@@ -55,13 +55,17 @@ async function notifySubscribers(article){
 
         html:   '<h2> A new Article has been posted in '+mailInfo.domain+'</h2><br>'+
                 '<br>'+
-                '<br>'+
+                '<h3>' + article.title + '</h3>'+
+                '<h4>' + article.description + '</h4>'+
+                '<br>' +
+                '<br>' +
+                '<br>' +
                 'Go to <a href="http://' + mailInfo.domain + '">'+ mailInfo.domain + '</a> to read the new article!!'+
                 '<br>' +
                 '<br>' +
                 '<br>' +
                 '<br>' +
-                'If you dont want to receive new E-mail, please go to ...'
+                'If you dont want to receive new E-mail, please go to <a href="http://' + mailInfo.domain + '/unsubscribe?email=' + subscriber.email + '</a>'
 
     }
     
