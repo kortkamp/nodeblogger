@@ -9,7 +9,10 @@ const Post = database.define('post',{
         primaryKey: true
     },
     
-    title:Sequelize.STRING,
+    title:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
     description:Sequelize.STRING,
     author:Sequelize.STRING,
     keywords:Sequelize.STRING(1000),
@@ -19,9 +22,23 @@ const Post = database.define('post',{
         allowNull:false
     },
     // for future use
-    type:Sequelize.INTEGER,
+    type:{
+        type:Sequelize.INTEGER,
+        defaultValue:0,
+    },
     // for future use
-    status:Sequelize.INTEGER,
+    status:{
+        type:Sequelize.INTEGER,
+        defaultValue:0,
+    },
+    views:{
+        type:Sequelize.INTEGER,
+        defaultValue:0,
+    },
+    likes:{
+        type:Sequelize.INTEGER,
+        defaultValue:0,
+    },
     content:Sequelize.TEXT,
     
 })

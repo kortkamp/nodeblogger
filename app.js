@@ -19,6 +19,8 @@ var app = express();
 
 global.postsData =[];
 global.siteConfig = {};
+global.authors = new Set();
+global.keywords = new Set();
 
 // Load All Blog Posts and configs in Memory
 (async() => {
@@ -30,6 +32,8 @@ global.siteConfig = {};
        
     // build all page names replacing 
     postsData.forEach(element => {
+        element.keywords.split(' ').forEach(keyword => keywords.add(keyword));
+        authors.add(element.author);
         element.path = String(element.title).toLowerCase().replace(/ /g, '-');
     });
 })();

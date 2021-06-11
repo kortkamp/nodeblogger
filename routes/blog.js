@@ -19,6 +19,23 @@ site = {
 }
 
 
+// must return a array with author list aka users
+function listAuthors(){
+
+}
+
+
+// search all keywords in all posts
+function listKeywords(){
+
+
+
+}
+
+
+router.get("/author" )  ....
+
+router.get("/keyword" ) . .. .. 
 
 router.get("/", (req, res, next) => {
   // redirect to desired homepage

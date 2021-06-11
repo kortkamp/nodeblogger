@@ -104,12 +104,23 @@ router.post('/make_contact', function(req,res,next){
 async function updatePostCache(){
     console.log('inside updateCache')
     try{
+
+        //authors.clear();
+        keywords.clear();
+
         siteConfig = await ConfigController.getFirstEntry();
         postsData = await InternalPostController.listAllPosts();
         
         // build all page names replacing spaces by '-'
         postsData.forEach(element => {
+
+            element.keywords.split(' ').forEach(keyword => {console.log(keyword);keywords.add(keyword)});
+            authors.add(element.author);
             
+            console.log(authors)
+            console.log(keywords)
+
+
             element.path = String(element.title).toLowerCase().replace(/ /g, '-');
             console.log(element.path)
         });
