@@ -160,10 +160,18 @@ router.post('/publishArticle/:id', function(req,res,next){
         await ArticleController.update(req,res)
         await updatePostCache().then().catch(err => console.log(err))
     })();
-    
-    
-    
+     
 });
 
+
+router.post('/likeArticle', function(req,res,next){
+    console.log(req.body)
+    PostController.addLike(req.body.id)
+    .then(data =>{
+        res.json({'likes':data.likes})
+    })
+
+    
+});
 
 module.exports = router;

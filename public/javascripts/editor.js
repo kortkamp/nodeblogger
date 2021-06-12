@@ -8,6 +8,8 @@ const apiURL = document.location.origin + '/api/'
 var defaultNewPost = {  allow_commentary:true,
                         status:0,
                         type:0,
+                        views:0,
+                        likes:0,
                         public:false
                     };
 

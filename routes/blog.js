@@ -102,6 +102,7 @@ router.get("/:article", (req, res, next) => {
                
             res.render("blog", {
 
+                articleId:post.id,
                 site:siteConfig,
                 postBody: result,
                 menu: postsData,

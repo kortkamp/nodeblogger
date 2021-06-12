@@ -186,20 +186,33 @@ body {
     padding-top: 10px;
     padding-left: 5px;
     width: 40px;
+    color: rgba(24, 24, 24, 0.568);
 }
+
+
 .like-stats img:hover{
-    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    -box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    
+    
+    filter: invert(0%);
 }
     .post-stats div {
         display: flex;
         align-items: center;
     }
-    .post-stats img {
-        width: 18px;
-    }
+.stat-ico {
+    width: 18px;
+    filter: invert(50%);
+}
+    
     .post-stats span {
         padding: 5px;
     }
+
+.stat-liked {
+    filter: invert(0%);
+    
+}    
 
 .post-body {
 

@@ -4,11 +4,11 @@ block content
     div(class='post-container')
         div.post-stats
             div.view-stats
-                img(src="/images/ico/eye-regular.svg")
-                span #{views}
+                img(class="stat-ico view-ico",src="/images/ico/eye-regular.svg")
+                span.view-counter #{views}
             div.like-stats
-                img(src="/images/ico/heart-regular.svg")
-                span #{likes}
+                img(class="stat-ico like-ico",src="/images/ico/heart-regular.svg" onclick="addLike("+articleId+")")
+                span.like-counter #{likes}
         div(class='post-body')
             h1= title
             h3= description
