@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "databasebuild": "node ./database/buildTables.js",
+    "docsbuild":"node ./database/buildDocs.js",
+
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "serverstart": "DEBUG=nodeblogger:* npm run devstart",

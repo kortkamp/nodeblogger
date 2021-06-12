@@ -10,7 +10,9 @@ var defaultNewPost = {  allow_commentary:true,
                         type:0,
                         views:0,
                         likes:0,
-                        public:false
+                        public:false,
+                        main_menu:false,
+
                     };
 
 
