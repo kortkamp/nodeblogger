@@ -51,7 +51,7 @@ router.get('/unsubscribe', (req,res) => {
 
 
 router.post('/postComment', function(req, res, next) {
-    console.log(req.body)   
+    
     if(req.body){
 
         if(req.body.subscribe === 'on'){
@@ -63,11 +63,7 @@ router.post('/postComment', function(req, res, next) {
         }
 
         commentController.postComment(Object.assign(req.body)).then(response => {
-            //console.log(response)
-           // for(index in response){
-                //response[index].create_date = formatDateTime(response[index].create_date);
-           // }
-            
+                       
             res.redirect('/' + req.body.parent_post)
         })
     }

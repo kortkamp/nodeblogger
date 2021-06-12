@@ -240,6 +240,10 @@ body {
         margin-left: 20px;
     }
 
+.post-content {
+    padding-bottom: 30px;
+}
+
 .tree-content {
     
     height: 100%;
@@ -300,6 +304,10 @@ body {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+    }
+    .footer-content li {
+        padding: 2px 0;
+       
     }
 
 .footer-lower {

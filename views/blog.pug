@@ -29,7 +29,7 @@ block content
 
 
                 div.comments-wrapper
-                    h2.comments-title Comentários
+                    h2.comments-title Comentaries
                     ol.comment-list
                         // =========== MAKE THE LIST ===============
                         each comment,index in comments  
@@ -49,28 +49,28 @@ block content
                         
                 div.respond
                     div.respond-wrapper
-                        h3.comment-reply-title Deixe um comentário
+                        h3.comment-reply-title Leave a comment
                         form(name='new-comment' class="comment-form" action="/postComment" method="post" onsubmit="return validateSubmit()")
                             input(id="parent_post" name="parent_post" type="hidden" value=page_name)
                             input(id="parent_comment" name="parent_comment" type="hidden" value=0)
                             div.comment-form-field 
                                 div.comment-textarea
-                                    textarea(name="content", cols="30", rows="10" placeholder="Digite seu comentário aqui..." onclick='$(".complement-form").show();$(window).scrollTop($("body").height() ) ' oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"')
+                                    textarea(name="content", cols="30", rows="10" placeholder="Type your comment..." onclick='$(".complement-form").show();$(window).scrollTop($("body").height() ) ' oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"')
                                     
                             div.complement-form
                                 div.comment-form-identity
                                     div.comment-form-label
-                                        p= 'Preencha seus dados abaixo:'
+                                        p= 'Fill your details below:'
                                     div.comment-form-fields
                                         div(class='comment-form-name comment-form-field')
-                                            input(id='author' name='author' type='text' placeholder='Nome (Obrigatório)')
+                                            input(id='author' name='author' type='text' placeholder='Name (required)')
                                         div(class='comment-form-email comment-form-field')
-                                            input(id='email' name='email' type='text' placeholder='Email (Obrigatório)')
+                                            input(id='email' name='email' type='text' placeholder='Email (required)')
                                 div.subscribe-container
                                     input( name="subscribe" , type="checkbox", class="subscribe-check") 
-                                    label  Desejo receber novas publicações por E-mail
+                                    label  I want to receive new posts in my E-mail
                                 div.submit-form
-                                    input( type="submit" id="comment-submit" class="submit comment-form-field" value="Publicar comentário")
+                                    input( type="submit" id="comment-submit" class="submit comment-form-field" value="Send Comment")
                                     
                             
                                 

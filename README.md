@@ -35,9 +35,14 @@ Platform for creating generic blogs made in Nodejs/Express.
 - [x] Add unsubscribe service.
 - [x] List articles by keywords or authors and route those lists.
 - [ ] Change all project content to English( Sorry , I started it in Portuguese).
+- [ ] Write tests.
 - [ ] Overtake Wordpress as default Blog platform :joy:
 
- 
+
+# Using
+
+After following install instructions you can start u
+
 # Desenvolvimento
 A ideia inicial do projeto foi a migração de um blog Wordpress para a Node/Express. Inicialmente o objetivo era construir um site com apenas uma página estática com a apresentação e uma página com a árvore genealógica. À medida que fui implementando a idéia inicial percebi que o **Express.js** facilitava muito a construção de aplicações maiores e que com o uso de **routes** e de uma **View Engine** eu poderia construir a página no formato de Blog, armazenando apenas as informações essenciais de cada post e renderizando as páginas direto pelo Node.js. 
 
@@ -57,28 +62,28 @@ A ideia inicial era que as atualizações dos conteúdos fessem feitas pela adi�
 Com o editor funcionando se fez necessário um sistema de autenticação para que o administrador pudesse acessar a ferramenta. Desse modo implementei um sistema de login e senha com troca dessas credenciais por um token JWT com validade de 15 minutos e armazenado em cookie que permite o acesso às ferramentas administrativas. Para o editor, implementei uma função temporizada que renova o token antes que o mesmo expire permitindo assim o uso ininterrupto do ambiente de edição sem a necessidade novo login enquanto o editor estiver aberto.
 
 
-# Aspectos Técnicos
+# Technical
 
-### Pré-requisitos
+### Prerequisites
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 - [Git](https://git-scm.com), 
 - [Node.js](https://nodejs.org/en/), 
 - [MySQL Server](https://www.mysql.com/)
 
-### 🎲 Rodando o Back End (servidor)
+### 🎲 Running on Back End (servidor)
 
 ```bash
-# Clone este repositório
-$ git clone https://github.com/kortkamp/kortkamp.org
+# Clone this repository
+$ git clone https://github.com/kortkamp/nodeblogger
 
-# Acesse a pasta do projeto no terminal/cmd
+# Go to the folder project
 $ cd nodeblogger
 
-# Instale as dependências
+# Install dependencies
 $ npm install
 
-# Configure o db_info.json para o seu Banco de Dados
+# Configure db_info.json for your Mysql server
 {   
     "host":"localhost",
     "user":"user",
@@ -87,13 +92,13 @@ $ npm install
     "port": 3306
 }
 
-# Configure o Banco de Dados
+# Create database and tables
 $ node .\database\buildTables.js
 
-# Execute a aplicação em modo de desenvolvimento
+# Run the project in development mode
 $ npm run dev:server
 
-# O servidor inciará na porta:3000 - acesse http://localhost:3000 
+# The server will star in port:3000 - go to http://localhost:3000 
 ```
 
 

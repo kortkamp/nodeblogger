@@ -30,9 +30,10 @@ html
                     ul  
                         li
                             a(class='menu-item' href='/') home
-                        each val in postsData
-                            li
-                                a(class='menu-item' href=val.path) #{val.title}
+                        each post in postsData
+                            if post.main_menu == true
+                                li
+                                    a(class='menu-item' href=post.path) #{post.title}
                         
                         li
                             a(class='menu-item' href='/contact') contato
@@ -55,10 +56,17 @@ html
                             a(href="../author/" + author ) #{author} 
             div.footer-last-posts
                 h3 Last Posts
+                ul.last-ul 
+                    each post in lastPosts
+                        li
+                            a(href="../" + post.path ) #{post.title} 
             div.footer-areas
                 h3 Links
-                a(href='/contact') Contato
-                a(href="/admin") Admin
+                ul
+                    li
+                        a(href='/contact') Contato
+                    li
+                        a(href="/admin") Admin
         div.footer-lower
             a(href="https://github.com/kortkamp/nodeblogger") Nodeblogger 2021
             

@@ -32,7 +32,8 @@ router.get("/author/:author", (req, res, next) => {
         postsList:postsByAuthor,
 
         authors:Array.from(authors),
-        keywords:Array.from(keywords)
+        keywords:Array.from(keywords),
+        lastPosts:postsData.slice(-5).reverse()
 
     });
 
@@ -55,7 +56,8 @@ router.get("/keyword/:keyword", (req, res, next) => {
         postsList:postsByKeyword,
 
         authors:Array.from(authors),
-        keywords:Array.from(keywords)
+        keywords:Array.from(keywords),
+        lastPosts:postsData.slice(-5).reverse()
 
     });
 });
@@ -72,8 +74,8 @@ router.get("/", (req, res, next) => {
         title: siteConfig.site_title,
         site:siteConfig,
         authors:Array.from(authors),
-        keywords:Array.from(keywords)
-
+        keywords:Array.from(keywords),
+        lastPosts:postsData.slice(-5).reverse()
     });
 });
 
@@ -98,8 +100,8 @@ router.get("/contact", (req,res) => {
 
         adminEmail:siteConfig.admin_email,
         authors:Array.from(authors),
-        keywords:Array.from(keywords)
-        
+        keywords:Array.from(keywords),
+        lastPosts:postsData.slice(-5).reverse()
     });
 });
   
@@ -140,7 +142,8 @@ router.get("/:article", (req, res, next) => {
                 views:post.views,
                 likes:post.likes,
                 authors:Array.from(authors),
-                keywords:Array.from(keywords)
+                keywords:Array.from(keywords),
+                lastPosts:postsData.slice(-5).reverse()
             });
         })   
     }else

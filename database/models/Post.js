@@ -21,6 +21,10 @@ const Post = database.define('post',{
         type:Sequelize.BOOLEAN,
         allowNull:false
     },
+    main_menu:{
+        type:Sequelize.BOOLEAN,
+        allowNull:false
+    },
     // for future use
     type:{
         type:Sequelize.INTEGER,
