@@ -117,12 +117,12 @@ async function updatePostCache(){
             element.keywords.split(' ').forEach(keyword => {console.log(keyword);keywords.add(keyword)});
             authors.add(element.author);
             
-            console.log(authors)
-            console.log(keywords)
+            //console.log(authors)
+            //console.log(keywords)
 
 
             element.path = String(element.title).toLowerCase().replace(/ /g, '-');
-            console.log(element.path)
+           // console.log(element.path)
         });
 
     }catch(err){

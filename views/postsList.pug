@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  div.links-container
+    each post in postsList
+        a(class="list-element", href="/"+post.path)
+            h3 #{post.title}
+            h4 #{post.description}
+            p #{post.content}
+    

@@ -2,9 +2,9 @@
 doctype html
 html
     head
-        title= site.site_title
+        title= pageTitle
         link(rel='stylesheet', href='/stylesheets/style.css')
-        //link(rel='stylesheet', href='/stylesheets/contact.css')
+        link(rel='stylesheet', href='/stylesheets/postsList.css')
         
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
         script(src='/javascripts/ui.js')
@@ -40,7 +40,27 @@ html
         block content
 
     div(class='master-footer')
-        a(href="https://github.com/kortkamp/nodeblogger") Nodeblogger 2021
-        a(href="/admin") Admin
+        div.footer-content
+            div.footer-keywords
+                h3 Keywords
+                ul.keywords-ul 
+                    each keyword in keywords
+                        li
+                            a(href="../keyword/" + keyword ) #{keyword} 
+            div.footer-authors
+                h3 Authors
+                ul.authors-ul 
+                    each author in authors
+                        li
+                            a(href="../author/" + author ) #{author} 
+            div.footer-last-posts
+                h3 Last Posts
+            div.footer-areas
+                h3 Links
+                a(href='/contact') Contato
+                a(href="/admin") Admin
+        div.footer-lower
+            a(href="https://github.com/kortkamp/nodeblogger") Nodeblogger 2021
+            
 
 a(id="goTopButton")

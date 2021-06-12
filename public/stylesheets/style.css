@@ -268,22 +268,50 @@ body {
 */
 .master-footer {
     background-color: #7e7e7e;
-    text-align: center;
-    display: flex;
+    display: block;
+    flex-direction: column;
+    
+    
     justify-content: space-between;
-    padding: 0 20px;
+    
     
 }
 .master-footer a{
     color: #222;
-    margin: 4px;
+    
     font-weight: 600;
     
     text-decoration: none;
 }
+.footer-content {
+    margin:auto;
+    max-width: 1000px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+    .footer-content div {
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .footer-content ul {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-
-
+.footer-lower {
+    text-align: center;
+    background-color: #444444;
+    color: #a1a1a1;
+    padding: 5px;
+}
+.footer-lower a{
+    
+    color: #a1a1a1;
+}
 /* ------- go top button ------------*/
 
 #goTopButton {

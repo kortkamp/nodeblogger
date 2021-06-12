@@ -1,37 +1,40 @@
 # NodeBlogger
-Plataforma para criação de Blogs feita em Node.js/Express
+Platform for creating generic blogs made in Nodejs/Express.
+
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/kortkamp/nodeblogger/fork)
 ![Lines of code](https://img.shields.io/tokei/lines/github/kortkamp/nodeblogger)
 
-# Funcionalidades
-- Múltiplas páginas armazenadas em tabela do BD
-- Área de comentários
-- Formulário de contato
-- Notificações por email dos eventos principais
-- Editor de postagens
-- Renderizador de Markdown para o conteúdo das postagens.
-- Carregamento rápido com conteúdo dos artigos cacheados em Memória.
-- Renderizador PUG backend.
-- API RESTful para acesso aos dados.
-- Multiusuários, com sistema de autenticação via login e autorização via JWT.
+# Features
+- Multiple pages stored in DB tables.
+- Comments Area.
+- Contact form.
+- E-mail notifications about main events.
+- Articles basic editor.
+- Markdown render for the content of articles.
+- Fast loading with pages cached in RAM.
+- PUG backend Renderer.
+- RESTful API for accessing main data.
+- Multi-users, with login and JWT authentication.
 
 
-# TODO
+# TODO for future
 - [x] Logoff on Dashboard or Editor.
 - [x] Option to define Homepage in Article Editor.
 - [x] Create a publish article function.
+- [x] Add a cool page for 404 Error.
 - [ ] Add tools for markdown editing in Articles Editor.
 - [ ] Add image uploader in Articles Editor.
 - [ ] Save sketch when writing new article, so on logoff the content is preserved.
 - [ ] Add Share (on social media) buttons.
 - [ ] Option to comment on someone else's comment.
 - [x] Count views on articles.
-- [ ] Add like Buttons on articles.
+- [x] Add like Buttons on articles.
 - [x] Add subcribing functionality and notify then about new articles posteds
 - [x] Add unsubscribe service.
-- [ ] List articles by keywords or authors and route those lists.
+- [x] List articles by keywords or authors and route those lists.
+- [ ] Change all project content to English( Sorry , I started it in Portuguese).
 - [ ] Overtake Wordpress as default Blog platform :joy:
 
  
@@ -94,9 +97,9 @@ $ npm run dev:server
 ```
 
 
-### 🛠 Tecnologias
+### 🛠 Tecnologies
 
-As seguintes ferramentas foram usadas na construção do projeto:
+The following tecnologies where used in the project:
 
 - Backend
     - [Node.js](https://nodejs.org/en/)

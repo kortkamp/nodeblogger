@@ -13,49 +13,68 @@ const utils = require('../utils');
 const matter = require('gray-matter');
 const mail = require('@sendgrid/mail');
 
-site = {
-  title:"Família Kortkamp",
-  description:"Da Alemanha ao Brasil, 200 anos de História"
-}
-
-
-// must return a array with author list aka users
-function listAuthors(){
-
-}
-
-
-// search all keywords in all posts
-function listKeywords(){
 
 
 
-}
-
-router.get("/author", (req, res, next) => {
-
-});
 
 router.get("/author/:author", (req, res, next) => {
+    var postsByAuthor = [];
+    for(post of postsData){
+        if(post.author === req.params.author)
+            postsByAuthor.push(post)
+    }
+
+    res.render('postsList',{
+        pageTitle:req.params.author,
+        site:siteConfig,
+
+        // linkList receive an Array of objects with same structure as db table.
+        postsList:postsByAuthor,
+
+        authors:Array.from(authors),
+        keywords:Array.from(keywords)
+
+    });
 
 });
 
 router.get("/keyword/:keyword", (req, res, next) => {
-  
+
+    var postsByKeyword = [];
+    for(post of postsData){
+        if(post.keywords.includes(req.params.keyword)){
+            postsByKeyword.push(post);
+        }     
+    }
+
+    res.render('postsList',{
+        pageTitle:req.params.author,
+        site:siteConfig,
+
+        // linkList receive an Array of objects with same structure as db table.
+        postsList:postsByKeyword,
+
+        authors:Array.from(authors),
+        keywords:Array.from(keywords)
+
+    });
 });
 
 router.get("/", (req, res, next) => {
-  // redirect to desired homepage
-  if(siteConfig.homepage){
-    req.url = "/" + siteConfig.homepage;
-    console.log('redirecting to ' +req.url)
-    next();
-  }else
-  res.render("blogindex", {
-    menu: postsData,
-    title: siteConfig.site_title,
-    site:siteConfig,
-  });
+    // redirect to desired homepage
+    if(siteConfig.homepage){
+        req.url = "/" + siteConfig.homepage;
+        console.log('redirecting to ' +req.url)
+        next();
+    }else
+        res.render("blogindex", {
+        menu: postsData,
+        title: siteConfig.site_title,
+        site:siteConfig,
+        authors:Array.from(authors),
+        keywords:Array.from(keywords)
+
+    });
 });
 
 /*
@@ -72,17 +91,20 @@ router.get("/tree", (req,res) => {
 
 router.get("/contact", (req,res) => {
   //const file = matter.read(path.join(process.cwd() , 'public' , 'contact.htm'));
-  res.render("contact", {
-    menu: postsData,
-    title: 'Contato',
-    site:siteConfig,
+    res.render("contact", {
+        menu: postsData,
+        title: 'Contato',
+        site:siteConfig,
 
-    adminEmail:siteConfig.admin_email
-    
-  });
+        adminEmail:siteConfig.admin_email,
+        authors:Array.from(authors),
+        keywords:Array.from(keywords)
+        
+    });
 });
   
 
+// Main blog article constructor and renderer
 router.get("/:article", (req, res, next) => {
     var post;
 
@@ -102,6 +124,9 @@ router.get("/:article", (req, res, next) => {
                
             res.render("blog", {
 
+                pageTitle:siteConfig.site_title,
+                
+
                 articleId:post.id,
                 site:siteConfig,
                 postBody: result,
@@ -114,6 +139,8 @@ router.get("/:article", (req, res, next) => {
                 allow_commentary: post.allow_commentary,
                 views:post.views,
                 likes:post.likes,
+                authors:Array.from(authors),
+                keywords:Array.from(keywords)
             });
         })   
     }else
