@@ -26,7 +26,7 @@ async function sendContactMail(contactData){
         to: siteConfig.admin_email,
         from: 'contact@' + mailInfo.domain, 
         subject: 'Contact on ' + mailInfo.domain,
-        //text: contactData,   // data from contact form
+        
 
         html:   '<strong>Contact on ' + mailInfo.domain + '</strong><BR>'+
                 contactData.name + '<BR>'+
@@ -35,14 +35,14 @@ async function sendContactMail(contactData){
                 contactData.message + '<BR>'
 
     }
-    //console.log(contactData);
+    
     return sendMail(mailOptions);
 }
 
 
 async function notifySubscribers(article){
 
-    //console.log(article)
+    
 
     subscribers = await SubscriberController.getSubscribers()
 
@@ -52,7 +52,6 @@ async function notifySubscribers(article){
                 to: '',
                 from: 'no-reply@' + mailInfo.domain, 
                 subject: 'New Post on ' + mailInfo.domain,
-                //text: contactData,   // data from contact form
                 html:   '<h2> A new Article has been posted in '+mailInfo.domain+'</h2><br>'+
                         '<br>'+
                         '<h3>' + article.title + '</h3>'+
@@ -68,7 +67,7 @@ async function notifySubscribers(article){
                         'If you dont want to receive new E-mail, please go to <a href="http://' + mailInfo.domain + '/unsubscribe?email=' + subscriber.email + '">unsubscribe</a>'
             }
 
-        //console.log(mailOptions)
+        
         mailOptions.to = subscriber.email
         sendMail(mailOptions);
     }

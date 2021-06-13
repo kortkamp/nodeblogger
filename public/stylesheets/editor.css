@@ -101,7 +101,7 @@ textarea.input-field {
 }
 .textarea-preview {
     display: none;
-    height: 400px;
+    min-height: 400px;
     width: 100%;
     background-color: white;
 }

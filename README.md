@@ -28,6 +28,8 @@ Go to [Geting Started Tutorial](https://github.com/kortkamp/nodeblogger/blob/mai
 - [x] Option to define Homepage in Article Editor.
 - [x] Create a publish article function.
 - [x] Add a cool page for 404 Error.
+- [ ] Add date and Author(link) in articles.
+- [ ] Store Hash instead of password in DB.
 - [ ] Add tools for markdown editing in Articles Editor.
 - [ ] Add image uploader in Articles Editor.
 - [ ] Save sketch when writing new article, so on logoff the content is preserved.
@@ -38,7 +40,8 @@ Go to [Geting Started Tutorial](https://github.com/kortkamp/nodeblogger/blob/mai
 - [x] Add subcribing functionality and notify then about new articles posteds
 - [x] Add unsubscribe service.
 - [x] List articles by keywords or authors and route those lists.
-- [ ] Change all project content to English( Sorry , I started it in Portuguese).
+- [x] Change all project content to English( Sorry , I started it in Portuguese).
+- [ ] Add authentication in the REST API.
 - [ ] Write tests.
 - [ ] Overtake Wordpress as default Blog platform :joy:
 
