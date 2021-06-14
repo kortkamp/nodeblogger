@@ -4,7 +4,6 @@ Platform for creating generic blogs made in Nodejs/Express.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/kortkamp/nodeblogger/fork)
-![Lines of code](https://img.shields.io/tokei/lines/github/kortkamp/nodeblogger)
 
 # Features
 - Multiple pages stored in DB tables.
