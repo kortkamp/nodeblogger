@@ -38,6 +38,8 @@ You can follow the installation instruction on [Nodeblogger Github Project](http
 - On TEXTAREA below, you gonna write your Article using Markdown Syntax.
 - After finished, click **SAVE** and if you want to make you new post available on Blog click **Publish Article**. 
 - If you already configured an Email service, a email will be sent to all subscribers of your blog telling then about a new Article on the Blog.
+- If your want to make this article your homepage, click **Define Homepage**.
+
 
 
 
