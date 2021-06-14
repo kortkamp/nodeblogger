@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "databasebuild": "node ./database/buildTables.js",
-    "docsbuild":"node ./database/buildDocs.js",
-
+    "docsbuild": "node ./database/buildDocs.js",
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "serverstart": "DEBUG=nodeblogger:* npm run devstart",
@@ -18,6 +17,7 @@
     "date-utils": "^1.2.21",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "g": "^2.0.1",
     "googleapis": "^74.2.0",
     "gray-matter": "^4.0.3",
     "http-errors": "~1.6.3",
@@ -31,6 +31,9 @@
     "sequelize": "^6.6.2"
   },
   "devDependencies": {
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
     "nodemon": "^2.0.7"
   }
 }
