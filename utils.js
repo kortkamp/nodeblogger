@@ -1,29 +1,27 @@
+function formatDateTime(dateTime) {
+  const date = new Date(dateTime);
+  const day = date.getDate(dateTime);
+  const monthIndex = date.getMonth(dateTime);
+  const month = ['Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'][monthIndex];
+  const year = date.getFullYear(dateTime);
 
-function formatDateTime(dateTime){
-    let date = new Date(dateTime)
-    let day =  date.getDate(dateTime)
-    let monthIndex = date.getMonth(dateTime)
-        let month = ['Janeiro',
-                    'Fevereiro',
-                    'Março',
-                    'Abril',
-                    'Maio',
-                    'Junho',
-                    'Julho',
-                    'Agosto',
-                    'Setembro',
-                    'Outubro',
-                    'Novembro',
-                    'Dezembro'][monthIndex]
-    let year = date.getFullYear(dateTime)
+  const hours = date.getHours(dateTime);
+  const minutes = date.getMinutes(dateTime);
 
-    let hours = date.getHours(dateTime)
-    let minutes =  date.getMinutes(dateTime)
+  const formatedDate = `${day} de ${month} de ${year} ${hours}:${String(minutes).padStart(2, '0')}`;
 
-    formatedDate = day + " de " + month + " de " + year + " " + hours + ":" + String(minutes).padStart(2, '0') ;
-
-    return formatedDate;
-    
+  return formatedDate;
 }
 
-module.exports = {formatDateTime};
+module.exports = { formatDateTime };
