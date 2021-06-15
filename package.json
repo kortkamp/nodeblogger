@@ -16,6 +16,7 @@
     "cookie-parser": "~1.4.4",
     "date-utils": "^1.2.21",
     "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
     "express": "~4.16.1",
     "g": "^2.0.1",
     "googleapis": "^74.2.0",
