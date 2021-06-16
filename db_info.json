@@ -1,7 +1,0 @@
-{   
-    "host":"localhost",
-    "user":"user",
-    "password":"password",
-    "database": "nodeblogger",
-    "port": 3306
-}

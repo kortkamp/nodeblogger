@@ -1,3 +1,7 @@
+const dotenv = require('dotenv');
+
+dotenv.config();
+
 const mysql = require('mysql2/promise');
 const User = require('./models/User');
 const Post = require('./models/Post');
@@ -6,9 +10,11 @@ const Config = require('./models/Config');
 const Contact = require('./models/Contact');
 const Subscriber = require('./models/Subscriber');
 
-const {
-  host, port, user, password, database,
-} = require('../db_info');
+const host = process.env.DB_HOST;
+const port = process.env.DB_PORT;
+const user = process.env.DB_USER;
+const password = process.env.DB_PASSWORD;
+const database = process.env.DB_NAME;
 
 (async () => {
   // Create necessary tables
@@ -16,7 +22,7 @@ const {
   const connection = await mysql.createConnection({
     host, port, user, password,
   });
-  // const sequelize = new Sequelize('family', 'user', 'password', {dialect: 'mysql', host: 'localhost'});
+
   await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
 
   await User.sync({ force: true });
@@ -29,7 +35,7 @@ const {
     phone: 999999999,
   });
 
-  await Post.sync();
+  await Post.sync({ force: true });
 
   await Comment.sync();
 
