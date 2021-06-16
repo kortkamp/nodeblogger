@@ -1,9 +1,12 @@
-# NodeBlogger
-Platform for creating generic blogs made in Nodejs/Express.
-
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/kortkamp/nodeblogger/fork)
+
+# NodeBlogger
+Node/Express made Platform for creating generic blogs.
+
+
+# Try it
+You can try a simple demo of Nodeblogger on [this link](https://kortkamp-nodeblogger.herokuapp.com/).
 
 # Features
 - Multiple pages stored in DB tables.
@@ -18,9 +21,9 @@ Platform for creating generic blogs made in Nodejs/Express.
 - Multi-users, with login and JWT authentication.
 
 
-# Geting Started
+# Getting Started
 
-Go to [Geting Started Tutorial](https://github.com/kortkamp/nodeblogger/blob/main/docs/getting-started.md) and follow the basics steps start using Nodeblogger.
+Go to [Getting Started Tutorial](https://github.com/kortkamp/nodeblogger/blob/main/docs/getting-started.md) and follow the basics steps start using Nodeblogger.
 
 # todo list (submit a PR)
 - [x] Logoff on Dashboard or Editor.
@@ -36,13 +39,13 @@ Go to [Geting Started Tutorial](https://github.com/kortkamp/nodeblogger/blob/mai
 - [ ] Option to comment on someone else's comment.
 - [x] Count views on articles.
 - [x] Add like Buttons on articles.
-- [x] Add subcribing functionality and notify then about new articles posteds
+- [x] Add subscribing functionality and notify then about new articles posted.
 - [x] Add unsubscribe service.
 - [x] List articles by keywords or authors and route those lists.
 - [x] Change all project content to English( Sorry , I started it in Portuguese).
 - [ ] Add authentication in the REST API.
 - [ ] Write tests.
-- [ ] Overtake Wordpress as default Blog platform :joy:
+- [ ] Overtake WordPress as default Blog platform :joy:
 
 
 # Contributing
@@ -93,9 +96,9 @@ $ npm run dev:server
 ```
 
 
-### 🛠 Tecnologies
+### 🛠 Technologies
 
-The following tecnologies where used in the project:
+The following technologies where used in the project:
 
 - Backend
     - [Node.js](https://nodejs.org/en/)
