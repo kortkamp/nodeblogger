@@ -72,14 +72,13 @@ $ cd nodeblogger
 # Install dependencies
 $ npm install
 
-# Configure db_info.json for your Mysql server
-{   
-    "host":"localhost",
-    "user":"user",
-    "password":"password",
-    "database": "nodeblogger",
-    "port": 3306
-}
+# Configure .env for your Mysql server as follows
+
+DB_HOST=localhost
+DB_USER=user
+DB_PASSWORD=password
+DB_NAME=nodeblogger
+DB_PORT=3306
 
 # Create database and tables
 $ npm run databasebuild
