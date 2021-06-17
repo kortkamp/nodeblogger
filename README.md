@@ -43,6 +43,7 @@ Go to [Getting Started Tutorial](https://github.com/kortkamp/nodeblogger/blob/ma
 - [x] Add unsubscribe service.
 - [x] List articles by keywords or authors and route those lists.
 - [x] Change all project content to English( Sorry , I started it in Portuguese).
+- [ ] Store just a fixed number of the more accessed articles in cache to save memory. The less accessed ones will gone be loaded from DB.
 - [ ] Add authentication in the REST API.
 - [ ] Write tests.
 - [ ] Overtake WordPress as default Blog platform :joy:
