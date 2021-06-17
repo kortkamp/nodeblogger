@@ -73,18 +73,6 @@ router.get('/', (req, res, next) => {
   }
 });
 
-/*
-router.get("/tree", (req,res) => {
-  const file = matter.read(path.join(process.cwd() , 'public','htree.htm'));
-  res.render("tree", {
-    menu: postsData,
-    title: site.title,
-    site:siteConfig,
-    treeBody:file.content
-  });
-});
-*/
-
 router.get('/contact', (req, res) => {
   // const file = matter.read(path.join(process.cwd() , 'public' , 'contact.htm'));
   res.render('contact', {
@@ -99,12 +87,12 @@ router.get('/contact', (req, res) => {
   });
 });
 
-// Main blog article constructor and renderer
+// Main blog article route
 router.get('/:article', (req, res, next) => {
-  let post;
-
   // search  article in cached articles list
-  if (post = postsData.find((item) => item.path === req.params.article)) {
+  const post = postsData.find((item) => item.path === req.params.article);
+
+  if (post) {
     PostController.addView(post.id);
 
     const md = require('markdown-it')();
@@ -116,9 +104,7 @@ router.get('/:article', (req, res, next) => {
       }
 
       res.render('blog', {
-
         pageTitle: siteConfig.site_title,
-
         articleId: post.id,
         site: siteConfig,
         postBody: result,
@@ -136,7 +122,9 @@ router.get('/:article', (req, res, next) => {
         lastPosts: postsData.slice(-5).reverse(),
       });
     });
-  } else { next(); }
+  } else {
+    next();
+  }
 });
 
 module.exports = router;
