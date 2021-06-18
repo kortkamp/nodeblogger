@@ -19,11 +19,7 @@ const { ConfigController } = require('./database/controllers/BlogController');
 const siteCache = require('./cache');
 
 const app = express();
-
-global.postsData = [];
 global.siteConfig = {};
-global.authors = new Set();
-global.keywords = new Set();
 
 // Load All Blog Posts and configs in Memory
 (async () => {
