@@ -1,14 +1,11 @@
 const express = require('express');
 
 const router = express.Router();
-const fs = require('fs');
-const path = require('path');
 
-const matter = require('gray-matter');
-const mail = require('@sendgrid/mail');
 const commentController = require('../database/controllers/CommentController');
 const PostController = require('../database/controllers/PostController');
 const siteCache = require('../cache');
+const config = require('../siteConfig');
 
 const utils = require('../utils');
 
@@ -22,7 +19,7 @@ router.get('/author/:author', (req, res, next) => {
 
   res.render('postsList', {
     pageTitle: req.params.author,
-    site: siteConfig,
+    site: config.data,
     menu: siteCache.getArticlesCache(),
 
     // linkList receive an Array of objects with same structure as db table.
@@ -45,7 +42,7 @@ router.get('/keyword/:keyword', (req, res, next) => {
 
   res.render('postsList', {
     pageTitle: req.params.author,
-    site: siteConfig,
+    site: config.data,
     menu: siteCache.getArticlesCache(),
 
     // linkList receive an Array of objects with same structure as db table.
@@ -67,8 +64,8 @@ router.get('/', (req, res, next) => {
   } else {
     res.render('blogindex', {
       menu: siteCache.getArticlesCache(),
-      title: siteConfig.site_title,
-      site: siteConfig,
+      title: config.data.site_title,
+      site: config.data,
       authors: siteCache.getAuthors(),
       keywords: siteCache.getKeywords(),
       lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
@@ -81,9 +78,9 @@ router.get('/contact', (req, res) => {
   res.render('contact', {
     menu: siteCache.getArticlesCache(),
     title: 'Contato',
-    site: siteConfig,
+    site: config.data,
 
-    adminEmail: siteConfig.admin_email,
+    adminEmail: config.data.admin_email,
     authors: siteCache.getAuthors(),
     keywords: siteCache.getKeywords(),
     lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
@@ -109,9 +106,9 @@ router.get('/:article', (req, res, next) => {
       // console.log(post);
 
       res.render('blog', {
-        pageTitle: siteConfig.site_title,
+        pageTitle: config.data.site_title,
         articleId: post.id,
-        site: siteConfig,
+        site: config.data,
         postBody: result,
         menu: siteCache.getArticlesCache(),
         title: post.title,

@@ -22,3 +22,9 @@ Some decisions I've made on development of Nodeblogger didn't makes me very prou
 - **Solution**: The first refactor task was completed by adding a singleton class SiteCache in a module named cache.js. Now we call this module where we need, update it when made necessary and the cache data gonna be shared across our app. 
 
 - **Conclusion**: Implementation of singleton pattern in Node.js is quite simple. When a module exports a new instance of class, Node makes a cache of this module returning the same instance when the module is required again and, voilà, we have a singleton.
+
+### Task #2 
+
+- **Problem**: Site configs is still being used in multiple modules as a global var. That's not a good practice.
+
+- **Solution**: 

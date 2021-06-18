@@ -13,18 +13,12 @@ const blogRouter = require('./routes/blog');
 const adminRouter = require('./routes/authentication');
 
 const apiRouter = require('./routes/api/apiRoute');
-const PostController = require('./database/controllers/PostController');
-const { ConfigController } = require('./database/controllers/BlogController');
 
 const siteCache = require('./cache');
+const config = require('./siteConfig');
 
 const app = express();
 global.siteConfig = {};
-
-// Load All Blog Posts and configs in Memory
-(async () => {
-  siteConfig = await ConfigController.getFirstEntry();
-})();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -59,7 +53,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error', {
     pageTitle: 'ERROR',
-    site: siteConfig,
+    site: config.data,
     authors: siteCache.getAuthors(),
     keywords: siteCache.getKeywords(),
     lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
