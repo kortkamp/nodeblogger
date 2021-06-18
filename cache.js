@@ -20,7 +20,6 @@ class SiteCache {
     this.articlesCache.forEach((element) => {
       // build article path replacing spaces by '-'
       element.path = String(element.title).toLowerCase().replace(/ /g, '-');
-      console.log(element.path);
     });
   }
 
