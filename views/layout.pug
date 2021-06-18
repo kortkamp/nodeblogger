@@ -30,7 +30,7 @@ html
                     ul  
                         li
                             a(class='menu-item' href='/') home
-                        each post in postsData
+                        each post in menu
                             if post.main_menu == true
                                 li
                                     a(class='menu-item' href=post.path) #{post.title}

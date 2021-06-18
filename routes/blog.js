@@ -8,6 +8,7 @@ const matter = require('gray-matter');
 const mail = require('@sendgrid/mail');
 const commentController = require('../database/controllers/CommentController');
 const PostController = require('../database/controllers/PostController');
+const siteCache = require('../cache');
 
 const utils = require('../utils');
 
@@ -15,27 +16,28 @@ const utils = require('../utils');
 
 router.get('/author/:author', (req, res, next) => {
   const postsByAuthor = [];
-  for (post of postsData) {
+  for (post of siteCache.getArticlesCache()) {
     if (post.author === req.params.author) { postsByAuthor.push(post); }
   }
 
   res.render('postsList', {
     pageTitle: req.params.author,
     site: siteConfig,
+    menu: siteCache.getArticlesCache(),
 
     // linkList receive an Array of objects with same structure as db table.
     postsList: postsByAuthor,
 
-    authors: Array.from(authors),
-    keywords: Array.from(keywords),
-    lastPosts: postsData.slice(-5).reverse(),
+    authors: siteCache.getAuthors(),
+    keywords: siteCache.getKeywords(),
+    lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
 
   });
 });
 
 router.get('/keyword/:keyword', (req, res, next) => {
   const postsByKeyword = [];
-  for (post of postsData) {
+  for (post of siteCache.getArticlesCache()) {
     if (post.keywords.includes(req.params.keyword)) {
       postsByKeyword.push(post);
     }
@@ -44,13 +46,14 @@ router.get('/keyword/:keyword', (req, res, next) => {
   res.render('postsList', {
     pageTitle: req.params.author,
     site: siteConfig,
+    menu: siteCache.getArticlesCache(),
 
     // linkList receive an Array of objects with same structure as db table.
     postsList: postsByKeyword,
 
-    authors: Array.from(authors),
-    keywords: Array.from(keywords),
-    lastPosts: postsData.slice(-5).reverse(),
+    authors: siteCache.getAuthors(),
+    keywords: siteCache.getKeywords(),
+    lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
 
   });
 });
@@ -63,12 +66,12 @@ router.get('/', (req, res, next) => {
     next();
   } else {
     res.render('blogindex', {
-      menu: postsData,
+      menu: siteCache.getArticlesCache(),
       title: siteConfig.site_title,
       site: siteConfig,
-      authors: Array.from(authors),
-      keywords: Array.from(keywords),
-      lastPosts: postsData.slice(-5).reverse(),
+      authors: siteCache.getAuthors(),
+      keywords: siteCache.getKeywords(),
+      lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
     });
   }
 });
@@ -76,21 +79,21 @@ router.get('/', (req, res, next) => {
 router.get('/contact', (req, res) => {
   // const file = matter.read(path.join(process.cwd() , 'public' , 'contact.htm'));
   res.render('contact', {
-    menu: postsData,
+    menu: siteCache.getArticlesCache(),
     title: 'Contato',
     site: siteConfig,
 
     adminEmail: siteConfig.admin_email,
-    authors: Array.from(authors),
-    keywords: Array.from(keywords),
-    lastPosts: postsData.slice(-5).reverse(),
+    authors: siteCache.getAuthors(),
+    keywords: siteCache.getKeywords(),
+    lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
   });
 });
 
 // Main blog article route
 router.get('/:article', (req, res, next) => {
   // search  article in cached articles list
-  const post = postsData.find((item) => item.path === req.params.article);
+  const post = siteCache.getArticlesCache().find((item) => item.path === req.params.article);
 
   if (post) {
     PostController.addView(post.id);
@@ -103,12 +106,14 @@ router.get('/:article', (req, res, next) => {
         commentsArray[index].create_date = utils.formatDateTime(commentsArray[index].createdAt);
       }
 
+      // console.log(post);
+
       res.render('blog', {
         pageTitle: siteConfig.site_title,
         articleId: post.id,
         site: siteConfig,
         postBody: result,
-        menu: postsData,
+        menu: siteCache.getArticlesCache(),
         title: post.title,
         description: post.description,
         article: req.params.article,
@@ -117,9 +122,9 @@ router.get('/:article', (req, res, next) => {
         allow_commentary: post.allow_commentary,
         views: post.views,
         likes: post.likes,
-        authors: Array.from(authors),
-        keywords: Array.from(keywords),
-        lastPosts: postsData.slice(-5).reverse(),
+        authors: siteCache.getAuthors(),
+        keywords: siteCache.getKeywords(),
+        lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
       });
     });
   } else {

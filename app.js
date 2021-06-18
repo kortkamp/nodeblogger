@@ -16,6 +16,8 @@ const apiRouter = require('./routes/api/apiRoute');
 const PostController = require('./database/controllers/PostController');
 const { ConfigController } = require('./database/controllers/BlogController');
 
+const siteCache = require('./cache');
+
 const app = express();
 
 global.postsData = [];
@@ -28,13 +30,6 @@ global.keywords = new Set();
   siteConfig = await ConfigController.getFirstEntry();
 
   postsData = await PostController.listAllPosts();
-
-  // build all page names replacing
-  postsData.forEach((element) => {
-    element.keywords.split(' ').forEach((keyword) => keywords.add(keyword));
-    authors.add(element.author);
-    element.path = String(element.title).toLowerCase().replace(/ /g, '-');
-  });
 })();
 
 // view engine setup
@@ -71,8 +66,9 @@ app.use((err, req, res, next) => {
   res.render('error', {
     pageTitle: 'ERROR',
     site: siteConfig,
-    authors: Array.from(authors),
-    keywords: Array.from(keywords),
+    authors: siteCache.getAuthors(),
+    keywords: siteCache.getKeywords(),
+    lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
   });
 });
 

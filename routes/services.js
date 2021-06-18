@@ -20,6 +20,8 @@ const SubscriberController = require('../database/controllers/SubscriberControll
 
 const { ContactController, ConfigController, ArticleController } = require('../database/controllers/BlogController');
 
+const siteCache = require('../cache');
+
 router.get('/getPositions', (req, res, next) => {
   // res.render('index', { title: 'Express' });
 
@@ -81,28 +83,10 @@ router.post('/make_contact', (req, res, next) => {
 
 async function updatePostCache() {
   console.log('inside updateCache');
-  try {
-    // authors.clear();
-    keywords.clear();
 
-    siteConfig = await ConfigController.getFirstEntry();
-    postsData = await InternalPostController.listAllPosts();
+  siteCache.updateSiteCache();
 
-    // build all page names replacing spaces by '-'
-    postsData.forEach((element) => {
-      element.keywords.split(' ').forEach((keyword) => { console.log(keyword); keywords.add(keyword); });
-      authors.add(element.author);
-
-      // console.log(authors)
-      // console.log(keywords)
-
-      element.path = String(element.title).toLowerCase().replace(/ /g, '-');
-      // console.log(element.path)
-    });
-  } catch (err) {
-    throw err;
-    // console.log('error on updateCache')
-  }
+  siteConfig = await ConfigController.getFirstEntry();
 }
 
 router.post('/updateCache', (req, res, next) => {

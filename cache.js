@@ -6,18 +6,11 @@ class SiteCache {
     this.articlesCache = [];
     this.authorList = [];
     this.keywordList = [];
-  }
-
-  async loadArticlesCache() {
-    this.keywordSet.clear();
-
-    const articleList = await InternalPostController.listAllPosts();
-
-    return articleList;
+    this.updateSiteCache();
   }
 
   async updateSiteCache() {
-    this.articlesCache = await this.loadArticlesCache();
+    this.articlesCache = await InternalPostController.listAllPosts();
     this.makePath();// not good
     this.authorList = this.getAuthors();
     this.keywordList = this.getKeywords();
@@ -27,6 +20,7 @@ class SiteCache {
     this.articlesCache.forEach((element) => {
       // build article path replacing spaces by '-'
       element.path = String(element.title).toLowerCase().replace(/ /g, '-');
+      console.log(element.path);
     });
   }
 
@@ -58,4 +52,6 @@ class SiteCache {
   }
 }
 
-module.exports = SiteCache;
+// returning new instance makes our module a Singleton, as Node caches the instance
+// and aways use it when calling this module again.
+module.exports = new SiteCache();
