@@ -28,8 +28,6 @@ global.keywords = new Set();
 // Load All Blog Posts and configs in Memory
 (async () => {
   siteConfig = await ConfigController.getFirstEntry();
-
-  postsData = await PostController.listAllPosts();
 })();
 
 // view engine setup
