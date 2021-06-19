@@ -65,6 +65,7 @@ class SiteCache {
     return this.articlesCache;
   }
 
+  // all list must be changed to hold just necessary data.
   getSummary() {
     return {
       articlesList: this.articlesList,

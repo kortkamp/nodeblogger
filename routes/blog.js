@@ -21,10 +21,7 @@ router.get('/author/:author', (req, res, next) => {
   res.render('postsList', {
     pageTitle: req.params.author,
     site: config.data,
-
-    // linkList receive an Array of objects with same structure as db table.
     postsList: postsByAuthor,
-
     summary: siteCache.getSummary(),
 
   });
@@ -41,12 +38,8 @@ router.get('/keyword/:keyword', (req, res, next) => {
   res.render('postsList', {
     pageTitle: req.params.author,
     site: config.data,
-
-    // linkList receive an Array of objects with same structure as db table.
     postsList: postsByKeyword,
-
     summary: siteCache.getSummary(),
-
   });
 });
 
@@ -67,7 +60,6 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/contact', (req, res) => {
-  // const file = matter.read(path.join(process.cwd() , 'public' , 'contact.htm'));
   res.render('contact', {
 
     title: 'Contato',
@@ -79,7 +71,7 @@ router.get('/contact', (req, res) => {
   });
 });
 
-// Main blog article route
+// must be refactored to not depend on return of getComments.
 router.get('/:article', (req, res, next) => {
   // search  article in cached articles list
   const post = siteCache.getArticlesCache().find((item) => item.path === req.params.article);
@@ -94,9 +86,6 @@ router.get('/:article', (req, res, next) => {
       for (index in commentsArray) {
         commentsArray[index].create_date = utils.formatDateTime(commentsArray[index].createdAt);
       }
-
-      // console.log('posts');
-      // console.log(siteCache.getArticlesCache());
 
       res.render('blog', {
         pageTitle: config.data.site_title,

@@ -1,5 +1,4 @@
 const express = require('express');
-const { compileClientWithDependenciesTracked } = require('pug');
 
 const router = express.Router();
 
@@ -15,7 +14,6 @@ try {
 const PostController = require('../database/controllers/PostController');
 const familyMemberController = require('../database/controllers/FamilyMemberController');
 const commentController = require('../database/controllers/CommentController');
-const InternalPostController = require('../database/controllers/PostController');
 const SubscriberController = require('../database/controllers/SubscriberController');
 
 const { ContactController, ConfigController, ArticleController } = require('../database/controllers/BlogController');
@@ -82,8 +80,6 @@ router.post('/make_contact', (req, res, next) => {
 });
 
 async function updatePostCache() {
-  console.log('inside updateCache');
-
   siteCache.updateSiteCache();
 
   siteConfig = await ConfigController.getFirstEntry();
@@ -113,7 +109,6 @@ router.post('/publishArticle/:id', (req, res, next) => {
   // make the article public
   req.body.public = true;
 
-  // console.log('after ArticleController.update(req,res)')
   (async () => {
     await ArticleController.update(req, res);
     await updatePostCache().then().catch((err) => console.log(err));
@@ -121,7 +116,6 @@ router.post('/publishArticle/:id', (req, res, next) => {
 });
 
 router.post('/likeArticle', (req, res, next) => {
-  console.log(req.body);
   PostController.addLike(req.body.id)
     .then((data) => {
       res.json({ likes: data.likes });
