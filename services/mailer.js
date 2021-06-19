@@ -1,7 +1,7 @@
 const sgMail = require('@sendgrid/mail');
-const mailInfo = require('./mail_info.json');
+const mailInfo = require('../mail_info.json');
 
-const SubscriberController = require('./database/controllers/SubscriberController');
+const SubscriberController = require('../database/controllers/SubscriberController');
 
 sgMail.setApiKey(mailInfo.sendgridKey);
 

@@ -4,8 +4,8 @@ const router = express.Router();
 
 const commentController = require('../database/controllers/CommentController');
 const PostController = require('../database/controllers/PostController');
-const siteCache = require('../cache');
-const config = require('../siteConfig');
+const siteCache = require('../services/cache');
+const config = require('../services/siteConfig');
 
 const utils = require('../utils');
 

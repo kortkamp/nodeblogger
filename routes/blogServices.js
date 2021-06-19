@@ -6,7 +6,7 @@ const router = express.Router();
 let mailer;
 try {
   const mailInfo = require('../mail_info.json');
-  if (mailInfo) { mailer = require('../mailer'); }
+  if (mailInfo) { mailer = require('../services/mailer'); }
 } catch {
   console.log('No mailer credentials provided');
 }
@@ -18,7 +18,7 @@ const SubscriberController = require('../database/controllers/SubscriberControll
 
 const { ContactController, ConfigController, ArticleController } = require('../database/controllers/BlogController');
 
-const siteCache = require('../cache');
+const siteCache = require('../services/cache');
 
 router.get('/getPositions', (req, res, next) => {
   // res.render('index', { title: 'Express' });

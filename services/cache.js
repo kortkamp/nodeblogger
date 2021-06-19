@@ -2,7 +2,7 @@
 *  Cache class gonna handle all requisitions to data from articles,
 *  it should return or update both articles cache or articles summary.
 */
-const InternalPostController = require('./database/controllers/PostController');
+const InternalPostController = require('../database/controllers/PostController');
 
 class SiteCache {
   constructor() {

@@ -1,4 +1,4 @@
-const { ConfigController } = require('./database/controllers/BlogController');
+const { ConfigController } = require('../database/controllers/BlogController');
 
 class SiteConfig {
   constructor() {

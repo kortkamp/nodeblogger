@@ -8,12 +8,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const servicesRouter = require('./routes/services');
+const servicesRouter = require('./routes/blogServices');
 const blogRouter = require('./routes/blog');
 const adminRouter = require('./routes/authentication');
 const apiRouter = require('./routes/api/apiRoute');
-const siteCache = require('./cache');
-const config = require('./siteConfig');
+const siteCache = require('./services/cache');
+const config = require('./services/siteConfig');
 
 const app = express();
 global.siteConfig = {};
