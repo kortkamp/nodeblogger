@@ -13,62 +13,55 @@ const utils = require('../utils');
 
 router.get('/author/:author', (req, res, next) => {
   const postsByAuthor = [];
-  for (post of siteCache.getArticlesCache()) {
-    if (post.author === req.params.author) { postsByAuthor.push(post); }
-  }
+
+  siteCache.getArticlesCache().forEach((article) => {
+    if (article.author === req.params.author) { postsByAuthor.push(article); }
+  });
 
   res.render('postsList', {
     pageTitle: req.params.author,
     site: config.data,
-    menu: siteCache.getArticlesCache(),
 
     // linkList receive an Array of objects with same structure as db table.
     postsList: postsByAuthor,
 
-    authors: siteCache.getAuthors(),
-    keywords: siteCache.getKeywords(),
-    lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
+    summary: siteCache.getSummary(),
 
   });
 });
 
 router.get('/keyword/:keyword', (req, res, next) => {
   const postsByKeyword = [];
-  for (post of siteCache.getArticlesCache()) {
-    if (post.keywords.includes(req.params.keyword)) {
-      postsByKeyword.push(post);
-    }
-  }
 
+  siteCache.getArticlesCache().forEach((article) => {
+    if (article.keywords.includes(req.params.keyword)) {
+      postsByKeyword.push(article);
+    }
+  });
   res.render('postsList', {
     pageTitle: req.params.author,
     site: config.data,
-    menu: siteCache.getArticlesCache(),
 
     // linkList receive an Array of objects with same structure as db table.
     postsList: postsByKeyword,
 
-    authors: siteCache.getAuthors(),
-    keywords: siteCache.getKeywords(),
-    lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
+    summary: siteCache.getSummary(),
 
   });
 });
 
 router.get('/', (req, res, next) => {
   // redirect to desired homepage
-  if (siteConfig.homepage) {
-    req.url = `/${siteConfig.homepage}`;
-    console.log(`redirecting to ${req.url}`);
+  if (config.data.homepage) {
+    req.url = `/${config.data.homepage}`;
     next();
   } else {
     res.render('blogindex', {
-      menu: siteCache.getArticlesCache(),
+
       title: config.data.site_title,
       site: config.data,
-      authors: siteCache.getAuthors(),
-      keywords: siteCache.getKeywords(),
-      lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
+
+      summary: siteCache.getSummary(),
     });
   }
 });
@@ -76,14 +69,13 @@ router.get('/', (req, res, next) => {
 router.get('/contact', (req, res) => {
   // const file = matter.read(path.join(process.cwd() , 'public' , 'contact.htm'));
   res.render('contact', {
-    menu: siteCache.getArticlesCache(),
+
     title: 'Contato',
     site: config.data,
 
     adminEmail: config.data.admin_email,
-    authors: siteCache.getAuthors(),
-    keywords: siteCache.getKeywords(),
-    lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
+
+    summary: siteCache.getSummary(),
   });
 });
 
@@ -103,25 +95,26 @@ router.get('/:article', (req, res, next) => {
         commentsArray[index].create_date = utils.formatDateTime(commentsArray[index].createdAt);
       }
 
-      // console.log(post);
+      // console.log('posts');
+      // console.log(siteCache.getArticlesCache());
 
       res.render('blog', {
         pageTitle: config.data.site_title,
         articleId: post.id,
         site: config.data,
         postBody: result,
-        menu: siteCache.getArticlesCache(),
         title: post.title,
         description: post.description,
         article: req.params.article,
         page_name: req.params.article,
         comments: commentsArray,
         allow_commentary: post.allow_commentary,
+
         views: post.views,
         likes: post.likes,
-        authors: siteCache.getAuthors(),
-        keywords: siteCache.getKeywords(),
-        lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
+
+        summary: siteCache.getSummary(),
+
       });
     });
   } else {

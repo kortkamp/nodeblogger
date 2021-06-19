@@ -1,19 +1,30 @@
+/*
+*  Cache class gonna handle all requisitions to data from articles,
+*  it should return or update both articles cache or articles summary.
+*/
 const InternalPostController = require('./database/controllers/PostController');
 
-// articlesCache gonna hold all properties of models/PostModels plus a path propoertie.
 class SiteCache {
   constructor() {
+    // how many articles to show in lastArticles list.
+    this.numberOfLastArticles = 5;
+    // articlesCache gonna hold all properties of models/PostModels plus a path propoertie.
     this.articlesCache = [];
+    this.articlesList = [];
     this.authorList = [];
     this.keywordList = [];
+    this.lastArticlesList = [];
+
     this.updateSiteCache();
   }
 
   async updateSiteCache() {
     this.articlesCache = await InternalPostController.listAllPosts();
     this.makePath();// not good
-    this.authorList = this.getAuthors();
-    this.keywordList = this.getKeywords();
+    this.authorList = this.listAuthors();
+    this.keywordList = this.listKeywords();
+    this.articlesList = this.listArticles();
+    this.lastArticlesList = this.articlesCache.slice(-this.numberOfLastArticles).reverse();
   }
 
   makePath() {
@@ -24,7 +35,7 @@ class SiteCache {
   }
 
   // return a list of all keywords on articles.
-  getKeywords() {
+  listKeywords() {
     const keywordSet = new Set();
 
     this.articlesCache.forEach((element) => {
@@ -38,7 +49,7 @@ class SiteCache {
   }
 
   // return a list of authors.
-  getAuthors() {
+  listAuthors() {
     const authorSet = new Set();
     this.articlesCache.forEach((element) => {
       authorSet.add(element.author);
@@ -46,8 +57,21 @@ class SiteCache {
     return Array.from(authorSet);
   }
 
+  listArticles() {
+    return this.articlesCache;
+  }
+
   getArticlesCache() {
     return this.articlesCache;
+  }
+
+  getSummary() {
+    return {
+      articlesList: this.articlesList,
+      authorList: this.authorList,
+      keywordList: this.keywordList,
+      lastArticlesList: this.lastArticlesList,
+    };
   }
 }
 

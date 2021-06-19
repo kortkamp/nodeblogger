@@ -30,7 +30,7 @@ html
                     ul  
                         li
                             a(class='menu-item' href='/') home
-                        each post in menu
+                        each post in summary.articlesList
                             if post.main_menu == true
                                 li
                                     a(class='menu-item' href=post.path) #{post.title}
@@ -45,19 +45,19 @@ html
             div.footer-keywords
                 h3 Keywords
                 ul.keywords-ul 
-                    each keyword in keywords
+                    each keyword in summary.keywordList
                         li
                             a(href="../keyword/" + keyword ) #{keyword} 
             div.footer-authors
                 h3 Authors
                 ul.authors-ul 
-                    each author in authors
+                    each author in summary.authorList
                         li
                             a(href="../author/" + author ) #{author} 
             div.footer-last-posts
                 h3 Last Posts
                 ul.last-ul 
-                    each post in lastPosts
+                    each post in summary.lastArticlesList
                         li
                             a(href="../" + post.path ) #{post.title} 
             div.footer-areas

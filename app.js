@@ -11,9 +11,7 @@ const logger = require('morgan');
 const servicesRouter = require('./routes/services');
 const blogRouter = require('./routes/blog');
 const adminRouter = require('./routes/authentication');
-
 const apiRouter = require('./routes/api/apiRoute');
-
 const siteCache = require('./cache');
 const config = require('./siteConfig');
 
@@ -54,9 +52,8 @@ app.use((err, req, res, next) => {
   res.render('error', {
     pageTitle: 'ERROR',
     site: config.data,
-    authors: siteCache.getAuthors(),
-    keywords: siteCache.getKeywords(),
-    lastPosts: siteCache.getArticlesCache().slice(-5).reverse(),
+
+    summary: siteCache.getSummary(),
   });
 });
 
