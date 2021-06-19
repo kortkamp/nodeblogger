@@ -100,7 +100,7 @@ router.post('/publishArticle/:id', (req, res, next) => {
 
   // notify subscribers
   (async () => {
-    article = await PostController.getPostById(articleId);
+    const article = await PostController.getPostById(articleId);
     if (mailer) {
       mailer.notifySubscribers(article).then((response) => {
 
