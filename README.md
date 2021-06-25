@@ -91,7 +91,7 @@ $ npm run databasebuild
 $ npm run docsbuild
 
 # Run the project in development mode
-$ npm run dev:server
+$ npm run devstart
 
 # The server will start in port:3000 - go to http://localhost:3000 
 ```
