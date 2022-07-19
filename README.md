@@ -1,3 +1,5 @@
+Disclaimer: The project will not be updated. This was a study project build in my early stydies on Node and will be kept just to show how bad code someone can write on start of programming studies.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/kortkamp/nodeblogger/fork)
 
